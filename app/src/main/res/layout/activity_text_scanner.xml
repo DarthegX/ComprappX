@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TextScanner">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/imageprev_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="@string/haz_una_foto_para_escanear_tu_ticket" />
+
+                <Button
+                    android:id="@+id/btnPick"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:text="@string/Escanear" />
+
+                <ImageView
+                    android:id="@+id/mPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
+                    app:srcCompat="@android:drawable/ic_menu_camera"
+                    android:contentDescription="TODO" />
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
