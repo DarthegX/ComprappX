@@ -26,6 +26,9 @@ import com.google.android.gms.vision.text.TextRecognizer;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import mycompra.app.logica.Parser;
+import mycompra.app.modelo.Producto;
+
 public class TextScanner extends AppCompatActivity {
 
     TextView mResult;
@@ -43,10 +46,12 @@ public class TextScanner extends AppCompatActivity {
     Uri image_uri;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_scanner);
 
+        mResult = findViewById(R.id.mResult);
         mPreview = findViewById(R.id.mPreview);
         btnPick = findViewById(R.id.btnPick);
 
@@ -72,11 +77,13 @@ public class TextScanner extends AppCompatActivity {
         }
     }
 
-    private void requestCameraPermission() {
+    private void requestCameraPermission()
+    {
         ActivityCompat.requestPermissions(this, cameraPermission, CAMERA_REQUEST_CODE);
     }
 
-    private void pickCamera() {
+    private void pickCamera()
+    {
         ContentValues values = new ContentValues();
         values.put(MediaStore.Images.Media.TITLE, "NewPic");
         values.put(MediaStore.Images.Media.DESCRIPTION, "Image To Text");
@@ -87,7 +94,8 @@ public class TextScanner extends AppCompatActivity {
         startActivityForResult(cameraIntent,IMAGE_PICK_CAMERA_CODE);
     }
 
-    private boolean checkCameraPermission() {
+    private boolean checkCameraPermission()
+    {
         boolean result = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
         boolean result1 = ContextCompat.checkSelfPermission(this,
@@ -98,8 +106,10 @@ public class TextScanner extends AppCompatActivity {
 
     //handle permission result
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions,  int[] grantResults) {
-        if (grantResults.length > 0) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,  int[] grantResults)
+    {
+        if (grantResults.length > 0)
+        {
             boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
             boolean writeStorageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
 
@@ -116,10 +126,13 @@ public class TextScanner extends AppCompatActivity {
 
     //handle image result
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
         //got image from camera
-        if (resultCode == RESULT_OK) {
-            if (requestCode == IMAGE_PICK_CAMERA_CODE) {
+        if (resultCode == RESULT_OK)
+        {
+            if (requestCode == IMAGE_PICK_CAMERA_CODE)
+            {
                 //now crop it
                 CropImage.activity(image_uri).setGuidelines(CropImageView.Guidelines.ON) //enable image guidelines
                         .start(this);
@@ -127,9 +140,12 @@ public class TextScanner extends AppCompatActivity {
             }
         }
         //get cropped image
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE)
+        {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == RESULT_OK) {
+
+            if (resultCode == RESULT_OK)
+            {
                 Uri resultUri = result.getUri(); // get image uri
                 //set image to image view
                 mPreview.setImageURI(resultUri);
@@ -140,23 +156,40 @@ public class TextScanner extends AppCompatActivity {
 
                 TextRecognizer recognizer = new TextRecognizer.Builder(getApplicationContext()).build();
 
-                if (!recognizer.isOperational()) {
-                    Toast.makeText(this, "Dependencies are not loaded yet...", Toast.LENGTH_SHORT).show();
-                } else {
+                if (!recognizer.isOperational())
+                {
+                    Toast.makeText(this, "Aún no se han cargado las dependencias...", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
                     Frame frame = new Frame.Builder().setBitmap(bitmap).build();
                     SparseArray<TextBlock> items = recognizer.detect(frame);
                     StringBuilder sb = new StringBuilder();
                     //get text from sb until there is no text
                     int i;
-                    for (i = 0; i < items.size(); i++) {
+
+                    for (i = 0; i < items.size(); i++)
+                    {
                         TextBlock myItem = items.valueAt(i);
-                        // TODO: Parse line
-                        sb.append(myItem.getValue());
-                        sb.append("\n");
+
+                        Parser.parseProducto(myItem.getValue());
+
+                        //sb.append(myItem.getValue());
+                        //sb.append("\n");
                     }
 
+                    Parser.createProductos();
+
+                    for (i = 0; i < Parser.productos.size(); i++)
+                    {
+                        sb.append(Parser.productos.get(i).toString());
+                    }
+
+                    mResult.setText(sb.toString());
                 }
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+            }
+            else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE)
+            {
                 //if there is any error
                 Exception error = result.getError();
                 Toast.makeText(this, "" + error, Toast.LENGTH_SHORT).show();

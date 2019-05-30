@@ -113,6 +113,38 @@ public class TicketDAO {
         return ticketList;
     }
 
+    public ArrayList<Ticket> getTicketListByMes(int idMes) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String selectQuery =  "SELECT  " +
+                Ticket.KEY_ID + "," +
+                Ticket.KEY_Precio + "," +
+                Ticket.KEY_Fecha + "," +
+                Ticket.KEY_ID_Supermercado + "," +
+                Ticket.KEY_ID_Mes +
+                " FROM " + Ticket.TABLE +
+                " WHERE " + Ticket.KEY_ID_Mes + "=?";
+
+        ArrayList<Ticket> ticketList = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Ticket ticket = new Ticket();
+                ticket.setId(cursor.getInt(cursor.getColumnIndex(Ticket.KEY_ID)));
+                ticket.setPrecio(cursor.getDouble(cursor.getColumnIndex(Ticket.KEY_Precio)));
+                ticket.setFecha(cursor.getString(cursor.getColumnIndex(Ticket.KEY_Fecha)));
+                ticket.setIdSupermercado(cursor.getInt(cursor.getColumnIndex(Ticket.KEY_ID_Supermercado)));
+                ticket.setIdMes(cursor.getInt(cursor.getColumnIndex(Ticket.KEY_ID_Mes)));
+                ticketList.add(ticket);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return ticketList;
+    }
+
     public Ticket getLastTicket(){
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =  "SELECT  " +

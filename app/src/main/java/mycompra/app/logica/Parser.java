@@ -18,10 +18,12 @@ public class Parser
 
     public static int numProductosNuevos;
 
+    public static ArrayList<Producto> productos;
+    private static double precioTotalTicket;
+
     private static ArrayList<Integer> cantidades;
     private static ArrayList<String> nombres;
     private static ArrayList<Double> precios;
-    private static ArrayList<Producto> productos;
 
     private static int contadorPrecioKilo;
 
@@ -34,6 +36,8 @@ public class Parser
         prodDao = new ProductoDAO(context);
         ticketDAO = new TicketDAO(context);
     }
+
+    // TODO: Implementar patron Estrategia
 
     public static void parseProducto(String prod)
     {
@@ -60,14 +64,8 @@ public class Parser
         String nombre;
         double precio;
 
-
-
         Ticket nuevoTicket = new Ticket();
-        nuevoTicket.setId(ticketDAO.getLastTicket().getId() + 1);
-
-        ProductoTicket nuevaRelacion = new ProductoTicket();
-        // TODO: linkear id ticket
-        nuevaRelacion.setIdTicket(nuevoTicket.getId());
+        ticketDAO.insert(nuevoTicket);
 
         for(int i = 1; i <= numProductosNuevos; i++)
         {
@@ -77,10 +75,12 @@ public class Parser
             cantidad = cantidades.get(i);
             nombre = nombres.get(i);
             precio = precios.get(contadorPrecioKilo + i);
+            precioTotalTicket += precio;
 
             nuevoProducto.setCantidad(cantidad);
             nuevoProducto.setNombre(nombre);
             nuevoProducto.setPrecio(precio);
+
 
             Categoria categoriaProd = ClasificadorCategoria.findCategoria(nombre);
             nuevoProducto.setIdCategoria(categoriaProd.getId());
@@ -89,9 +89,17 @@ public class Parser
 
             productos.add(nuevoProducto);
 
+            ProductoTicket nuevaRelacion = new ProductoTicket();
+            nuevaRelacion.setIdTicket(nuevoTicket.getId());
+            nuevaRelacion.setIdProducto(nuevoProducto.getId());
+            nuevaRelacion.setCantidad(cantidad);
 
+            GestorInventario.guardarProducto(nuevoProducto, nuevaRelacion);
+
+            // TODO: Enviar precio ticket a gestor de mes
         }
 
-
+        nuevoTicket.setPrecio(precioTotalTicket);
+        ticketDAO.update(nuevoTicket);
     }
 }

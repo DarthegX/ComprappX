@@ -3,17 +3,25 @@ import android.content.Context;
 
 import java.util.ArrayList;
 
+import mycompra.app.dao.CategoriaDAO;
 import mycompra.app.dao.InventarioDAO;
 import mycompra.app.dao.ProductoDAO;
+import mycompra.app.dao.ProductoTicketDAO;
+import mycompra.app.modelo.Categoria;
 import mycompra.app.modelo.Inventario;
 import mycompra.app.modelo.Producto;
+import mycompra.app.modelo.ProductoTicket;
 
 public class GestorInventario
 {
     private static InventarioDAO invDao;
     private static ProductoDAO productoDAO;
+    private static CategoriaDAO catDAO;
+    private static ProductoTicketDAO prodTicketDAO;
 
     private static ArrayList<Inventario> inventarios;
+    private static ArrayList<Categoria> categorias;
+
     private static ControlCaducidad caducidades;
 
 
@@ -21,40 +29,37 @@ public class GestorInventario
     {
         invDao = new InventarioDAO(context);
         productoDAO = new ProductoDAO(context);
+        prodTicketDAO = new ProductoTicketDAO(context);
 
         inventarios = invDao.getInventarioList();
     }
 
-    public boolean guardarProductos(ArrayList<Producto> prods)
+    public static void guardarProducto(Producto prod, ProductoTicket relacion)
     {
-        Producto prod;
-
-        for (int i = 0; i < prods.size(); i++)
+        for (int i = 0; i < inventarios.size(); i++)
         {
-            prod = prods.get(i);
+            categorias = catDAO.getCategoriaListByInventario(inventarios.get(i).getId());
 
-            if (prod.getIdCategoria() == NEVERA.getCategorias().get(i).getId())
+            for (int j = 0; j < categorias.size(); j++)
             {
-                NEVERA.putProducto(prod);
-                return true;
-            }
-            else if (prod.getIdCategoria() == CONGELADOR.getCategorias().get(i).getId())
-            {
-                CONGELADOR.putProducto(prod);
-                return true;
-            }
-            else if (prod.getIdCategoria() == DESPENSA.getCategorias().get(i).getId())
-            {
-                DESPENSA.putProducto(prod);
-                return true;
+                if (prod.getNombre().contains(categorias.get(i).getNombre()))
+                {
+                    prod.setIdInventario(categorias.get(i).getIdInventario());
+                    commitProducto(prod, relacion);
+                    return;
+                }
             }
         }
-
-        return false;
     }
 
-    public ArrayList<Producto> getProductos(Inventario inventario)
+    private static void commitProducto(Producto prod, ProductoTicket relacion)
+    {
+        productoDAO.insert(prod);
+        prodTicketDAO.insert(relacion);
+    }
+
+    /*public ArrayList<Producto> getProductos(Inventario inventario)
     {
         return inventario.getProductos();
-    }
+    }*/
 }

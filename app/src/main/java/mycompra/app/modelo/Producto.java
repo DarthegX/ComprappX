@@ -1,5 +1,7 @@
 package mycompra.app.modelo;
 
+import androidx.annotation.Nullable;
+
 public class Producto {
 
     public static final String TABLE = "Producto";
@@ -87,5 +89,11 @@ public class Producto {
 
     public void setIdCategoria(int idCategoria) {
         this.idCategoria = idCategoria;
+    }
+
+    @Nullable
+    public String toString()
+    {
+        return String.valueOf(cantidad) + " - " + nombre + " -> " + precio + " € \n";
     }
 }
