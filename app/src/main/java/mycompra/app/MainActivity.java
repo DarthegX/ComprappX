@@ -272,10 +272,10 @@ public class MainActivity extends AppCompatActivity
         categoriaDulce.setIdInventario(1);
         categoriaDAO.insert(categoriaDulce);
 
-        Categoria categoriaSnack = new Categoria();
-        categoriaSnack.setNombre("Aperitivo");
-        categoriaSnack.setIdInventario(1);
-        categoriaDAO.insert(categoriaSnack);
+        Categoria categoriaAperitivo = new Categoria();
+        categoriaAperitivo.setNombre("Aperitivo");
+        categoriaAperitivo.setIdInventario(1);
+        categoriaDAO.insert(categoriaAperitivo);
 
         Categoria categoriaEmbutido = new Categoria();
         categoriaEmbutido.setNombre("Embutido");
