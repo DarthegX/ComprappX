@@ -68,7 +68,7 @@ public class Productos extends Fragment {
                 detalleProdInventario.setArguments(bundle);
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.frame, detalleProdInventario);
+                ft.replace(R.id.frame, detalleProdInventario).addToBackStack(null);
                 ft.commit();
             }
         }));
@@ -91,7 +91,7 @@ public class Productos extends Fragment {
                 nuevoProducto.setArguments(bundle);
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.frame, nuevoProducto);
+                ft.replace(R.id.frame, nuevoProducto).addToBackStack(null);
                 ft.commit();
             }
         });

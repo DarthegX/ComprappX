@@ -61,16 +61,16 @@ public class NuevoProducto extends Fragment implements AdapterView.OnItemSelecte
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 switch (anteriorFragment.toLowerCase()) {
                     case "nevera":
-                        ft.replace(R.id.frame, new Nevera());
+                        ft.replace(R.id.frame, new Nevera()).addToBackStack(null);
                         break;
                     case "congelador":
-                        ft.replace(R.id.frame, new Congelador());
+                        ft.replace(R.id.frame, new Congelador()).addToBackStack(null);
                         break;
                     case "despensa":
-                        ft.replace(R.id.frame, new Despensa());
+                        ft.replace(R.id.frame, new Despensa()).addToBackStack(null);
                         break;
                     case "productos":
-                        ft.replace(R.id.frame, new Productos());
+                        ft.replace(R.id.frame, new Productos()).addToBackStack(null);
                 }
                 ft.commit();
             }

@@ -63,7 +63,7 @@ public class ListaHabitual extends Fragment {
             @Override
             public void onClick(View view) {
                 FragmentTransaction fr = getFragmentManager().beginTransaction();
-                fr.replace(R.id.frame,new NuevoProductoLista());
+                fr.replace(R.id.frame,new NuevoProductoLista()).addToBackStack(null);
                 fr.commit();
 
             }

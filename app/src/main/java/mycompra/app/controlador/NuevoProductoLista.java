@@ -34,7 +34,7 @@ public class NuevoProductoLista extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.frame,new ListaHabitual());
+                ft.replace(R.id.frame,new ListaHabitual()).addToBackStack(null);
                 ft.commit();
             }
 
@@ -45,7 +45,7 @@ public class NuevoProductoLista extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.frame,new ListaHabitual());
+                ft.replace(R.id.frame,new ListaHabitual()).addToBackStack(null);
                 ft.commit();
             }
 

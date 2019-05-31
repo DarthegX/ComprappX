@@ -66,7 +66,7 @@ public class Nevera extends Fragment {
                 detalleProdInventario.setArguments(bundle);
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.frame, detalleProdInventario);
+                ft.replace(R.id.frame, detalleProdInventario).addToBackStack(null);
                 ft.commit();
             }
         }));
@@ -89,7 +89,7 @@ public class Nevera extends Fragment {
                 nuevoProducto.setArguments(bundle);
 
                 FragmentTransaction fr = getFragmentManager().beginTransaction();
-                fr.replace(R.id.frame, nuevoProducto);
+                fr.replace(R.id.frame, nuevoProducto).addToBackStack(null);
                 fr.commit();
             }
         });
