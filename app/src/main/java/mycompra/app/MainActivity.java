@@ -809,7 +809,7 @@ public class MainActivity extends AppCompatActivity
         productoYogurt.setCaducidad("25/05/2019");
         productoYogurt.setCantidad(2);
         productoYogurt.setIdInventario(2);
-        productoYogurt.setIdCategoria(2);
+        productoYogurt.setIdCategoria(13);
         productoDAO.insert(productoYogurt);
 
         Producto productoChips = new Producto();
@@ -817,7 +817,7 @@ public class MainActivity extends AppCompatActivity
         productoChips.setPrecio(1.60);
         productoChips.setCantidad(1);
         productoChips.setIdInventario(1);
-        productoChips.setIdCategoria(14);
+        productoChips.setIdCategoria(13);
         productoDAO.insert(productoChips);
 
         Producto productoMolde = new Producto();
@@ -825,7 +825,7 @@ public class MainActivity extends AppCompatActivity
         productoMolde.setPrecio(1.68);
         productoMolde.setCantidad(1);
         productoMolde.setIdInventario(1);
-        productoMolde.setIdCategoria(8);
+        productoMolde.setIdCategoria(22);
         productoDAO.insert(productoMolde);
 
         Producto productoQueso = new Producto();
@@ -834,7 +834,7 @@ public class MainActivity extends AppCompatActivity
         productoQueso.setCaducidad("02/06/2019");
         productoQueso.setCantidad(2);
         productoQueso.setIdInventario(2);
-        productoQueso.setIdCategoria(2);
+        productoQueso.setIdCategoria(1);
         productoDAO.insert(productoQueso);
 
         Producto productoLechuga = new Producto();
@@ -866,7 +866,7 @@ public class MainActivity extends AppCompatActivity
         productoSalteado.setPrecio(2.20);
         productoSalteado.setCantidad(1);
         productoSalteado.setIdInventario(3);
-        productoSalteado.setIdCategoria(21);
+        productoSalteado.setIdCategoria(20);
         productoDAO.insert(productoSalteado);
 
         Producto productoHelado = new Producto();
@@ -874,7 +874,7 @@ public class MainActivity extends AppCompatActivity
         productoHelado.setPrecio(2.50);
         productoHelado.setCantidad(1);
         productoHelado.setIdInventario(3);
-        productoHelado.setIdCategoria(19);
+        productoHelado.setIdCategoria(13);
         productoDAO.insert(productoHelado);
 
         Producto productoPlatano = new Producto();
@@ -891,7 +891,7 @@ public class MainActivity extends AppCompatActivity
         productoNapolitanas.setCaducidad("01/06/2019");
         productoNapolitanas.setCantidad(1);
         productoNapolitanas.setIdInventario(1);
-        productoNapolitanas.setIdCategoria(14);
+        productoNapolitanas.setIdCategoria(13);
         productoDAO.insert(productoNapolitanas);
 
         Producto productoManzana = new Producto();

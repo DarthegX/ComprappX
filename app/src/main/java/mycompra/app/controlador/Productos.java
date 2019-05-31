@@ -5,6 +5,8 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 
 import mycompra.app.R;
 import mycompra.app.adaptersRecycler.AdapterProductos;
+import mycompra.app.adaptersRecycler.RecyclerItemClickListener;
 import mycompra.app.dao.CategoriaDAO;
 import mycompra.app.dao.ProductoDAO;
 import mycompra.app.modelo.Categoria;
@@ -50,6 +53,31 @@ public class Productos extends Fragment {
         AdapterProductos adapter = new AdapterProductos(listDatosProd,listProduct,listCatProd);
 
         recyclerView.setAdapter(adapter);
+
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity().getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Bundle bundle = new Bundle();
+
+                bundle.putString("fragmentAnterior", "Productos");
+                bundle.putString("idProducto", String.valueOf(listaProductos.get(position).getId()));
+
+                DetalleProdInventario detalleProdInventario = new DetalleProdInventario();
+                detalleProdInventario.setArguments(bundle);
+
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.frame, detalleProdInventario);
+                ft.commit();
+            }
+        }));
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                ((LinearLayoutManager) recyclerView.getLayoutManager()).getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
 
         FloatingActionButton buttonNuevosPoductos = view.findViewById(R.id.buttonNuevoProducto_prod);
         buttonNuevosPoductos.setOnClickListener(new View.OnClickListener() {

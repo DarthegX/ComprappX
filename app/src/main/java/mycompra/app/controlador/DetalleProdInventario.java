@@ -7,8 +7,11 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import mycompra.app.R;
@@ -18,7 +21,7 @@ import mycompra.app.modelo.Producto;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetalleProdInventario extends Fragment {
+public class DetalleProdInventario extends Fragment implements AdapterView.OnItemSelectedListener {
 
     private Producto producto;
     private String idProducto;
@@ -27,10 +30,11 @@ public class DetalleProdInventario extends Fragment {
     private EditText editTextPrecio;
     private EditText editTextCantidad;
     private EditText editTextCaducidad;
-    private TextView textViewInventario;
+    private Spinner spinner;
     private TextView textViewNombre;
     private Button btnBorrar;
     private Button btnActualizar;
+    private ArrayAdapter<CharSequence> adapter;
 
     public DetalleProdInventario() {
         // Required empty public constructor
@@ -47,10 +51,17 @@ public class DetalleProdInventario extends Fragment {
         editTextCantidad = view.findViewById(R.id.textViewCantidadDetalle);
         editTextCaducidad = view.findViewById(R.id.editTextCaducidadDetalle);
         textViewNombre = view.findViewById(R.id.textNombreProductoFragmentDetalle);
-        textViewInventario = view.findViewById(R.id.textViewInventarioDetalle);
+        spinner = view.findViewById(R.id.spinnerDetalle);
 
         idProducto = getArguments().getString("idProducto");
         anteriorFragment = getArguments().getString("fragmentAnterior");
+
+        adapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(),
+                R.array.inventarios, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
 
         productoDAO = new ProductoDAO(getActivity().getApplicationContext());
 
@@ -63,17 +74,15 @@ public class DetalleProdInventario extends Fragment {
             editTextCaducidad.setText(producto.getCaducidad());
         }
         switch (producto.getIdInventario()){
-            case 1 :
-                textViewInventario.setText("Despensa");
+            case 1:
+                spinner.setSelection(2);
                 break;
             case 2:
-                textViewInventario.setText("Nevera");
+                spinner.setSelection(0);
                 break;
             case 3:
-                textViewInventario.setText("Congelador");
+                spinner.setSelection(1);
                 break;
-            default:
-                textViewInventario.setText("");
         }
 
         btnBorrar = view.findViewById(R.id.btnBorrarDetalle);
@@ -98,6 +107,17 @@ public class DetalleProdInventario extends Fragment {
                 if (!editTextCaducidad.getText().toString().equalsIgnoreCase("")) {
                     producto.setCaducidad(editTextCaducidad.getText().toString());
                 }
+                switch (spinner.getSelectedItemPosition()) {
+                    case 0:
+                        producto.setIdInventario(2);
+                        break;
+                    case 1:
+                        producto.setIdInventario(3);
+                        break;
+                    case 2:
+                        producto.setIdInventario(1);
+                        break;
+                }
                 productoDAO.update(producto);
                 devolverAFragmentAnterior();
             }
@@ -106,13 +126,28 @@ public class DetalleProdInventario extends Fragment {
         return view;
     }
 
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+    }
+
     private void devolverAFragmentAnterior() {
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        if (anteriorFragment.equalsIgnoreCase("nevera")) {
-            ft.replace(R.id.frame, new Nevera());
-        }
-        else {
-            ft.replace(R.id.frame, new Productos());
+        switch (anteriorFragment.toLowerCase()) {
+            case "nevera":
+                ft.replace(R.id.frame, new Nevera());
+                break;
+            case "congelador":
+                ft.replace(R.id.frame, new Congelador());
+                break;
+            case "despensa":
+                ft.replace(R.id.frame, new Despensa());
+                break;
+            case "productos":
+                ft.replace(R.id.frame, new Productos());
+                break;
         }
         ft.commit();
     }

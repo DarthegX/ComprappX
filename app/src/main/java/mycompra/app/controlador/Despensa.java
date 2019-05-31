@@ -42,8 +42,9 @@ public class Despensa extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View vista = inflater.inflate(R.layout.fragment_despensa, container, false);
-        recycler = vista.findViewById(R.id.RecyclerId);
+        View view = inflater.inflate(R.layout.fragment_despensa, container, false);
+
+        recycler = view.findViewById(R.id.RecyclerId);
 
         llenarLista();
 
@@ -56,8 +57,16 @@ public class Despensa extends Fragment {
         recycler.addOnItemTouchListener(new RecyclerItemClickListener(getActivity().getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                Bundle bundle = new Bundle();
+
+                bundle.putString("fragmentAnterior", "Despensa");
+                bundle.putString("idProducto", String.valueOf(listaProductos.get(position).getId()));
+
+                DetalleProdInventario detalleProdInventario = new DetalleProdInventario();
+                detalleProdInventario.setArguments(bundle);
+
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.frame, new NuevoProductoLista());
+                ft.replace(R.id.frame, detalleProdInventario);
                 ft.commit();
             }
         }));
@@ -68,19 +77,24 @@ public class Despensa extends Fragment {
                 ((LinearLayoutManager) recycler.getLayoutManager()).getOrientation());
         recycler.addItemDecoration(dividerItemDecoration);
 
-        FloatingActionButton buttonNuevoProdNevera = vista.findViewById(R.id.buttonNuevoProdDespensa);
+        FloatingActionButton buttonNuevoProdNevera = view.findViewById(R.id.buttonNuevoProdDespensa);
         buttonNuevoProdNevera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bundle bundle = new Bundle();
+
+                bundle.putString("fragmentAnterior", "Despensa");
+
+                NuevoProducto nuevoProducto = new NuevoProducto();
+                nuevoProducto.setArguments(bundle);
+
                 FragmentTransaction fr = getFragmentManager().beginTransaction();
-                fr.replace(R.id.frame, new NuevoProducto());
+                fr.replace(R.id.frame, nuevoProducto);
                 fr.commit();
             }
         });
-
-        return vista;
+        return view;
     }
-
 
     private void llenarLista(){
         ProductoDAO productoDAO = new ProductoDAO(getActivity().getApplicationContext());
@@ -97,5 +111,4 @@ public class Despensa extends Fragment {
             listCaducidadD.add(listaProductos.get(i).getCaducidad());
         }
     }
-
 }

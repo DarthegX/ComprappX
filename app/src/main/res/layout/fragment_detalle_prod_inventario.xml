@@ -107,16 +107,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Inventario:"
-            android:paddingEnd="30sp"
             android:textSize="20sp"/>
 
-        <TextView
-            android:id="@+id/textViewInventarioDetalle"
+        <Spinner
+            android:id="@+id/spinnerDetalle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sin inventario"
-            android:paddingEnd="20sp"
-            android:textSize="20sp" />
+            android:paddingStart="25sp"
+            android:paddingEnd="10sp"
+            android:textSize="20sp"
+            android:visibility="visible" />
 
     </LinearLayout>
 

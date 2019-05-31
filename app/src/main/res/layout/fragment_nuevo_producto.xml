@@ -5,9 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".controlador.NuevoProducto"
     android:orientation="vertical"
-    android:layout_marginLeft="25dp"
-    android:layout_marginTop="72dp"
-    android:layout_marginRight="20dp">
+    android:padding="@dimen/fab_margin">
 
 
     <TextView
@@ -15,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:textAlignment="center"
+        android:textSize="40sp"
         android:text="Añadir producto" />
 
     <LinearLayout
@@ -28,26 +28,42 @@
             android:id="@+id/textView30"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Nombre:" />
+            android:text="Nombre:"
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/editTextNombreNuevoProducto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
+            android:paddingStart="10dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:hint="Nombre Producto" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnAnyadirFragmentNuevoProducto"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
-        android:text="Añadir" />
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inventario:"
+            android:textSize="20sp"/>
+
+        <Spinner
+            android:id="@+id/spinnerNuevoProducto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="25sp"
+            android:paddingEnd="10sp"
+            android:textSize="20sp"
+            android:visibility="visible" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -64,11 +80,11 @@
             android:layout_marginRight="25dp"/>
 
         <Button
-            android:id="@+id/aceptarNuevoProducto"
+            android:id="@+id/btnAnyadirFragmentNuevoProducto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Aceptar"
+            android:text="Añadir"
             android:layout_marginLeft="25dp"/>
 
     </LinearLayout>

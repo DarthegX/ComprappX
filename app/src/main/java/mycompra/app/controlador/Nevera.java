@@ -57,7 +57,6 @@ public class Nevera extends Fragment {
         recycler.addOnItemTouchListener(new RecyclerItemClickListener(getActivity().getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
                 Bundle bundle = new Bundle();
 
                 bundle.putString("fragmentAnterior", "Nevera");
