@@ -1,5 +1,6 @@
 package mycompra.app;
 
+import android.content.Context;
 import android.os.Bundle;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -26,10 +27,12 @@ import mycompra.app.dao.InventarioDAO;
 import mycompra.app.dao.ListaDAO;
 import mycompra.app.dao.MesDAO;
 import mycompra.app.dao.ProductoDAO;
+import mycompra.app.dao.ProductoListaDAO;
 import mycompra.app.dao.ProductoTicketDAO;
 import mycompra.app.dao.SupermercadoDAO;
 import mycompra.app.dao.TagDAO;
 import mycompra.app.dao.TicketDAO;
+import mycompra.app.dbhelper.DBHelper;
 import mycompra.app.modelo.Categoria;
 import mycompra.app.modelo.Inventario;
 import mycompra.app.modelo.Lista;
@@ -43,6 +46,19 @@ import mycompra.app.modelo.Ticket;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private static DBHelper dBh;
+    private static Context ct;
+
+    private static InventarioDAO inventarioDAO;
+    private static CategoriaDAO categoriaDAO;
+    private static ListaDAO listaDAO;
+    private static MesDAO mesDAO;
+    private static ProductoDAO productoDAO;
+    private static SupermercadoDAO supermercadoDAO ;
+    private static TagDAO tagDAO;
+    private static TicketDAO ticketDAO;
+    private static ProductoTicketDAO productoTicketDAO;
+    private static ProductoListaDAO productoListaDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,14 +86,23 @@ public class MainActivity extends AppCompatActivity
         File database = getApplicationContext().getDatabasePath("Comprapp.db");
 
         if (!database.exists()) {
+            inventarioDAO = new InventarioDAO(this);
             insertsInventario();
+            listaDAO = new ListaDAO(this);
             insertsLista();
+            supermercadoDAO = new SupermercadoDAO(this);
             insertsSupermercado();
+            mesDAO = new MesDAO(this);
             insertsMes();
+            categoriaDAO = new CategoriaDAO(this);
             insertsCategoria();
+            tagDAO = new TagDAO(this);
             insertsTag();
+            ticketDAO = new TicketDAO(this);
             insertsTicket();
+            productoDAO = new ProductoDAO(this);
             insertsProducto();
+            productoTicketDAO = new ProductoTicketDAO(this);
             insertsProductoTicket();
         }
     }
@@ -147,828 +172,248 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void insertsInventario() {
-        InventarioDAO inventarioDAO = new InventarioDAO(this);
+       insertaInventario("Despensa");
+       insertaInventario("Nevera");
+       insertaInventario("Congelador");
 
-        Inventario inventarioDespensa = new Inventario();
-        inventarioDespensa.setNombre("Despensa");
-        inventarioDAO.insert(inventarioDespensa);
-
-        Inventario inventarioNevera = new Inventario();
-        inventarioNevera.setNombre("Nevera");
-        inventarioDAO.insert(inventarioNevera);
-
-        Inventario inventarioCongelador = new Inventario();
-        inventarioCongelador.setNombre("Congelador");
-        inventarioDAO.insert(inventarioCongelador);
     }
 
     public void insertsLista() {
-        ListaDAO listaDAO = new ListaDAO(this);
-
-        Lista listaMensual = new Lista();
-        listaMensual.setNombre("Mensual");
-        listaDAO.insert(listaMensual);
-
-        Lista listaSemanal = new Lista();
-        listaSemanal.setNombre("Semanal");
-        listaDAO.insert(listaSemanal);
-
-        Lista listaDiaria = new Lista();
-        listaDiaria.setNombre("Diaria");
-        listaDAO.insert(listaDiaria);
+       insertaLista("Mensual");
+       insertaLista("Semanal");
+       insertaLista("Diaria");
     }
 
     public void insertsSupermercado() {
-        SupermercadoDAO supermercadoDAO = new SupermercadoDAO(this);
-
-        Supermercado supermercadoMercadona = new Supermercado();
-        supermercadoMercadona.setNombre("Mercadona");
-        supermercadoDAO.insert(supermercadoMercadona);
-
-        Supermercado supermercadoConsum = new Supermercado();
-        supermercadoConsum.setNombre("Consum");
-        supermercadoDAO.insert(supermercadoConsum);
-
-        Supermercado supermercadoMasyMas = new Supermercado();
-        supermercadoMasyMas.setNombre("MasyMas");
-        supermercadoDAO.insert(supermercadoMasyMas);
+        insertaSuper("Mercadona");
+        insertaSuper("Consum");
+        insertaSuper("MasyMas");
     }
 
     public void insertsMes() {
-        MesDAO mesDAO = new MesDAO(this);
-
-        Mes mesMayo = new Mes();
-        mesMayo.setNombre("Mayo");
-        mesMayo.setAnyo(2019);
-        mesMayo.setPresupuesto(80);
-        mesDAO.insert(mesMayo);
+        insertaMes("Mayo", 2019,80);
     }
 
     public void insertsCategoria() {
-        CategoriaDAO categoriaDAO = new CategoriaDAO(this);
+        insertaCategoria("Lacteos", 2);
+        insertaCategoria("Vegetales", 2);
+        insertaCategoria("Frutas", 2);
+        insertaCategoria("Carne", 2);
+        insertaCategoria("Pescado", 2);
+        insertaCategoria("Huevos", 2);
+        insertaCategoria("Bebidas", 2);
+        insertaCategoria("Bebidas Alcoholicas", 2);
+        insertaCategoria("Preparados", 2);
+        insertaCategoria("Pasta", 1);
+        insertaCategoria("Arroz", 1);
+        insertaCategoria("Legumbres", 1);
+        insertaCategoria("Dulces", 1);
+        insertaCategoria("Aperitivos", 1);
+        insertaCategoria("Embutidos", 1);
+        insertaCategoria("Hogar", 1);
+        insertaCategoria("Aceite", 1);
+        insertaCategoria("Cosmetica", 1);
+        insertaCategoria("Congelados", 3);
+        insertaCategoria("Hortalizas", 1);
+        insertaCategoria("Pamaderia", 1);
 
-        Categoria categoriaLacteo = new Categoria();
-        categoriaLacteo.setNombre("Lacteo");
-        categoriaLacteo.setIdInventario(2);
-        categoriaDAO.insert(categoriaLacteo);
-
-        Categoria categoriaVegetal = new Categoria();
-        categoriaVegetal.setNombre("Vegetal");
-        categoriaVegetal.setIdInventario(2);
-        categoriaDAO.insert(categoriaVegetal);
-
-        Categoria categoriaFruta = new Categoria();
-        categoriaFruta.setNombre("Fruta");
-        categoriaFruta.setIdInventario(2);
-        categoriaDAO.insert(categoriaFruta);
-
-        Categoria categoriaCarne = new Categoria();
-        categoriaCarne.setNombre("Carne");
-        categoriaCarne.setIdInventario(2);
-        categoriaDAO.insert(categoriaCarne);
-
-        Categoria categoriaPescado = new Categoria();
-        categoriaPescado.setNombre("Pescado");
-        categoriaPescado.setIdInventario(2);
-        categoriaDAO.insert(categoriaPescado);
-
-        Categoria categoriaHuevo = new Categoria();
-        categoriaHuevo.setNombre("Huevo");
-        categoriaHuevo.setIdInventario(2);
-        categoriaDAO.insert(categoriaHuevo);
-
-        Categoria categoriaRefresco = new Categoria();
-        categoriaRefresco.setNombre("Bebida");
-        categoriaRefresco.setIdInventario(2);
-        categoriaDAO.insert(categoriaRefresco);
-
-        Categoria categoriaAlcohol = new Categoria();
-        categoriaAlcohol.setNombre("Alcohol");
-        categoriaAlcohol.setIdInventario(2);
-        categoriaDAO.insert(categoriaAlcohol);
-
-        Categoria categoriaPreparado = new Categoria();
-        categoriaPreparado.setNombre("Preparado");
-        categoriaPreparado.setIdInventario(2);
-        categoriaDAO.insert(categoriaPreparado);
-
-        Categoria categoriaPasta = new Categoria();
-        categoriaPasta.setNombre("Pasta");
-        categoriaPasta.setIdInventario(1);
-        categoriaDAO.insert(categoriaPasta);
-
-        Categoria categoriaArroz = new Categoria();
-        categoriaArroz.setNombre("Arroz");
-        categoriaArroz.setIdInventario(1);
-        categoriaDAO.insert(categoriaArroz);
-
-        Categoria categoriaLegumbre = new Categoria();
-        categoriaLegumbre.setNombre("Legumbre");
-        categoriaLegumbre.setIdInventario(1);
-        categoriaDAO.insert(categoriaLegumbre);
-
-        Categoria categoriaDulce = new Categoria();
-        categoriaDulce.setNombre("Dulce");
-        categoriaDulce.setIdInventario(1);
-        categoriaDAO.insert(categoriaDulce);
-
-        Categoria categoriaAperitivo = new Categoria();
-        categoriaAperitivo.setNombre("Aperitivo");
-        categoriaAperitivo.setIdInventario(1);
-        categoriaDAO.insert(categoriaAperitivo);
-
-        Categoria categoriaEmbutido = new Categoria();
-        categoriaEmbutido.setNombre("Embutido");
-        categoriaEmbutido.setIdInventario(1);
-        categoriaDAO.insert(categoriaEmbutido);
-
-        Categoria categoriaHogar = new Categoria();
-        categoriaHogar.setNombre("Hogar");
-        categoriaHogar.setIdInventario(1);
-        categoriaDAO.insert(categoriaHogar);
-
-        Categoria categoriaAceite = new Categoria();
-        categoriaAceite.setNombre("Aceite");
-        categoriaAceite.setIdInventario(1);
-        categoriaDAO.insert(categoriaAceite);
-
-        Categoria categoriaCosmetica = new Categoria();
-        categoriaCosmetica.setNombre("Cosmetica");
-        categoriaCosmetica.setIdInventario(3);
-        categoriaDAO.insert(categoriaCosmetica);
-
-        Categoria categoriaCongelado = new Categoria();
-        categoriaCongelado.setNombre("Congelado");
-        categoriaCongelado.setIdInventario(3);
-        categoriaDAO.insert(categoriaCongelado);
-
-        Categoria categoriaHortaliza = new Categoria();
-        categoriaHortaliza.setNombre("Hortaliza");
-        categoriaHortaliza.setIdInventario(1);
-        categoriaDAO.insert(categoriaHortaliza);
-
-        Categoria categoriaPan = new Categoria();
-        categoriaPan.setNombre("Panaderia");
-        categoriaPan.setIdInventario(1);
-        categoriaDAO.insert(categoriaPan);
     }
 
     public void insertsTag() {
-        TagDAO tagDAO = new TagDAO(this);
-
-        Tag tagPollo = new Tag();
-        tagPollo.setNombre("Pollo");
-        tagPollo.setIdCategoria(4);
-        tagDAO.insert(tagPollo);
-
-        Tag tagTernera = new Tag();
-        tagTernera.setNombre("Ternera");
-        tagTernera.setIdCategoria(4);
-        tagDAO.insert(tagTernera);
-
-        Tag tagConejo = new Tag();
-        tagConejo.setNombre("Conejo");
-        tagConejo.setIdCategoria(4);
-        tagDAO.insert(tagConejo);
-
-        Tag tagCerdo = new Tag();
-        tagCerdo.setNombre("Cerdo");
-        tagCerdo.setIdCategoria(4);
-        tagDAO.insert(tagCerdo);
-
-        Tag tagChuleta = new Tag();
-        tagChuleta.setNombre("Chuleta");
-        tagChuleta.setIdCategoria(4);
-        tagDAO.insert(tagChuleta);
-
-        Tag tagLomo = new Tag();
-        tagLomo.setNombre("Lomo");
-        tagLomo.setIdCategoria(4);
-        tagDAO.insert(tagLomo);
-
-        Tag tagMerluza = new Tag();
-        tagMerluza.setNombre("Merluza");
-        tagMerluza.setIdCategoria(5);
-        tagDAO.insert(tagMerluza);
-
-        Tag tagAtun = new Tag();
-        tagAtun.setNombre("Atun");
-        tagAtun.setIdCategoria(5);
-        tagDAO.insert(tagAtun);
-
-        Tag tagGamba = new Tag();
-        tagGamba.setNombre("Gamba");
-        tagGamba.setIdCategoria(5);
-        tagDAO.insert(tagGamba);
-
-        Tag tagMejillon = new Tag();
-        tagMejillon.setNombre("Mejillon");
-        tagMejillon.setIdCategoria(5);
-        tagDAO.insert(tagMejillon);
-
-        Tag tagLubina = new Tag();
-        tagLubina.setNombre("Lubina");
-        tagLubina.setIdCategoria(5);
-        tagDAO.insert(tagLubina);
-
-        Tag tagJamonYork = new Tag();
-        tagJamonYork.setNombre("Jamon York");
-        tagJamonYork.setIdCategoria(4);
-        tagDAO.insert(tagJamonYork);
-
-        Tag tagChorizo = new Tag();
-        tagChorizo.setNombre("Chorizo");
-        tagChorizo.setIdCategoria(4);
-        tagDAO.insert(tagChorizo);
-
-        Tag tagGouda = new Tag();
-        tagGouda.setNombre("Gouda");
-        tagGouda.setIdCategoria(1);
-        tagDAO.insert(tagGouda);
-
-        Tag tagEmmental = new Tag();
-        tagEmmental.setNombre("Emmental");
-        tagEmmental.setIdCategoria(1);
-        tagDAO.insert(tagEmmental);
-
-        Tag tagQueso = new Tag();
-        tagQueso.setNombre("Queso");
-        tagQueso.setIdCategoria(1);
-        tagDAO.insert(tagQueso);
-
-        Tag tagLeche = new Tag();
-        tagLeche.setNombre("Leche");
-        tagLeche.setIdCategoria(1);
-        tagDAO.insert(tagLeche);
-
-        Tag tagYogurt = new Tag();
-        tagYogurt.setNombre("Yogurt");
-        tagYogurt.setIdCategoria(1);
-        tagDAO.insert(tagYogurt);
-
-        Tag tagRoquefort = new Tag();
-        tagRoquefort.setNombre("Roquefort");
-        tagRoquefort.setIdCategoria(1);
-        tagDAO.insert(tagRoquefort);
-
-        Tag tagRallado = new Tag();
-        tagRallado.setNombre("Rallado");
-        tagRallado.setIdCategoria(1);
-        tagDAO.insert(tagRallado);
-
-        Tag tagPera = new Tag();
-        tagPera.setNombre("Pera");
-        tagPera.setIdCategoria(3);
-        tagDAO.insert(tagPera);
-
-        Tag tagManzana = new Tag();
-        tagManzana.setNombre("Manzana");
-        tagManzana.setIdCategoria(3);
-        tagDAO.insert(tagManzana);
-
-        Tag tagPlatano = new Tag();
-        tagPlatano.setNombre("Platano");
-        tagPlatano.setIdCategoria(3);
-        tagDAO.insert(tagPlatano);
-
-        Tag tagMelocoton = new Tag();
-        tagMelocoton.setNombre("Melocoton");
-        tagMelocoton.setIdCategoria(3);
-        tagDAO.insert(tagMelocoton);
-
-        Tag tagPina = new Tag();
-        tagPina.setNombre("Pina");
-        tagPina.setIdCategoria(3);
-        tagDAO.insert(tagPina);
-
-        Tag tagCereza = new Tag();
-        tagCereza.setNombre("Cereza");
-        tagCereza.setIdCategoria(3);
-        tagDAO.insert(tagCereza);
-
-        Tag tagNaranja = new Tag();
-        tagNaranja.setNombre("Naranja");
-        tagNaranja.setIdCategoria(3);
-        tagDAO.insert(tagNaranja);
-
-        Tag tagMandarina = new Tag();
-        tagMandarina.setNombre("Mandarina");
-        tagMandarina.setIdCategoria(3);
-        tagDAO.insert(tagMandarina);
-
-        Tag tagSandia = new Tag();
-        tagSandia.setNombre("Sandia");
-        tagSandia.setIdCategoria(3);
-        tagDAO.insert(tagSandia);
-
-        Tag tagMelon = new Tag();
-        tagMelon.setNombre("Melon");
-        tagMelon.setIdCategoria(3);
-        tagDAO.insert(tagMelon);
-
-        Tag tagLechuga = new Tag();
-        tagLechuga.setNombre("Lechuga");
-        tagLechuga.setIdCategoria(2);
-        tagDAO.insert(tagLechuga);
-
-        Tag tagTomate = new Tag();
-        tagTomate.setNombre("Tomate");
-        tagTomate.setIdCategoria(2);
-        tagDAO.insert(tagTomate);
-
-        Tag tagPepino = new Tag();
-        tagPepino.setNombre("Pepino");
-        tagPepino.setIdCategoria(2);
-        tagDAO.insert(tagPepino);
-
-        Tag tagMaiz = new Tag();
-        tagMaiz.setNombre("Maiz");
-        tagMaiz.setIdCategoria(2);
-        tagDAO.insert(tagMaiz);
-
-        Tag tagCebolla = new Tag();
-        tagCebolla.setNombre("Cebolla");
-        tagCebolla.setIdCategoria(2);
-        tagDAO.insert(tagCebolla);
-
-        Tag tagPatata = new Tag();
-        tagPatata.setNombre("Patata");
-        tagPatata.setIdCategoria(2);
-        tagDAO.insert(tagPatata);
-
-        Tag tagCalabacin = new Tag();
-        tagCalabacin.setNombre("Calabacin");
-        tagCalabacin.setIdCategoria(2);
-        tagDAO.insert(tagCalabacin);
-
-        Tag tagCalabaza = new Tag();
-        tagCalabaza.setNombre("Calabaza");
-        tagCalabaza.setIdCategoria(2);
-        tagDAO.insert(tagCalabaza);
-
-        Tag tagPimiento = new Tag();
-        tagPimiento.setNombre("Pimiento");
-        tagPimiento.setIdCategoria(2);
-        tagDAO.insert(tagPimiento);
-
-        Tag tagGuisantes = new Tag();
-        tagGuisantes.setNombre("Guisantes");
-        tagGuisantes.setIdCategoria(2);
-        tagDAO.insert(tagGuisantes);
-
-        Tag tagNapolitana = new Tag();
-        tagNapolitana.setNombre("Napolitana");
-        tagNapolitana.setIdCategoria(14);
-        tagDAO.insert(tagNapolitana);
-
-        Tag tagGalleta = new Tag();
-        tagGalleta.setNombre("Galleta");
-        tagGalleta.setIdCategoria(14);
-        tagDAO.insert(tagGalleta);
-
-        Tag tagCereal = new Tag();
-        tagCereal.setNombre("Cereal");
-        tagCereal.setIdCategoria(14);
-        tagDAO.insert(tagCereal);
-
-        Tag tagOreo = new Tag();
-        tagOreo.setNombre("Oreo");
-        tagOreo.setIdCategoria(14);
-        tagDAO.insert(tagOreo);
-
-        Tag tagChipsAhoy = new Tag();
-        tagChipsAhoy.setNombre("ChipsAhoy");
-        tagChipsAhoy.setIdCategoria(14);
-        tagDAO.insert(tagChipsAhoy);
-
-        Tag tagCookies = new Tag();
-        tagCookies.setNombre("Cookies");
-        tagCookies.setIdCategoria(14);
-        tagDAO.insert(tagCookies);
-
-        Tag tagFlan = new Tag();
-        tagFlan.setNombre("Flan");
-        tagFlan.setIdCategoria(6);
-        tagDAO.insert(tagFlan);
-
-        Tag tagNatillas = new Tag();
-        tagNatillas.setNombre("Natillas");
-        tagNatillas.setIdCategoria(6);
-        tagDAO.insert(tagNatillas);
-
-        Tag tagRosquilletas = new Tag();
-        tagRosquilletas.setNombre("Rosquilletas");
-        tagRosquilletas.setIdCategoria(15);
-        tagDAO.insert(tagRosquilletas);
-
-        Tag tagPan = new Tag();
-        tagPan.setNombre("Pan");
-        tagPan.setIdCategoria(8);
-        tagDAO.insert(tagPan);
-
-        Tag tagBarraPan = new Tag();
-        tagBarraPan.setNombre("Barra pan");
-        tagBarraPan.setIdCategoria(8);
-        tagDAO.insert(tagBarraPan);
-
-        Tag tagTortilla = new Tag();
-        tagTortilla.setNombre("Tortilla");
-        tagTortilla.setIdCategoria(6);
-        tagDAO.insert(tagTortilla);
-
-        Tag tagHuevo = new Tag();
-        tagHuevo.setNombre("Huevo");
-        tagHuevo.setIdCategoria(6);
-        tagDAO.insert(tagHuevo);
-
-        Tag tagSopa = new Tag();
-        tagSopa.setNombre("Sopa");
-        tagSopa.setIdCategoria(10);
-        tagDAO.insert(tagSopa);
-
-        Tag tagCremaDe = new Tag();
-        tagCremaDe.setNombre("Crema de");
-        tagCremaDe.setIdCategoria(10);
-        tagDAO.insert(tagCremaDe);
-
-        Tag tagPizza = new Tag();
-        tagPizza.setNombre("Pizza");
-        tagPizza.setIdCategoria(10);
-        tagDAO.insert(tagPizza);
-
-        Tag tagLasana = new Tag();
-        tagLasana.setNombre("Lasana");
-        tagLasana.setIdCategoria(10);
-        tagDAO.insert(tagLasana);
-
-        Tag tagSandwich = new Tag();
-        tagSandwich.setNombre("Sandwich");
-        tagSandwich.setIdCategoria(10);
-        tagDAO.insert(tagSandwich);
-
-        Tag tagTortellini = new Tag();
-        tagTortellini.setNombre("Tortellini");
-        tagTortellini.setIdCategoria(11);
-        tagDAO.insert(tagTortellini);
-
-        Tag tagEspagueti = new Tag();
-        tagEspagueti.setNombre("Espagueti");
-        tagEspagueti.setIdCategoria(11);
-        tagDAO.insert(tagEspagueti);
-
-        Tag tagMacarron = new Tag();
-        tagMacarron.setNombre("Macarron");
-        tagMacarron.setIdCategoria(11);
-        tagDAO.insert(tagMacarron);
-
-        Tag tagFideo = new Tag();
-        tagFideo.setNombre("Fideo");
-        tagFideo.setIdCategoria(11);
-        tagDAO.insert(tagFideo);
-
-        Tag tagArroz = new Tag();
-        tagArroz.setNombre("Arroz");
-        tagArroz.setIdCategoria(12);
-        tagDAO.insert(tagArroz);
-
-        Tag tagBasmati = new Tag();
-        tagBasmati.setNombre("Basmati");
-        tagBasmati.setIdCategoria(12);
-        tagDAO.insert(tagBasmati);
-
-        Tag tagYatekomo = new Tag();
-        tagYatekomo.setNombre("Yatekomo");
-        tagYatekomo.setIdCategoria(11);
-        tagDAO.insert(tagYatekomo);
-
-        Tag tagCampesinas = new Tag();
-        tagCampesinas.setNombre("Campesinas");
-        tagCampesinas.setIdCategoria(15);
-        tagDAO.insert(tagCampesinas);
-
-        Tag tagHarina = new Tag();
-        tagHarina.setNombre("Harina");
-        tagHarina.setIdCategoria(16);
-        tagDAO.insert(tagHarina);
-
-        Tag tagAzucar = new Tag();
-        tagAzucar.setNombre("Azucar");
-        tagAzucar.setIdCategoria(17);
-        tagDAO.insert(tagAzucar);
-
-        Tag tagMoreno = new Tag();
-        tagMoreno.setNombre("Moreno");
-        tagMoreno.setIdCategoria(17);
-        tagDAO.insert(tagMoreno);
-
-        Tag tagAceite = new Tag();
-        tagAceite.setNombre("Aceite");
-        tagAceite.setIdCategoria(18);
-        tagDAO.insert(tagAceite);
-
-        Tag tagGirasol = new Tag();
-        tagGirasol.setNombre("Girasol");
-        tagGirasol.setIdCategoria(18);
-        tagDAO.insert(tagGirasol);
-
-        Tag tagHelado = new Tag();
-        tagHelado.setNombre("Helado");
-        tagHelado.setIdCategoria(19);
-        tagDAO.insert(tagHelado);
-
-        Tag tagVainilla = new Tag();
-        tagVainilla.setNombre("Vainilla");
-        tagVainilla.setIdCategoria(19);
-        tagDAO.insert(tagVainilla);
-
-        Tag tagChocolate = new Tag();
-        tagChocolate.setNombre("Chocolate");
-        tagChocolate.setIdCategoria(14);
-        tagDAO.insert(tagChocolate);
-
-        Tag tagHielo = new Tag();
-        tagHielo.setNombre("Hielo");
-        tagHielo.setIdCategoria(20);
-        tagDAO.insert(tagHielo);
-
-        Tag tagCroquetas = new Tag();
-        tagCroquetas.setNombre("Croquetas");
-        tagCroquetas.setIdCategoria(21);
-        tagDAO.insert(tagCroquetas);
-
-        Tag tagNuggets = new Tag();
-        tagNuggets.setNombre("Nuggets");
-        tagNuggets.setIdCategoria(21);
-        tagDAO.insert(tagNuggets);
-
-        Tag tagCongelado = new Tag();
-        tagCongelado.setNombre("Congelado");
-        tagCongelado.setIdCategoria(21);
-        tagDAO.insert(tagCongelado);
-
-        Tag tagSalteado = new Tag();
-        tagSalteado.setNombre("Salteado");
-        tagSalteado.setIdCategoria(21);
-        tagDAO.insert(tagSalteado);
-
-        Tag tagRon = new Tag();
-        tagRon.setNombre("Ron");
-        tagRon.setIdCategoria(9);
-        tagDAO.insert(tagRon);
-
-        Tag tagVodka = new Tag();
-        tagVodka.setNombre("Vodka");
-        tagVodka.setIdCategoria(9);
-        tagDAO.insert(tagVodka);
-
-        Tag tagGinebra = new Tag();
-        tagGinebra.setNombre("Ginebra");
-        tagGinebra.setIdCategoria(9);
-        tagDAO.insert(tagGinebra);
-
-        Tag tagWhisky = new Tag();
-        tagWhisky.setNombre("Whisky");
-        tagWhisky.setIdCategoria(9);
-        tagDAO.insert(tagWhisky);
-
-        Tag tagCola = new Tag();
-        tagCola.setNombre("Cola");
-        tagCola.setIdCategoria(7);
-        tagDAO.insert(tagCola);
-
-        Tag tagFanta = new Tag();
-        tagFanta.setNombre("Fanta");
-        tagFanta.setIdCategoria(7);
-        tagDAO.insert(tagFanta);
-
-        Tag tagNestea = new Tag();
-        tagNestea.setNombre("Nestea");
-        tagNestea.setIdCategoria(7);
-        tagDAO.insert(tagNestea);
-
-        Tag tagEnergetica = new Tag();
-        tagEnergetica.setNombre("Energetica");
-        tagEnergetica.setIdCategoria(7);
-        tagDAO.insert(tagEnergetica);
-
-        Tag tagRedBull = new Tag();
-        tagRedBull.setNombre("Red Bull");
-        tagRedBull.setIdCategoria(7);
-        tagDAO.insert(tagRedBull);
-
-        Tag tagBurn = new Tag();
-        tagBurn.setNombre("Burn");
-        tagBurn.setIdCategoria(7);
-        tagDAO.insert(tagBurn);
+        insertaTag("Pollo", 4);
+        insertaTag("Ternera", 4);
+        insertaTag("Conejo", 4);
+        insertaTag("Cerdo", 4);
+        insertaTag("Chuleta", 4);
+        insertaTag("Lomo", 4);
+        insertaTag("Merluza", 5);
+        insertaTag("Atun", 5);
+        insertaTag("Gamba", 5);
+        insertaTag("Mejillon", 5);
+        insertaTag("Lubina", 5);
+        insertaTag("Jamón York", 4);
+        insertaTag("Chorizo", 4);
+        insertaTag("Gouda", 1);
+        insertaTag("Emmental", 1);
+        insertaTag("Queso", 1);
+        insertaTag("Leche", 1);
+        insertaTag("Yogurt", 1);
+        insertaTag("Roquefort", 1);
+        insertaTag("Rallado", 1);
+        insertaTag("Pera", 3);
+        insertaTag("Manzana", 3);
+        insertaTag("Plátano", 3);
+        insertaTag("Melocotón", 3);
+        insertaTag("Piña", 3);
+        insertaTag("Cereza", 3);
+        insertaTag("Naranja", 3 );
+        insertaTag("Mandarina", 3);
+        insertaTag("Sandia", 3);
+        insertaTag("Melón", 3);
+        insertaTag("Lechuga", 2);
+        insertaTag("Tomate", 2);
+        insertaTag("Pepino", 2);
+        insertaTag("Maiz", 2);
+        insertaTag("Cebolla", 2);
+        insertaTag("Patata", 2);
+        insertaTag("Calabacin", 2);
+        insertaTag("Calabaza", 2);
+        insertaTag("Pimienro", 2);
+        insertaTag("Guisantes", 2);
+        insertaTag("Napolitana", 14);
+        insertaTag("Galleta", 14);
+        insertaTag("Cereal", 14);
+        insertaTag("Oreo", 14);
+        insertaTag("Chips", 14);
+        insertaTag("Cookies", 14);
+        insertaTag("Flan", 6);
+        insertaTag("Natillas", 6);
+        insertaTag("Rosquilletas", 15);
+        insertaTag("Pan", 8);
+        insertaTag("Barra Pan", 8);
+        insertaTag("Tortilla", 6);
+        insertaTag("Huevo", 6);
+        insertaTag("Sopa", 10);
+        insertaTag("Crema", 10);
+        insertaTag("Pizza", 10);
+        insertaTag("Lasagna", 10);
+        insertaTag("Sandwitch", 10);
+        insertaTag("Tortellini", 11);
+        insertaTag("Espagueti", 11);
+        insertaTag("Macarron", 11);
+        insertaTag("Fideo", 11);
+        insertaTag("Arroz", 12);
+        insertaTag("Basmati", 12);
+        insertaTag("Yatekomo", 11);
+        insertaTag("Campesinas", 15);
+        insertaTag("Harina", 16);
+        insertaTag("Azúcar", 17);
+        insertaTag("Moreno", 17);
+        insertaTag("Aceite", 18);
+        insertaTag("Girasol", 18);
+        insertaTag("Helado", 19);
+        insertaTag("Vainilla", 19);
+        insertaTag("Chocolate", 14);
+        insertaTag("Hielo", 20);
+        insertaTag("Croqueta", 21);
+        insertaTag("Nuggets", 21);
+        insertaTag("Congelado", 21);
+        insertaTag("Salteado", 21);
+        insertaTag("Ron", 9);
+        insertaTag("Vodka", 9);
+        insertaTag("Ginebra", 9);
+        insertaTag("Whisky", 9);
+        insertaTag("Cola", 7);
+        insertaTag("Fanta", 7);
+        insertaTag("Nestea", 7);
+        insertaTag("Energetica", 7);
+        insertaTag("Red Bull", 7);
+        insertaTag("Burn", 7);
     }
 
     public void insertsTicket() {
-        TicketDAO ticketDAO = new TicketDAO(this);
-
-        Ticket ticket1 = new Ticket();
-        ticket1.setPrecio(8.33);
-        ticket1.setFecha("05/05/2019");
-        ticket1.setIdSupermercado(1);
-        ticket1.setIdMes(1);
-        ticketDAO.insert(ticket1);
-
-        Ticket ticket2 = new Ticket();
-        ticket2.setPrecio(8.7);
-        ticket2.setFecha("12/05/2019");
-        ticket2.setIdSupermercado(2);
-        ticket2.setIdMes(1);
-        ticketDAO.insert(ticket2);
-
-        Ticket ticket3 = new Ticket();
-        ticket3.setPrecio(2.30);
-        ticket3.setFecha("22/05/2019");
-        ticket3.setIdSupermercado(2);
-        ticket3.setIdMes(1);
-        ticketDAO.insert(ticket3);
+        insertaTicket("05/05/2019", 8.33,1, 2);
+        insertaTicket("12/05/2019", 8.7, 1, 1);
+        insertaTicket("22/05/2019", 2.3, 1, 1);
     }
 
     public void insertsProducto() {
-        ProductoDAO productoDAO = new ProductoDAO(this);
-
-        Producto productoHuevos = new Producto();
-        productoHuevos.setNombre("Huevos XL");
-        productoHuevos.setPrecio(1.60);
-        productoHuevos.setCantidad(1);
-        productoHuevos.setCaducidad("02/06/2019");
-        productoHuevos.setIdInventario(2);
-        productoHuevos.setIdCategoria(6);
-        productoDAO.insert(productoHuevos);
-
-        Producto productoYogurt = new Producto();
-        productoYogurt.setNombre("Yogurt Fresa");
-        productoYogurt.setPrecio(1.60);
-        productoYogurt.setCaducidad("25/05/2019");
-        productoYogurt.setCantidad(2);
-        productoYogurt.setIdInventario(2);
-        productoYogurt.setIdCategoria(1);
-        productoDAO.insert(productoYogurt);
-
-        Producto productoChips = new Producto();
-        productoChips.setNombre("ChipsAhoy");
-        productoChips.setPrecio(1.60);
-        productoChips.setCantidad(1);
-        productoChips.setCaducidad("25/05/2019");
-        productoChips.setIdInventario(1);
-        productoChips.setIdCategoria(13);
-        productoDAO.insert(productoChips);
-
-        Producto productoMolde = new Producto();
-        productoMolde.setNombre("Pan Molde");
-        productoMolde.setPrecio(1.68);
-        productoMolde.setCantidad(1);
-        productoMolde.setCaducidad("29/06/2019");
-        productoMolde.setIdInventario(1);
-        productoMolde.setIdCategoria(21);
-        productoDAO.insert(productoMolde);
-
-        Producto productoQueso = new Producto();
-        productoQueso.setNombre("Queso Fresco");
-        productoQueso.setPrecio(2.50);
-        productoQueso.setCaducidad("02/06/2019");
-        productoQueso.setCantidad(2);
-        productoQueso.setIdInventario(2);
-        productoQueso.setIdCategoria(1);
-        productoDAO.insert(productoQueso);
-
-        Producto productoLechuga = new Producto();
-        productoLechuga.setNombre("Lechuga Iceberg");
-        productoLechuga.setPrecio(1.10);
-        productoLechuga.setCantidad(1);
-        productoLechuga.setCaducidad("23/06/2019");
-        productoLechuga.setIdInventario(2);
-        productoLechuga.setIdCategoria(2);
-        productoDAO.insert(productoLechuga);
-
-        Producto productoPizza = new Producto();
-        productoPizza.setNombre("Pizza 4 Quesos");
-        productoPizza.setPrecio(2.70);
-        productoPizza.setCantidad(1);
-        productoPizza.setCaducidad("15/06/2019");
-        productoPizza.setIdInventario(2);
-        productoPizza.setIdCategoria(9);
-        productoDAO.insert(productoPizza);
-
-        Producto productoYork = new Producto();
-        productoYork.setNombre("York Lonchas");
-        productoYork.setPrecio(1.80);
-        productoYork.setCantidad(1);
-        productoYork.setCaducidad("11/06/2019");
-        productoYork.setIdInventario(2);
-        productoYork.setIdCategoria(15);
-        productoDAO.insert(productoYork);
-
-        Producto productoSalteado = new Producto();
-        productoSalteado.setNombre("Salteado verduras");
-        productoSalteado.setPrecio(2.20);
-        productoSalteado.setCantidad(1);
-        productoSalteado.setCaducidad("16/06/2019");
-        productoSalteado.setIdInventario(3);
-        productoSalteado.setIdCategoria(19);
-        productoDAO.insert(productoSalteado);
-
-        Producto productoHelado = new Producto();
-        productoHelado.setNombre("Helado vainilla");
-        productoHelado.setPrecio(2.50);
-        productoHelado.setCantidad(1);
-        productoHelado.setCaducidad("14/06/2019");
-        productoHelado.setIdInventario(3);
-        productoHelado.setIdCategoria(19);
-        productoDAO.insert(productoHelado);
-
-        Producto productoPlatano = new Producto();
-        productoPlatano.setNombre("Platano Canarias");
-        productoPlatano.setPrecio(1.39);
-        productoPlatano.setCantidad(1);
-        productoPlatano.setCaducidad("29/06/2019");
-        productoPlatano.setIdInventario(2);
-        productoPlatano.setIdCategoria(3);
-        productoDAO.insert(productoPlatano);
-
-        Producto productoNapolitanas = new Producto();
-        productoNapolitanas.setNombre("Napolitanas");
-        productoNapolitanas.setPrecio(0.89);
-        productoNapolitanas.setCaducidad("01/06/2019");
-        productoNapolitanas.setCantidad(1);
-        productoNapolitanas.setIdInventario(1);
-        productoNapolitanas.setIdCategoria(21);
-        productoDAO.insert(productoNapolitanas);
-
-        Producto productoManzana = new Producto();
-        productoManzana.setNombre("Manzana Royal Gala");
-        productoManzana.setPrecio(1.25);
-        productoManzana.setCantidad(1);
-        productoManzana.setCaducidad("27/06/2019");
-        productoManzana.setIdInventario(2);
-        productoManzana.setIdCategoria(3);
-        productoDAO.insert(productoManzana);
+        insertaProducto("Huevos XL", 1.60, 1, "02/06/2019", 2, 6 );
+        insertaProducto("Yogurt Fresa", 1.60, 2, "25/05/2019", 2, 1 );
+        insertaProducto("ChipsAhoy", 1.60, 1, "25/05/2019", 1, 13 );
+        insertaProducto("Pan Molde", 168, 1, "29/06/2019", 1, 21);
+        insertaProducto("Queso Fresco", 2.50,2,  "02/06/2019", 2, 1);
+        insertaProducto("Lechuga Iceberg", 1.10, 1, "23/06/2019", 2, 2 );
+        insertaProducto("Pizza 4 Quesos", 2.70, 1, "15/06/2019", 2, 9);
+        insertaProducto("York Lonchas", 1.80, 1, "11/06/2019", 2, 15 );
+        insertaProducto("Salteado verduras", 2.20, 1, "16/06/2019", 3, 19);
+        insertaProducto("Helado vainilla", 2.50, 1, "14/06/2019", 3, 19);
+        insertaProducto("Platano Canarias", 1.39, 1, "29/06/2019", 2, 3);
+        insertaProducto("Napolitanas", 0.89, 1,"01/06/2019",  1, 21 );
+        insertaProducto("Manzana Royal Gala", 1.25, 1,"27/06/2019", 2, 3 );
     }
 
     public void insertsProductoTicket() {
-        ProductoTicketDAO productoTicketDAO = new ProductoTicketDAO(this);
+        insertaProductoTicket(3,3,1);
+        insertaProductoTicket(2,5,1);
+        insertaProductoTicket(2, 9,2);
+        insertaProductoTicket(2, 8, 3);
+        insertaProductoTicket(2, 2,1 );
+        insertaProductoTicket(1, 13, 1);
+        insertaProductoTicket(1, 7, 1);
+        insertaProductoTicket(1, 4, 1);
+        insertaProductoTicket(1, 1, 1);
+        insertaProductoTicket(1, 6, 1);
+    }
 
-        ProductoTicket productoTicket1 = new ProductoTicket();
-        productoTicket1.setIdTicket(3);
-        productoTicket1.setIdProducto(3);
-        productoTicket1.setCantidad(1);
-        productoTicketDAO.insert(productoTicket1);
+    public void insertaInventario(String nombre){
+        Inventario inventario = new Inventario();
+        inventario.setNombre(nombre);
+        inventarioDAO.insert(inventario);
+    }
+    public void insertaLista(String nombre){
+        Lista lista = new Lista();
+        lista.setNombre(nombre);
+        listaDAO.insert(lista);
+    }
 
-        ProductoTicket productoTicket2 = new ProductoTicket();
-        productoTicket2.setIdTicket(2);
-        productoTicket2.setIdProducto(5);
-        productoTicket2.setCantidad(1);
-        productoTicketDAO.insert(productoTicket2);
+    public void insertaSuper(String nombre){
+        Supermercado a = new Supermercado();
+        a.setNombre(nombre);
+        supermercadoDAO.insert(a);
+    }
 
-        ProductoTicket productoTicket3 = new ProductoTicket();
-        productoTicket3.setIdTicket(2);
-        productoTicket3.setIdProducto(9);
-        productoTicket3.setCantidad(2);
-        productoTicketDAO.insert(productoTicket3);
+    public void insertaMes(String nombre, int anyo, int presupuesto){
+        Mes mesMayo = new Mes();
+        mesMayo.setNombre(nombre);
+        mesMayo.setAnyo(anyo);
+        mesMayo.setPresupuesto(presupuesto);
+        mesDAO.insert(mesMayo);
+    }
 
-        ProductoTicket productoTicket4 = new ProductoTicket();
-        productoTicket4.setIdTicket(2);
-        productoTicket4.setIdProducto(8);
-        productoTicket4.setCantidad(3);
-        productoTicketDAO.insert(productoTicket4);
+    public void insertaCategoria(String nombre, int idInv){
+        Categoria categoria = new Categoria();
+        categoria.setNombre(nombre);
+        categoria.setIdInventario(idInv);
+        categoriaDAO.insert(categoria);
+    }
 
-        ProductoTicket productoTicket5 = new ProductoTicket();
-        productoTicket5.setIdTicket(2);
-        productoTicket5.setIdProducto(2);
-        productoTicket5.setCantidad(1);
-        productoTicketDAO.insert(productoTicket5);
+    public void insertaTag(String nombre, int idCat)
+    {
+        Tag tagMoreno = new Tag();
+        tagMoreno.setNombre(nombre);
+        tagMoreno.setIdCategoria(idCat);
+        tagDAO.insert(tagMoreno);
+    }
 
-        ProductoTicket productoTicket6 = new ProductoTicket();
-        productoTicket6.setIdTicket(1);
-        productoTicket6.setIdProducto(13);
-        productoTicket6.setCantidad(1);
-        productoTicketDAO.insert(productoTicket6);
+    public void insertaTicket(String fecha, double precio, int idMes, int idSup){
+        Ticket ticket = new Ticket();
+        ticket.setPrecio(precio);
+        ticket.setFecha(fecha);
+        ticket.setIdSupermercado(idSup);
+        ticket.setIdMes(idMes);
+        ticketDAO.insert(ticket);
 
-        ProductoTicket productoTicket7 = new ProductoTicket();
-        productoTicket7.setIdTicket(1);
-        productoTicket7.setIdProducto(7);
-        productoTicket7.setCantidad(1);
-        productoTicketDAO.insert(productoTicket7);
+    }
 
-        ProductoTicket productoTicket8 = new ProductoTicket();
-        productoTicket8.setIdTicket(1);
-        productoTicket8.setIdProducto(4);
-        productoTicket8.setCantidad(1);
-        productoTicketDAO.insert(productoTicket8);
+    public void insertaProducto(String nombre, double precio, int cantidad, String caducidad, int idInv, int idCat){
 
-        ProductoTicket productoTicket9 = new ProductoTicket();
-        productoTicket9.setIdTicket(1);
-        productoTicket9.setIdProducto(1);
-        productoTicket9.setCantidad(1);
-        productoTicketDAO.insert(productoTicket9);
+        Producto productoHuevos = new Producto();
+        productoHuevos.setNombre(nombre);
+        productoHuevos.setPrecio(precio);
+        productoHuevos.setCantidad(cantidad);
+        productoHuevos.setCaducidad(caducidad);
+        productoHuevos.setIdInventario(idInv);
+        productoHuevos.setIdCategoria(idCat);
+        productoDAO.insert(productoHuevos);
+    }
 
-        ProductoTicket productoTicket10 = new ProductoTicket();
-        productoTicket10.setIdTicket(1);
-        productoTicket10.setIdProducto(6);
-        productoTicket10.setCantidad(1);
-        productoTicketDAO.insert(productoTicket10);
+    public void insertaProductoTicket(int idTicket, int idProd, int cantidad){
+
+        ProductoTicket productoTicket = new ProductoTicket();
+        productoTicket.setIdTicket(idTicket);
+        productoTicket.setIdProducto(idProd);
+        productoTicket.setCantidad(cantidad);
+        productoTicketDAO.insert(productoTicket);
     }
 }
