@@ -191,7 +191,7 @@ public class DetalleProdInventario extends Fragment implements AdapterView.OnIte
             public void onClick(View v) {
                 if (!editTextNombre.getText().toString().equalsIgnoreCase("") && !editTextPrecio.getText().toString().equalsIgnoreCase("")
                         && !editTextPrecio.getText().toString().equalsIgnoreCase("0") && !editTextCantidad.getText().toString().equalsIgnoreCase("")
-                        && !editTextCaducidad.getText().toString().equalsIgnoreCase("")) {
+                        && !editTextCantidad.getText().toString().equalsIgnoreCase("0") && !editTextCaducidad.getText().toString().equalsIgnoreCase("")) {
                         producto.setNombre(String.valueOf(editTextNombre.getText()));
                         producto.setPrecio(Double.parseDouble(editTextPrecio.getText().toString()));
                         producto.setCantidad(Integer.parseInt(editTextCantidad.getText().toString()));

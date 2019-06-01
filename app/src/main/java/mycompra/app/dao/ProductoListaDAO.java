@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 import mycompra.app.dbhelper.DBHelper;
+import mycompra.app.modelo.Producto;
 import mycompra.app.modelo.ProductoLista;
 
 public class ProductoListaDAO {
@@ -88,6 +89,32 @@ public class ProductoListaDAO {
                 ProductoLista productoLista = new ProductoLista();
                 productoLista.setIdProducto(cursor.getInt(cursor.getColumnIndex(ProductoLista.KEY_ID_Producto)));
                 productoLista.setIdLista(cursor.getInt(cursor.getColumnIndex(ProductoLista.KEY_ID_Lista)));
+                productoListaList.add(productoLista);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return productoListaList;
+    }
+
+    public ArrayList<Producto> getProductoListFromListaHabitual(int id) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String selectQuery =  "SELECT  " +
+                Producto.KEY_Nombre +
+                " FROM " + Producto.TABLE + ", " + ProductoLista.TABLE
+                + " WHERE " +
+                ProductoLista.KEY_ID_Lista + "=?" + " AND " +
+                ProductoLista.KEY_ID_Producto + " = " + Producto.KEY_ID;
+
+        ArrayList<Producto> productoListaList = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery(selectQuery, new String[] { String.valueOf(id) });
+
+        if (cursor.moveToFirst()) {
+            do {
+                Producto productoLista = new Producto();
+                productoLista.setNombre(cursor.getString(cursor.getColumnIndex(Producto.KEY_Nombre)));
                 productoListaList.add(productoLista);
             } while (cursor.moveToNext());
         }

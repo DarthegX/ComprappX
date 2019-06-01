@@ -55,17 +55,16 @@ public class Listas extends Fragment {
         recyclerListas.addOnItemTouchListener(new RecyclerItemClickListener(getActivity().getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                /*Bundle bundle = new Bundle();
+                Bundle bundle = new Bundle();
 
-                bundle.putString("fragmentAnterior", "Listas");
                 bundle.putString("idLista", String.valueOf(listaListas.get(position).getId()));
 
-                DetalleProdInventario detalleProdInventario = new DetalleProdInventario();
-                detalleProdInventario.setArguments(bundle);
+                ListaHabitual listaHabitual = new ListaHabitual();
+                listaHabitual.setArguments(bundle);
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.frame, detalleProdInventario).addToBackStack(null);
-                ft.commit();*/
+                ft.replace(R.id.frame, listaHabitual).addToBackStack(null);
+                ft.commit();
             }
         }));
 
