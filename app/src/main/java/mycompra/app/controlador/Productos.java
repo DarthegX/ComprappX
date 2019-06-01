@@ -45,8 +45,8 @@ public class Productos extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_productos, container, false);
+        
         recyclerView = view.findViewById(R.id.RecyclerIdProd);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         llenarListaProd();
 
@@ -112,13 +112,14 @@ public class Productos extends Fragment {
         listCatProd = new ArrayList<String>();
 
         for(int i = 0; i < listaProductos.size(); i++){
-            listDatosProd.add(String.valueOf(listaProductos.get(i).getCantidad()));
-            listProduct.add(listaProductos.get(i).getNombre());
-            if (listaProductos.get(i).getIdCategoria() != 0) {
-                listCatProd.add(listaCategorias.get(listaProductos.get(i).getIdCategoria() - 1).getNombre());
-            }
-            else {
-                listCatProd.add("Sin categoria");
+            if (listaProductos.get(i).getIdInventario() != 0) {
+                listDatosProd.add(String.valueOf(listaProductos.get(i).getCantidad()));
+                listProduct.add(listaProductos.get(i).getNombre());
+                if (listaProductos.get(i).getIdCategoria() != 0) {
+                    listCatProd.add(listaCategorias.get(listaProductos.get(i).getIdCategoria() - 1).getNombre());
+                } else {
+                    listCatProd.add("Sin categoria");
+                }
             }
         }
     }

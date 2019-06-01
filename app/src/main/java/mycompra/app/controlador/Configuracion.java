@@ -17,7 +17,6 @@ import mycompra.app.R;
  */
 public class Configuracion extends Fragment {
 
-
     public Configuracion() {
         // Required empty public constructor
     }
@@ -29,22 +28,14 @@ public class Configuracion extends Fragment {
         // Inflate the layout for this fragment
         View vista = inflater.inflate(R.layout.fragment_configuracion, container, false);
 
-        Button btnNuevaCategoria = (Button) vista.findViewById(R.id.buttonNuevaCat);
-        btnNuevaCategoria.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.frame,new NuevaCategoria()).addToBackStack(null);
-                ft.commit();
-            }
-        });
+        getActivity().setTitle("Configuracion");
 
         Button btnNuevaTag = (Button) vista.findViewById(R.id.buttonNuevaTag);
         btnNuevaTag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.frame,new NuevoTag()).addToBackStack(null);
+                ft.replace(R.id.frame, new NuevoTag()).addToBackStack(null);
                 ft.commit();
             }
         });

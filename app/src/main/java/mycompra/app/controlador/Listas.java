@@ -5,6 +5,8 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +17,9 @@ import java.util.ArrayList;
 
 import mycompra.app.R;
 import mycompra.app.adaptersRecycler.AdapterListas;
+import mycompra.app.adaptersRecycler.RecyclerItemClickListener;
+import mycompra.app.dao.ListaDAO;
+import mycompra.app.modelo.Lista;
 
 
 /**
@@ -24,6 +29,7 @@ public class Listas extends Fragment {
 
     ArrayList<String> nombreListas;
     RecyclerView recyclerListas;
+    ArrayList<Lista> listaListas;
 
     public Listas() {
         // Required empty public constructor
@@ -34,10 +40,9 @@ public class Listas extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View vista = inflater.inflate(R.layout.fragment_listas, container, false);
+        View view = inflater.inflate(R.layout.fragment_listas, container, false);
 
-        recyclerListas = vista.findViewById(R.id.RecyclerIdListas);
-        recyclerListas.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerListas = view.findViewById(R.id.RecyclerIdListas);
 
         llenarListas();
 
@@ -45,26 +50,59 @@ public class Listas extends Fragment {
 
         recyclerListas.setAdapter(adapter);
 
+        recyclerListas.setItemAnimator(new DefaultItemAnimator());
 
-        FloatingActionButton buttonNuevaLista = vista.findViewById(R.id.btnNuevaFoto);
-        buttonNuevaLista.setOnClickListener(new View.OnClickListener() {
+        recyclerListas.addOnItemTouchListener(new RecyclerItemClickListener(getActivity().getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                /*Bundle bundle = new Bundle();
+
+                bundle.putString("fragmentAnterior", "Listas");
+                bundle.putString("idLista", String.valueOf(listaListas.get(position).getId()));
+
+                DetalleProdInventario detalleProdInventario = new DetalleProdInventario();
+                detalleProdInventario.setArguments(bundle);
+
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.frame, detalleProdInventario).addToBackStack(null);
+                ft.commit();*/
+            }
+        }));
+
+        recyclerListas.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerListas.getContext(),
+                ((LinearLayoutManager) recyclerListas.getLayoutManager()).getOrientation());
+        recyclerListas.addItemDecoration(dividerItemDecoration);
+
+        FloatingActionButton btnNuevaLista = view.findViewById(R.id.btnNuevaLista);
+        btnNuevaLista.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bundle bundle = new Bundle();
+
+                bundle.putString("fragmentAnterior", "Listas");
+
+                NuevaLista nuevaLista = new NuevaLista();
+                nuevaLista.setArguments(bundle);
+
                 FragmentTransaction fr = getFragmentManager().beginTransaction();
-                fr.replace(R.id.frame,new NuevaLista()).addToBackStack(null);
+                fr.replace(R.id.frame, nuevaLista).addToBackStack(null);
                 fr.commit();
             }
         });
-        return vista;
+        return view;
     }
 
     private void llenarListas() {
         nombreListas = new ArrayList<String>();
 
-            nombreListas.add("Lista Habitual");
-            nombreListas.add("Lista Customizada");
-            nombreListas.add("Lista Compartida" );
+        ListaDAO listaDAO = new ListaDAO(getActivity().getApplicationContext());
 
+        listaListas = listaDAO.getListaList();
+
+        for (int i = 0; i < listaListas.size(); i++) {
+            nombreListas.add(listaListas.get(i).getNombre());
+        }
     }
-
 }

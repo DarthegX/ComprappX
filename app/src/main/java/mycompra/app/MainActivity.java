@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity
         categoriaDAO.insert(categoriaHuevo);
 
         Categoria categoriaRefresco = new Categoria();
-        categoriaRefresco.setNombre("Refresco");
+        categoriaRefresco.setNombre("Bebida");
         categoriaRefresco.setIdInventario(2);
         categoriaDAO.insert(categoriaRefresco);
 
@@ -272,48 +272,43 @@ public class MainActivity extends AppCompatActivity
         categoriaDulce.setIdInventario(1);
         categoriaDAO.insert(categoriaDulce);
 
-        Categoria categoriaSnack = new Categoria();
-        categoriaSnack.setNombre("Snack");
-        categoriaSnack.setIdInventario(1);
-        categoriaDAO.insert(categoriaSnack);
+        Categoria categoriaAperitivo = new Categoria();
+        categoriaAperitivo.setNombre("Aperitivo");
+        categoriaAperitivo.setIdInventario(1);
+        categoriaDAO.insert(categoriaAperitivo);
 
-        Categoria categoriaHarina = new Categoria();
-        categoriaHarina.setNombre("Harina");
-        categoriaHarina.setIdInventario(1);
-        categoriaDAO.insert(categoriaHarina);
+        Categoria categoriaEmbutido = new Categoria();
+        categoriaEmbutido.setNombre("Embutido");
+        categoriaEmbutido.setIdInventario(1);
+        categoriaDAO.insert(categoriaEmbutido);
 
-        Categoria categoriaAzucar = new Categoria();
-        categoriaAzucar.setNombre("Azucar");
-        categoriaAzucar.setIdInventario(1);
-        categoriaDAO.insert(categoriaAzucar);
+        Categoria categoriaHogar = new Categoria();
+        categoriaHogar.setNombre("Hogar");
+        categoriaHogar.setIdInventario(1);
+        categoriaDAO.insert(categoriaHogar);
 
         Categoria categoriaAceite = new Categoria();
         categoriaAceite.setNombre("Aceite");
         categoriaAceite.setIdInventario(1);
         categoriaDAO.insert(categoriaAceite);
 
-        Categoria categoriaHelado = new Categoria();
-        categoriaHelado.setNombre("Helado");
-        categoriaHelado.setIdInventario(3);
-        categoriaDAO.insert(categoriaHelado);
-
-        Categoria categoriaHielo = new Categoria();
-        categoriaHielo.setNombre("Hielo");
-        categoriaHielo.setIdInventario(3);
-        categoriaDAO.insert(categoriaHielo);
+        Categoria categoriaCosmetica = new Categoria();
+        categoriaCosmetica.setNombre("Cosmetica");
+        categoriaCosmetica.setIdInventario(3);
+        categoriaDAO.insert(categoriaCosmetica);
 
         Categoria categoriaCongelado = new Categoria();
         categoriaCongelado.setNombre("Congelado");
         categoriaCongelado.setIdInventario(3);
         categoriaDAO.insert(categoriaCongelado);
 
-        Categoria categoriaPatata = new Categoria();
-        categoriaPatata.setNombre("Patata");
-        categoriaPatata.setIdInventario(1);
-        categoriaDAO.insert(categoriaPatata);
+        Categoria categoriaHortaliza = new Categoria();
+        categoriaHortaliza.setNombre("Hortaliza");
+        categoriaHortaliza.setIdInventario(1);
+        categoriaDAO.insert(categoriaHortaliza);
 
         Categoria categoriaPan = new Categoria();
-        categoriaPan.setNombre("Pan");
+        categoriaPan.setNombre("Panaderia");
         categoriaPan.setIdInventario(1);
         categoriaDAO.insert(categoriaPan);
     }
@@ -809,7 +804,7 @@ public class MainActivity extends AppCompatActivity
         productoYogurt.setCaducidad("25/05/2019");
         productoYogurt.setCantidad(2);
         productoYogurt.setIdInventario(2);
-        productoYogurt.setIdCategoria(13);
+        productoYogurt.setIdCategoria(1);
         productoDAO.insert(productoYogurt);
 
         Producto productoChips = new Producto();
@@ -825,7 +820,7 @@ public class MainActivity extends AppCompatActivity
         productoMolde.setPrecio(1.68);
         productoMolde.setCantidad(1);
         productoMolde.setIdInventario(1);
-        productoMolde.setIdCategoria(22);
+        productoMolde.setIdCategoria(21);
         productoDAO.insert(productoMolde);
 
         Producto productoQueso = new Producto();
@@ -850,7 +845,7 @@ public class MainActivity extends AppCompatActivity
         productoPizza.setPrecio(2.70);
         productoPizza.setCantidad(1);
         productoPizza.setIdInventario(2);
-        productoPizza.setIdCategoria(10);
+        productoPizza.setIdCategoria(9);
         productoDAO.insert(productoPizza);
 
         Producto productoYork = new Producto();
@@ -858,7 +853,7 @@ public class MainActivity extends AppCompatActivity
         productoYork.setPrecio(1.80);
         productoYork.setCantidad(1);
         productoYork.setIdInventario(2);
-        productoYork.setIdCategoria(4);
+        productoYork.setIdCategoria(15);
         productoDAO.insert(productoYork);
 
         Producto productoSalteado = new Producto();
@@ -866,7 +861,7 @@ public class MainActivity extends AppCompatActivity
         productoSalteado.setPrecio(2.20);
         productoSalteado.setCantidad(1);
         productoSalteado.setIdInventario(3);
-        productoSalteado.setIdCategoria(20);
+        productoSalteado.setIdCategoria(19);
         productoDAO.insert(productoSalteado);
 
         Producto productoHelado = new Producto();
@@ -874,7 +869,7 @@ public class MainActivity extends AppCompatActivity
         productoHelado.setPrecio(2.50);
         productoHelado.setCantidad(1);
         productoHelado.setIdInventario(3);
-        productoHelado.setIdCategoria(13);
+        productoHelado.setIdCategoria(19);
         productoDAO.insert(productoHelado);
 
         Producto productoPlatano = new Producto();
@@ -891,7 +886,7 @@ public class MainActivity extends AppCompatActivity
         productoNapolitanas.setCaducidad("01/06/2019");
         productoNapolitanas.setCantidad(1);
         productoNapolitanas.setIdInventario(1);
-        productoNapolitanas.setIdCategoria(13);
+        productoNapolitanas.setIdCategoria(21);
         productoDAO.insert(productoNapolitanas);
 
         Producto productoManzana = new Producto();

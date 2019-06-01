@@ -29,6 +29,8 @@ public class NuevoProducto extends Fragment implements AdapterView.OnItemSelecte
     private EditText editTextNombre;
     private Spinner spinner;
     private ArrayAdapter<CharSequence> adapter;
+    private Button btnCancelar;
+    private Button btnAnyadir;
 
     public NuevoProducto() {
         // Required empty public constructor
@@ -54,7 +56,7 @@ public class NuevoProducto extends Fragment implements AdapterView.OnItemSelecte
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        Button btnCancelar = (Button) view.findViewById(R.id.cancelarNuevoProducto);
+        btnCancelar = view.findViewById(R.id.cancelarNuevoProducto);
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,10 +76,9 @@ public class NuevoProducto extends Fragment implements AdapterView.OnItemSelecte
                 }
                 ft.commit();
             }
-
         });
 
-        Button btnAnyadir = view.findViewById(R.id.btnAnyadirFragmentNuevoProducto);
+        btnAnyadir = view.findViewById(R.id.btnAnyadirFragmentNuevoProducto);
         editTextNombre = view.findViewById(R.id.editTextNombreNuevoProducto);
 
         btnAnyadir.setOnClickListener(new View.OnClickListener() {
