@@ -1,61 +1,43 @@
-package mycompra.app.logica;
-
-import android.content.Context;
+package mycompra.app.logica.parserEstrategia;
 
 import java.util.ArrayList;
 
 import mycompra.app.dao.ProductoDAO;
 import mycompra.app.dao.TicketDAO;
+import mycompra.app.logica.ClasificadorCategoria;
+import mycompra.app.logica.GestorInventario;
 import mycompra.app.modelo.Categoria;
 import mycompra.app.modelo.Producto;
 import mycompra.app.modelo.ProductoTicket;
 import mycompra.app.modelo.Ticket;
 
-public class Parser
+public class ParserContexto
 {
     static ProductoDAO prodDao;
     static TicketDAO ticketDAO;
 
-    public static int numProductosNuevos;
-
     public static ArrayList<Producto> productos;
-    private static double precioTotalTicket;
+    public static ArrayList<Integer> cantidades;
+    public static ArrayList<String> nombres;
+    public static ArrayList<Double> precios;
 
-    private static ArrayList<Integer> cantidades;
-    private static ArrayList<String> nombres;
-    private static ArrayList<Double> precios;
+    public static int contadorPrecioKilo;
+    public static int numProductosNuevos;
+    public static double precioTotalTicket;
 
-    private static int contadorPrecioKilo;
+    public static ParserEstrategia parser;
 
-
-    public Parser(Context context){
-        cantidades = new ArrayList<>();
-        nombres = new ArrayList<>();
-        precios = new ArrayList<>();
-
-        prodDao = new ProductoDAO(context);
-        ticketDAO = new TicketDAO(context);
-    }
-
-    // TODO: Implementar patron Estrategia
-
-    public static void parseProducto(String prod)
+    public ParserContexto(int supermercado)
     {
-        if(!Character.isDigit(prod.charAt(2)))
+        if (supermercado == 1)
         {
-            cantidades.add(Integer.parseInt(String.valueOf(prod.charAt(0))));
-            nombres.add(prod.substring(2));
+            parser = new ParserMercadonaEstrategia();
         }
-        else if (Character.isDigit(prod.charAt(2)))
-        {
-            if (prod.charAt(6) == 'k')
-            {
-                contadorPrecioKilo++;
-                return;
-            }
+        else if (supermercado == 2)
+        {}
+        else if (supermercado == 3)
+        {}
 
-            precios.add(Double.parseDouble(prod));
-        }
     }
 
     public static void createProductos()

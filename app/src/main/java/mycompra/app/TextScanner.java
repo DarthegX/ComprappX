@@ -26,30 +26,34 @@ import com.google.android.gms.vision.text.TextRecognizer;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
-import mycompra.app.logica.Parser;
-import mycompra.app.modelo.Producto;
+import mycompra.app.logica.parserEstrategia.ParserContexto;
 
-public class TextScanner extends AppCompatActivity {
-
+public class TextScanner extends AppCompatActivity
+{
     TextView mResult;
     ImageView mPreview;
     Button btnPick;
-
-    private static final int CAMERA_REQUEST_CODE = 200;
-    private static final int STORAGE_REQUEST_CODE = 400;
-    private static final int IMAGE_PICK_CAMERA_CODE = 1001;
-    //private static final int IMAGE_PICK_GALLERY_CODE = 1000;
 
     String cameraPermission[];
     String storagePermission[];
 
     Uri image_uri;
 
+    ParserContexto parser;
+
+    private static final int CAMERA_REQUEST_CODE = 200;
+    private static final int STORAGE_REQUEST_CODE = 400;
+    private static final int IMAGE_PICK_CAMERA_CODE = 1001;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_scanner);
+
+        int idSupermercado = getIntent().getExtras().getInt("supermercado");
+
+        parser = new ParserContexto(idSupermercado);
 
         mResult = findViewById(R.id.mResult);
         mPreview = findViewById(R.id.mPreview);
@@ -172,20 +176,21 @@ public class TextScanner extends AppCompatActivity {
                     {
                         TextBlock myItem = items.valueAt(i);
 
-                        Parser.parseProducto(myItem.getValue());
+                        ParserContexto.parser.parseProducto(myItem.getValue());
 
                         //sb.append(myItem.getValue());
                         //sb.append("\n");
                     }
 
-                    Parser.createProductos();
+                    ParserContexto.createProductos();
+                    String prods = "";
 
-                    for (i = 0; i < Parser.productos.size(); i++)
+                    for (i = 0; i < ParserContexto.productos.size(); i++)
                     {
-                        sb.append(Parser.productos.get(i).toString());
+                        prods += ParserContexto.productos.get(i).toString();
                     }
 
-                    mResult.setText(sb.toString());
+                    mResult.setText(prods);
                 }
             }
             else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE)

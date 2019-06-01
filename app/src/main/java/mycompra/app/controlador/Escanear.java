@@ -29,11 +29,32 @@ public class Escanear extends Fragment {
         View vista = inflater.inflate(R.layout.fragment_escanear, container, false);
 
         Button btnMercadona = (Button) vista.findViewById(R.id.btnMercadona);
+        Button btnConsum = (Button) vista.findViewById(R.id.btnConsum);
+        Button btnOtros = (Button) vista.findViewById(R.id.btnOtros);
 
         btnMercadona.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent myintent = new Intent(getActivity().getBaseContext(), TextScanner.class);
+                myintent.putExtra("supermercado", 1);
+                startActivity(myintent);
+            }
+        });
+
+        btnConsum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myintent = new Intent(getActivity().getBaseContext(), TextScanner.class);
+                myintent.putExtra("supermercado", 2);
+                startActivity(myintent);
+            }
+        });
+
+        btnOtros.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myintent = new Intent(getActivity().getBaseContext(), TextScanner.class);
+                myintent.putExtra("supermercado", 3);
                 startActivity(myintent);
             }
         });

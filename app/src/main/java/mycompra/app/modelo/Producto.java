@@ -94,6 +94,6 @@ public class Producto {
     @Nullable
     public String toString()
     {
-        return String.valueOf(cantidad) + " - " + nombre + " -> " + precio + " € \n";
+        return cantidad + " - " + nombre + " -> " + precio + " €\n";
     }
 }
