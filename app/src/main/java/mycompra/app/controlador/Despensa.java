@@ -44,6 +44,8 @@ public class Despensa extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_despensa, container, false);
 
+        getActivity().setTitle("Despensa");
+
         recycler = view.findViewById(R.id.RecyclerId);
 
         llenarLista();

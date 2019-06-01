@@ -28,12 +28,11 @@ public class Inventarios extends Fragment {
                              Bundle savedInstanceState) {
 
         View vista = inflater.inflate(R.layout.fragment_inventario, container, false);
-
+        getActivity().setTitle("Inventarios");
         Button btnNevera = (Button) vista.findViewById(R.id.buttonNevera);
         btnNevera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().setTitle("Nevera");
                 FragmentTransaction ft = getFragmentManager().beginTransaction().addToBackStack(null);
                 ft.replace(R.id.frame, new Nevera()).addToBackStack(null);
                 ft.commit();
@@ -44,7 +43,6 @@ public class Inventarios extends Fragment {
         btnCongelador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().setTitle("Congelador");
                 FragmentTransaction ft = getFragmentManager().beginTransaction().addToBackStack(null);
                 ft.replace(R.id.frame, new Congelador()).addToBackStack(null);
                 ft.commit();
@@ -55,7 +53,6 @@ public class Inventarios extends Fragment {
         btnDespensa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().setTitle("Despensa");
                 FragmentTransaction ft = getFragmentManager().beginTransaction().addToBackStack(null);
                 ft.replace(R.id.frame, new Despensa()).addToBackStack(null);
                 ft.commit();

@@ -121,7 +121,7 @@ public class NuevoProducto extends Fragment implements AdapterView.OnItemSelecte
             public void onClick(View v) {
                 if (!editTextNombre.getText().toString().equalsIgnoreCase("") && !editTextPrecio.getText().toString().equalsIgnoreCase("")
                 && !editTextPrecio.getText().toString().equalsIgnoreCase("0") && !editTextCantidad.getText().toString().equalsIgnoreCase("")
-                && !editTextCaducidad.getText().toString().equalsIgnoreCase("")) {
+                && !editTextCantidad.getText().toString().equalsIgnoreCase("0") && !editTextCaducidad.getText().toString().equalsIgnoreCase("")) {
                     Producto producto = new Producto();
                     producto.setNombre(String.valueOf(editTextNombre.getText()));
                     producto.setPrecio(Double.parseDouble(editTextPrecio.getText().toString()));

@@ -36,7 +36,6 @@ public class AdapterListas extends RecyclerView.Adapter<AdapterListas.ViewHolder
         return nombreListas.size();
     }
 
-
     public class ViewHolderListas extends RecyclerView.ViewHolder {
 
         TextView nombre;
@@ -47,7 +46,6 @@ public class AdapterListas extends RecyclerView.Adapter<AdapterListas.ViewHolder
         }
 
         public void asignarDatos(String s) {
-
             nombre.setText(s);
         }
     }

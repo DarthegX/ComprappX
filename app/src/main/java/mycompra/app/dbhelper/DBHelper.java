@@ -12,6 +12,7 @@ import mycompra.app.modelo.Producto;
 import mycompra.app.modelo.ProductoLista;
 import mycompra.app.modelo.ProductoTicket;
 import mycompra.app.modelo.Supermercado;
+import mycompra.app.modelo.Tag;
 import mycompra.app.modelo.Ticket;
 
 
@@ -43,6 +44,13 @@ public class DBHelper extends SQLiteOpenHelper {
                 + Categoria.KEY_ID_Inventario + " INTEGER ,"
                 + " FOREIGN KEY(" + Categoria.KEY_ID_Inventario + ") REFERENCES " + Inventario.TABLE + "(" + Inventario.KEY_ID + ") ON UPDATE CASCADE ON DELETE CASCADE)";
         sqLiteDatabase.execSQL(CREATE_TABLE_CATEGORIA);
+
+        String CREATE_TABLE_TAG = "CREATE TABLE " + Tag.TABLE + "("
+                + Tag.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
+                + Tag.KEY_Nombre + " TEXT ,"
+                + Tag.KEY_ID_Categoria + " INTEGER ,"
+                + " FOREIGN KEY(" + Tag.KEY_ID_Categoria + ") REFERENCES " + Categoria.TABLE + "(" + Categoria.KEY_ID + ") ON UPDATE CASCADE ON DELETE CASCADE)";
+        sqLiteDatabase.execSQL(CREATE_TABLE_TAG);
 
         String CREATE_TABLE_INVENTARIO = "CREATE TABLE " + Inventario.TABLE + "("
                 + Inventario.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
@@ -109,6 +117,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Categoria.TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Tag.TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Inventario.TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Lista.TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Mes.TABLE);

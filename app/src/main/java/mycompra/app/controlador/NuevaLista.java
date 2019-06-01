@@ -62,10 +62,8 @@ public class NuevaLista extends Fragment {
                     ProductoListaDAO productoListaDAO = new ProductoListaDAO(getActivity().getApplicationContext());
 
                     for (int i = 0; i < listaProductosAnyadiblesLista.size(); i++) {
-                        Producto producto = new Producto();
                         ProductoLista productoLista = new ProductoLista();
-                        producto.setNombre(listaProductosAnyadiblesLista.get(i).getNombre());
-                        int idProducto = productoDAO.insert(producto);
+                        int idProducto = productoDAO.insert(listaProductosAnyadiblesLista.get(i));
                         productoLista.setIdLista(idLista);
                         productoLista.setIdProducto(idProducto);
                         productoListaDAO.insert(productoLista);

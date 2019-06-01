@@ -45,6 +45,7 @@ public class Congelador extends Fragment {
         View view = inflater.inflate(R.layout.fragment_congelador, container, false);
 
         recycler = view.findViewById(R.id.RecyclerId);
+        getActivity().setTitle("Congelador");
 
         llenarLista();
 

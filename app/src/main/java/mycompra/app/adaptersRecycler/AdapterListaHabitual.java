@@ -14,11 +14,9 @@ import mycompra.app.R;
 
 public class AdapterListaHabitual extends RecyclerView.Adapter<AdapterListaHabitual.ViewHolderListaHabitual>  {
 
-    ArrayList<String> listCategoria;
-    ArrayList<CheckBox> listCheckBox;
+    ArrayList<String> listCheckBox;
 
-    public AdapterListaHabitual(ArrayList<String> listCategoria, ArrayList<CheckBox> listCheckBox) {
-        this.listCategoria = listCategoria;
+    public AdapterListaHabitual(ArrayList<String> listCheckBox) {
         this.listCheckBox = listCheckBox;
     }
 
@@ -26,13 +24,12 @@ public class AdapterListaHabitual extends RecyclerView.Adapter<AdapterListaHabit
     @Override
     public ViewHolderListaHabitual onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.productos_listahabitual,null,false);
-
         return new ViewHolderListaHabitual(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderListaHabitual viewHolderListaHabitual, int i) {
-        viewHolderListaHabitual.asignarDatos(listCategoria.get(i),listCheckBox.get(i));
+        viewHolderListaHabitual.asignarDatos(listCheckBox.get(i));
     }
 
     @Override
@@ -42,20 +39,15 @@ public class AdapterListaHabitual extends RecyclerView.Adapter<AdapterListaHabit
 
     public class ViewHolderListaHabitual extends RecyclerView.ViewHolder {
 
-        TextView catProductos;
-        TextView checkBox;
+        CheckBox checkBox;
 
         public ViewHolderListaHabitual(@NonNull View itemView) {
             super(itemView);
-
-            catProductos = itemView.findViewById(R.id.idTextCategoria);
             checkBox = itemView.findViewById(R.id.idCheckBoxProd);
         }
 
-        public void asignarDatos(String s, CheckBox checkBox) {
-
-            catProductos.setText(s);
-            checkBox.setText((CharSequence) checkBox);
+        public void asignarDatos(String checkBoxx) {
+            checkBox.setText(checkBoxx);
         }
     }
 }
