@@ -33,7 +33,6 @@ public class Principal extends Fragment {
         btnListasPrincipal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().setTitle("Listas");
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.frame, new Listas()).addToBackStack(null);
                 ft.commit();
@@ -44,7 +43,6 @@ public class Principal extends Fragment {
         btnEscanerPrincial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().setTitle("Escanear");
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.frame, new Escanear()).addToBackStack(null);
                 ft.commit();
@@ -55,7 +53,6 @@ public class Principal extends Fragment {
         btnInventarioPrincipal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().setTitle("Inventarios");
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.frame, new Inventarios()).addToBackStack(null);
                 ft.commit();

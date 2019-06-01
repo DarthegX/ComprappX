@@ -2,77 +2,73 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".controlador.NuevoProductoLista">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginRight="20dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/fab_margin">
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Añadir producto" />
+            android:text="Añadir producto\n a lista actual"
+            android:textSize="40sp"
+            android:gravity="center"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="@dimen/fab_margin"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Nombre:" />
+                android:text="Nombre:"
+                android:textSize="20sp"/>
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/editTextNombreProductoAnyadirProductoListaHabitual"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
+                android:layout_marginStart="20dp"
                 android:ems="10"
+                android:textSize="20sp"
                 android:inputType="textPersonName"
-                android:text="NombreProducto" />
+                android:hint="Nombre Producto" />
         </LinearLayout>
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="100dp"
-            android:text="Añadir" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:padding="@dimen/fab_margin">
 
             <Button
-                android:id="@+id/cancelarNuevoProdLista"
+                android:id="@+id/btnAtrasNuevoProdLista"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Cancelar"
+                android:text="Atras"
                 android:layout_marginRight="25dp"/>
 
             <Button
-                android:id="@+id/aceptarNuevoProdLista"
+                android:id="@+id/btnAnyadirNuevoProdLista"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Aceptar"
+                android:text="Añadir"
                 android:layout_marginLeft="25dp"/>
 
         </LinearLayout>

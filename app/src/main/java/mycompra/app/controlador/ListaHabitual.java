@@ -59,6 +59,9 @@ public class ListaHabitual extends Fragment {
         listaDAO = new ListaDAO(getActivity().getApplicationContext());
         lista = listaDAO.getListaById(Integer.parseInt(idLista));
 
+        getActivity().setTitle(lista.getNombre());
+        textViewNombreListaHabitual.setText(lista.getNombre());
+
         llenarLista();
 
         AdapterListaHabitual adapter = new AdapterListaHabitual(listCheckBox);
@@ -95,8 +98,15 @@ public class ListaHabitual extends Fragment {
         nuevoProdLista.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bundle bundle = new Bundle();
+
+                bundle.putString("idLista", idLista);
+
+                NuevoProductoLista nuevoProductoLista = new NuevoProductoLista();
+                nuevoProductoLista.setArguments(bundle);
+
                 FragmentTransaction fr = getFragmentManager().beginTransaction();
-                fr.replace(R.id.frame, new NuevoProductoLista()).addToBackStack(null);
+                fr.replace(R.id.frame, nuevoProductoLista).addToBackStack(null);
                 fr.commit();
             }
         });

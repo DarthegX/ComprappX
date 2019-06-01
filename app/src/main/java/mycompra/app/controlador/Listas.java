@@ -44,6 +44,8 @@ public class Listas extends Fragment {
 
         recyclerListas = view.findViewById(R.id.RecyclerIdListas);
 
+        getActivity().setTitle("Listas");
+
         llenarListas();
 
         AdapterListas adapter = new AdapterListas(nombreListas);

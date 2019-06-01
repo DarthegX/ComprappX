@@ -45,6 +45,7 @@ public class Nevera extends Fragment {
         View view = inflater.inflate(R.layout.fragment_nevera, container, false);
 
         recycler = view.findViewById(R.id.RecyclerId);
+        getActivity().setTitle("Nevera");
 
         llenarLista();
 
