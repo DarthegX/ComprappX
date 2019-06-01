@@ -61,6 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="45sp"
             android:ems="10"
+            android:maxLength="7"
             android:inputType="numberDecimal"
             android:hint="2.30" />
     </LinearLayout>
