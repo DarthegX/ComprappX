@@ -16,7 +16,7 @@ public class TicketDAO {
     private static DBHelper dbHelper;
 
     public TicketDAO(Context context) {
-        dbHelper = new DBHelper(context);
+        dbHelper = DBHelper.getDbH(context);
     }
 
     public int insert(Ticket ticket) {

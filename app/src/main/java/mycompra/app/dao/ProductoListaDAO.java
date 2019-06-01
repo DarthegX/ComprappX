@@ -16,7 +16,7 @@ public class ProductoListaDAO {
     private static DBHelper dbHelper;
 
     public ProductoListaDAO(Context context) {
-        dbHelper = new DBHelper(context);
+        dbHelper = DBHelper.getDbH(context);
     }
 
     public int insert(ProductoLista productoLista) {

@@ -16,7 +16,7 @@ public class MesDAO {
     private static DBHelper dbHelper;
 
     public MesDAO(Context context) {
-        dbHelper = new DBHelper(context);
+        dbHelper = DBHelper.getDbH(context);
     }
 
     public int insert(Mes mes) {

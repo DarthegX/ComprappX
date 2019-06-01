@@ -15,7 +15,7 @@ public class TagDAO {
     private static DBHelper dbHelper;
 
     public TagDAO(Context context) {
-        dbHelper = new DBHelper(context);
+        dbHelper = DBHelper.getDbH(context);
     }
 
     public int insert(Tag tag) {

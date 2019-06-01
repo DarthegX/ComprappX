@@ -15,7 +15,7 @@ public class ListaDAO {
     private static DBHelper dbHelper;
 
     public ListaDAO(Context context) {
-        dbHelper = new DBHelper(context);
+        dbHelper = DBHelper.getDbH(context);
     }
 
     public int insert(Lista lista) {

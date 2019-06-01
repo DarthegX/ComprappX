@@ -15,7 +15,7 @@ public class InventarioDAO {
     private static DBHelper dbHelper;
 
     public InventarioDAO(Context context) {
-        dbHelper = new DBHelper(context);
+        dbHelper = DBHelper.getDbH(context);
     }
 
     public int insert(Inventario inventario) {

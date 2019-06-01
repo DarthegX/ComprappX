@@ -21,7 +21,18 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Comprapp.db";
 
-    public DBHelper(Context context) { super(context, DATABASE_NAME, null, DATABASE_VERSION);}
+    private static  DBHelper dbH ;
+
+    public static DBHelper getDbH(Context context){
+
+        if (dbH==null) {
+            dbH = new DBHelper(context);
+        }
+        return dbH;
+
+    }
+
+    private DBHelper(Context context) { super(context, DATABASE_NAME, null, DATABASE_VERSION);}
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {

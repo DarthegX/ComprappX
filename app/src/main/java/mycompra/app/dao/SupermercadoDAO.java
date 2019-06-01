@@ -16,7 +16,7 @@ public class SupermercadoDAO {
     private static DBHelper dbHelper;
 
     public SupermercadoDAO(Context context) {
-        dbHelper = new DBHelper(context);
+        dbHelper = DBHelper.getDbH(context);
     }
 
     public int insert(Supermercado supermercado) {

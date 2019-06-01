@@ -17,7 +17,7 @@ public class CategoriaDAO {
     private static DBHelper dbHelper;
 
     public CategoriaDAO(Context context) {
-        dbHelper = new DBHelper(context);
+        dbHelper = DBHelper.getDbH(context);
     }
 
     public int insert(Categoria categoria) {
