@@ -1,28 +1,57 @@
 package mycompra.app.logica;
 
+import android.content.Context;
+import android.content.Intent;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import mycompra.app.dao.ProductoDAO;
 import mycompra.app.modelo.Producto;
 
 public class ControlCaducidad {
 
     public static int MAX_CAD_DIAS = 2;
+    private static ProductoDAO productoDAO;
+    private static ArrayList<Producto> productos;
 
-    public ControlCaducidad() {}
 
-    /*public boolean checkCaducidad(Producto prod)
+    public ControlCaducidad(Context context)
     {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+        productoDAO = new ProductoDAO(context);
+    }
 
-        try {
-            Date caducidad = formatter.parse(prod.getCaducidad());
+    public static void checkCaducidades()
+    {
+        int i;
+        productos = productoDAO.getProductoList();
+        for (i = 0; i < productos.size(); i++)
+        {
+            checkCaducidad(productos.get(i));
+        }
+    }
 
-            //if (caducidad.)
+    public static void checkCaducidad(Producto prod)
+    {
+        String caducidad = prod.getCaducidad();
+        String dia = caducidad.substring(0,2);
+        String mes = caducidad.substring(4,5);
 
-        }catch (ParseException e) {}
-        return false;
-    }*/
+        if (Integer.parseInt(dia) > Calendar.DATE && Integer.parseInt(mes) >= Calendar.MONTH)
+        {
+            // Alarma PRODUCTO CADUCADO
+        }
+        else if ((Integer.parseInt(dia) == Calendar.DATE && Integer.parseInt(mes) == Calendar.MONTH))
+        {
+            // Alarma PRODUCTO CADUCA HOY
+        }
+        else if ((Calendar.DATE - (Integer.parseInt(dia)) == MAX_CAD_DIAS && Integer.parseInt(mes) == Calendar.MONTH))
+        {
+            // Alarma PRODUCTO CADUCA PRONTO
+        }
+    }
 }
