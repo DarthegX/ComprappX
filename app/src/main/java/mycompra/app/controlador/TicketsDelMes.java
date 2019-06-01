@@ -6,14 +6,17 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import mycompra.app.R;
+import mycompra.app.dao.MesDAO;
+import mycompra.app.dao.ProductoTicketDAO;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class TicketsDelMes extends Fragment {
-
 
     public TicketsDelMes() {
         // Required empty public constructor
@@ -24,7 +27,9 @@ public class TicketsDelMes extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tickets, container, false);
+        View view = inflater.inflate(R.layout.fragment_tickets, container, false);
+
+        return view;
     }
 
 }

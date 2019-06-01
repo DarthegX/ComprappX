@@ -113,7 +113,7 @@ public class TicketDAO {
         return ticketList;
     }
 
-    public ArrayList<Ticket> getTicketListByMes(int idMes) {
+    public ArrayList<Ticket> getTicketListByMes(int id) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =  "SELECT  " +
                 Ticket.KEY_ID + "," +
@@ -126,7 +126,7 @@ public class TicketDAO {
 
         ArrayList<Ticket> ticketList = new ArrayList<>();
 
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor = db.rawQuery(selectQuery, new String[] { String.valueOf(id) });
 
         if (cursor.moveToFirst()) {
             do {

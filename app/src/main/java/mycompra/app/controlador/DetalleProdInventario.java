@@ -19,7 +19,9 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.NumberFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 import mycompra.app.R;
 import mycompra.app.dao.ProductoDAO;
@@ -194,7 +196,11 @@ public class DetalleProdInventario extends Fragment implements AdapterView.OnIte
                         && !editTextPrecio.getText().toString().equalsIgnoreCase("0") && !editTextCantidad.getText().toString().equalsIgnoreCase("")
                         && !editTextCantidad.getText().toString().equalsIgnoreCase("0") && !editTextCaducidad.getText().toString().equalsIgnoreCase("")) {
                         producto.setNombre(String.valueOf(editTextNombre.getText()));
-                        producto.setPrecio(Double.parseDouble(editTextPrecio.getText().toString()));
+
+                        NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
+                        nf.setMaximumFractionDigits(2);
+                        producto.setPrecio(Double.parseDouble(nf.format(Double.parseDouble(editTextPrecio.getText().toString()))));
+
                         producto.setCantidad(Integer.parseInt(editTextCantidad.getText().toString()));
                         producto.setCaducidad(String.valueOf(editTextCaducidad.getText()));
                         switch (spinnerCategoria.getSelectedItemPosition()) {

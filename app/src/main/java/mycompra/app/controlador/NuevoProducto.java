@@ -17,7 +17,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.NumberFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 import mycompra.app.R;
 import mycompra.app.dao.ProductoDAO;
@@ -124,7 +126,10 @@ public class NuevoProducto extends Fragment implements AdapterView.OnItemSelecte
                 && !editTextCantidad.getText().toString().equalsIgnoreCase("0") && !editTextCaducidad.getText().toString().equalsIgnoreCase("")) {
                     Producto producto = new Producto();
                     producto.setNombre(String.valueOf(editTextNombre.getText()));
-                    producto.setPrecio(Double.parseDouble(editTextPrecio.getText().toString()));
+
+                    NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
+                    nf.setMaximumFractionDigits(2);
+                    producto.setPrecio(Double.parseDouble(nf.format(Double.parseDouble(editTextPrecio.getText().toString()))));
                     producto.setCantidad(Integer.parseInt(editTextCantidad.getText().toString()));
                     producto.setCaducidad(String.valueOf(editTextCaducidad.getText()));
                     producto.setCaducidad(fecha);

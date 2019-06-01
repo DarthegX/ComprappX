@@ -64,6 +64,7 @@
             android:inputType="numberDecimal"
             android:hint="2.44"
             android:ems="5"
+            android:maxLength="7"
             android:textSize="20sp"/>
 
     </LinearLayout>

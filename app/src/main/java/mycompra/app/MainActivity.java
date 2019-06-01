@@ -192,6 +192,7 @@ public class MainActivity extends AppCompatActivity
 
     public void insertsMes() {
         insertaMes("Mayo", 2019,80);
+        insertaMes("Junio", 2019,80);
     }
 
     public void insertsCategoria() {
@@ -314,7 +315,10 @@ public class MainActivity extends AppCompatActivity
     public void insertsTicket() {
         insertaTicket("05/05/2019", 8.33,1, 2);
         insertaTicket("12/05/2019", 8.7, 1, 1);
-        insertaTicket("22/05/2019", 2.3, 1, 1);
+        insertaTicket("22/05/2019", 20.3, 1, 1);
+        insertaTicket("05/06/2019", 8.33,2, 2);
+        insertaTicket("12/06/2019", 8.7, 2, 1);
+        insertaTicket("22/06/2019", 2.3, 2, 1);
     }
 
     public void insertsProducto() {
