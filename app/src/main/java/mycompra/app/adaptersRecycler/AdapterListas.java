@@ -22,7 +22,7 @@ public class AdapterListas extends RecyclerView.Adapter<AdapterListas.ViewHolder
     @NonNull
     @Override
     public ViewHolderListas onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_listas,null,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.listas_item,null,false);
         return new ViewHolderListas(view);
     }
 
@@ -43,7 +43,7 @@ public class AdapterListas extends RecyclerView.Adapter<AdapterListas.ViewHolder
 
         public ViewHolderListas(@NonNull View itemView) {
             super(itemView);
-            nombre =itemView.findViewById(R.id.idNombreListas);
+            nombre = itemView.findViewById(R.id.idNombreListas);
         }
 
         public void asignarDatos(String s) {

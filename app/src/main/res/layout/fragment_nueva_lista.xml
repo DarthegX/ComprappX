@@ -6,15 +6,21 @@
     tools:context=".controlador.NuevaLista">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/fab_margin"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NUEVA LISTA"
+            android:textAlignment="center"
+            android:textSize="40sp"/>
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -22,56 +28,54 @@
                 android:id="@+id/textNombreListaNueva"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Nombre: " />
+                android:text="Nombre: "
+                android:textSize="20sp"/>
 
             <EditText
-                android:id="@+id/editTextNLN"
+                android:id="@+id/editTextNombreListaNueva"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="40sp"
                 android:ems="10"
+                android:textSize="20sp"
                 android:inputType="textPersonName"
-                android:text="Nombre lista" />
+                android:hint="Nombre lista" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Nombre Producto: " />
+                android:text="Nombre\nProducto:"
+                android:textSize="20sp"
+                android:paddingBottom="@dimen/fab_margin"/>
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/editTextNombreProductoListaNueva"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:textSize="20sp"
+                android:layout_marginStart="35sp"
                 android:inputType="textPersonName"
-                android:text="Nombre producto" />
-
+                android:hint="Nombre producto" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
             <Button
-                android:id="@+id/btnAdd"
+                android:id="@+id/btnAnyadirProductoALista"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Add" />
-        </LinearLayout>
+                android:text="Añadir Producto a lista " />
 
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -79,20 +83,20 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/buttonCancelarNuevaLista"
+                android:id="@+id/btnAtrasNuevaLista"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="25dp"
                 android:layout_weight="1"
-                android:text="Cancelar" />
+                android:text="Atras" />
 
             <Button
-                android:id="@+id/buttonAceptarNuevaLista"
+                android:id="@+id/btnAnyadirListaNuevaLista"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_weight="1"
-                android:text="Aceptar" />
+                android:text="Añadir Lista" />
         </LinearLayout>
 
     </LinearLayout>
