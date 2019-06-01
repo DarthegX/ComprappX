@@ -794,6 +794,7 @@ public class MainActivity extends AppCompatActivity
         productoHuevos.setNombre("Huevos XL");
         productoHuevos.setPrecio(1.60);
         productoHuevos.setCantidad(1);
+        productoHuevos.setCaducidad("02/06/2019");
         productoHuevos.setIdInventario(2);
         productoHuevos.setIdCategoria(6);
         productoDAO.insert(productoHuevos);
@@ -811,6 +812,7 @@ public class MainActivity extends AppCompatActivity
         productoChips.setNombre("ChipsAhoy");
         productoChips.setPrecio(1.60);
         productoChips.setCantidad(1);
+        productoChips.setCaducidad("25/05/2019");
         productoChips.setIdInventario(1);
         productoChips.setIdCategoria(13);
         productoDAO.insert(productoChips);
@@ -819,6 +821,7 @@ public class MainActivity extends AppCompatActivity
         productoMolde.setNombre("Pan Molde");
         productoMolde.setPrecio(1.68);
         productoMolde.setCantidad(1);
+        productoMolde.setCaducidad("29/06/2019");
         productoMolde.setIdInventario(1);
         productoMolde.setIdCategoria(21);
         productoDAO.insert(productoMolde);
@@ -836,6 +839,7 @@ public class MainActivity extends AppCompatActivity
         productoLechuga.setNombre("Lechuga Iceberg");
         productoLechuga.setPrecio(1.10);
         productoLechuga.setCantidad(1);
+        productoLechuga.setCaducidad("23/06/2019");
         productoLechuga.setIdInventario(2);
         productoLechuga.setIdCategoria(2);
         productoDAO.insert(productoLechuga);
@@ -844,6 +848,7 @@ public class MainActivity extends AppCompatActivity
         productoPizza.setNombre("Pizza 4 Quesos");
         productoPizza.setPrecio(2.70);
         productoPizza.setCantidad(1);
+        productoPizza.setCaducidad("15/06/2019");
         productoPizza.setIdInventario(2);
         productoPizza.setIdCategoria(9);
         productoDAO.insert(productoPizza);
@@ -852,6 +857,7 @@ public class MainActivity extends AppCompatActivity
         productoYork.setNombre("York Lonchas");
         productoYork.setPrecio(1.80);
         productoYork.setCantidad(1);
+        productoYork.setCaducidad("11/06/2019");
         productoYork.setIdInventario(2);
         productoYork.setIdCategoria(15);
         productoDAO.insert(productoYork);
@@ -860,6 +866,7 @@ public class MainActivity extends AppCompatActivity
         productoSalteado.setNombre("Salteado verduras");
         productoSalteado.setPrecio(2.20);
         productoSalteado.setCantidad(1);
+        productoSalteado.setCaducidad("16/06/2019");
         productoSalteado.setIdInventario(3);
         productoSalteado.setIdCategoria(19);
         productoDAO.insert(productoSalteado);
@@ -868,6 +875,7 @@ public class MainActivity extends AppCompatActivity
         productoHelado.setNombre("Helado vainilla");
         productoHelado.setPrecio(2.50);
         productoHelado.setCantidad(1);
+        productoHelado.setCaducidad("14/06/2019");
         productoHelado.setIdInventario(3);
         productoHelado.setIdCategoria(19);
         productoDAO.insert(productoHelado);
@@ -876,6 +884,7 @@ public class MainActivity extends AppCompatActivity
         productoPlatano.setNombre("Platano Canarias");
         productoPlatano.setPrecio(1.39);
         productoPlatano.setCantidad(1);
+        productoPlatano.setCaducidad("29/06/2019");
         productoPlatano.setIdInventario(2);
         productoPlatano.setIdCategoria(3);
         productoDAO.insert(productoPlatano);
@@ -893,6 +902,7 @@ public class MainActivity extends AppCompatActivity
         productoManzana.setNombre("Manzana Royal Gala");
         productoManzana.setPrecio(1.25);
         productoManzana.setCantidad(1);
+        productoManzana.setCaducidad("27/06/2019");
         productoManzana.setIdInventario(2);
         productoManzana.setIdCategoria(3);
         productoDAO.insert(productoManzana);

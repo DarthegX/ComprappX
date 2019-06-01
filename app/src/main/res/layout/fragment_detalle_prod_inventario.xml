@@ -24,6 +24,32 @@
         android:gravity="center">
 
         <TextView
+            android:id="@+id/textNombreDetalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre:"
+            android:paddingEnd="40sp"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/editTextNombreDetalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Nombre"
+            android:ems="5"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:gravity="center">
+
+        <TextView
             android:id="@+id/textPrecioInv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -90,7 +116,33 @@
             android:layout_height="wrap_content"
             android:inputType="date"
             android:hint="20/04/2019"
+            android:clickable="true"
+            android:focusable="false"
             android:ems="5"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/textViewIdCategoria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Categoria:"
+            android:textSize="20sp"/>
+
+        <Spinner
+            android:id="@+id/spinnerCategoriaDetalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="25sp"
+            android:paddingEnd="10sp"
             android:textSize="20sp" />
 
     </LinearLayout>
@@ -110,13 +162,12 @@
             android:textSize="20sp"/>
 
         <Spinner
-            android:id="@+id/spinnerDetalle"
+            android:id="@+id/spinnerInventarioDetalle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="25sp"
             android:paddingEnd="10sp"
-            android:textSize="20sp"
-            android:visibility="visible" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
