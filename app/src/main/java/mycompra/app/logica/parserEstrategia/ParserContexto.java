@@ -34,7 +34,9 @@ public class ParserContexto
             parser = new ParserMercadonaEstrategia();
         }
         else if (supermercado == 2)
-        {}
+        {
+            parser = new ParserConsumEstrategia();
+        }
         else if (supermercado == 3)
         {}
 
