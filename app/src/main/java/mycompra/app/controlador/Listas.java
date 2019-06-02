@@ -19,6 +19,7 @@ import mycompra.app.R;
 import mycompra.app.adaptersRecycler.AdapterListas;
 import mycompra.app.adaptersRecycler.RecyclerItemClickListener;
 import mycompra.app.dao.ListaDAO;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.Lista;
 
 
@@ -29,7 +30,7 @@ public class Listas extends Fragment {
 
     ArrayList<String> nombreListas;
     RecyclerView recyclerListas;
-    ArrayList<Lista> listaListas;
+    Iterador<Lista> listaListas;
 
     public Listas() {
         // Required empty public constructor
@@ -102,8 +103,8 @@ public class Listas extends Fragment {
 
         listaListas = listaDAO.getListaList();
 
-        for (int i = 0; i < listaListas.size(); i++) {
-            nombreListas.add(listaListas.get(i).getNombre());
+        while (listaListas.hasNext()) {
+            nombreListas.add(listaListas.next().getNombre());
         }
     }
 }

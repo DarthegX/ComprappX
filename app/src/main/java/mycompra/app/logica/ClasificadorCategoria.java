@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import mycompra.app.dao.CategoriaDAO;
 import mycompra.app.dao.TagDAO;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.Categoria;
 import mycompra.app.modelo.Producto;
 import mycompra.app.modelo.Tag;
@@ -15,8 +16,8 @@ public class ClasificadorCategoria {
     private static CategoriaDAO categoriaDAO;
     private static TagDAO tagDAO;
 
-    private static ArrayList<Categoria> categorias;
-    private static ArrayList<Tag> tagsCategoria;
+    private static Iterador<Categoria> categorias;
+    private static Iterador<Tag> tagsCategoria;
 
     public ClasificadorCategoria(Context context)
     {
@@ -28,18 +29,20 @@ public class ClasificadorCategoria {
 
     public static Categoria findCategoria(String nombreProd)
     {
-        for (int i = 0; i < categorias.size(); i++) // Recorre categorias
+
+        while (categorias.hasNext())// Recorre categorias
         {
-            Categoria categoriaActual = categorias.get(i);
+            Categoria categoriaActual = categorias.next();
 
             tagsCategoria = tagDAO.getTagListByCategoria(categoriaActual.getId());
 
-            for (int j = 0; j < tagsCategoria.size(); j++) // Recorre tags de la categoria actual
+            while (tagsCategoria.hasNext()) // Recorre tags de la categoria actual
             {
-                if (tagsCategoria.get(i).getNombre().contains(nombreProd)) {
+                if (tagsCategoria.next().getNombre().contains(nombreProd)) {
                     return categoriaActual;
                 }
             }
+
         }
 
         return null;

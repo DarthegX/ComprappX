@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 import mycompra.app.dbhelper.DBHelper;
+import mycompra.app.iterador.Agregado;
+import mycompra.app.iterador.AgregadoConcreto;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.Tag;
 
 public class TagDAO {
@@ -73,7 +76,7 @@ public class TagDAO {
         return tag;
     }
 
-    public ArrayList<Tag> getTagList() {
+    public Iterador<Tag> getTagList() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =  "SELECT  " +
                 Tag.KEY_ID + "," +
@@ -81,8 +84,7 @@ public class TagDAO {
                 Tag.KEY_ID_Categoria +
                 " FROM " + Tag.TABLE;
 
-        ArrayList<Tag> tagList = new ArrayList<>();
-
+        Agregado<Tag> agregaTag = new AgregadoConcreto<Tag>();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if (cursor.moveToFirst()) {
@@ -91,16 +93,16 @@ public class TagDAO {
                 tag.setId(cursor.getInt(cursor.getColumnIndex(Tag.KEY_ID)));
                 tag.setNombre(cursor.getString(cursor.getColumnIndex(Tag.KEY_Nombre)));
                 tag.setIdCategoria(cursor.getInt(cursor.getColumnIndex(Tag.KEY_ID_Categoria)));
-                tagList.add(tag);
+                agregaTag.add(tag);
             } while (cursor.moveToNext());
         }
-
+        Iterador<Tag> iteraTag = agregaTag.iterador();
         cursor.close();
         db.close();
-        return tagList;
+        return iteraTag;
     }
 
-    public ArrayList<Tag> getTagListByCategoria(int idCategoria) {
+    public Iterador<Tag> getTagListByCategoria(int idCategoria) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =  "SELECT  " +
                 Tag.KEY_ID + "," +
@@ -109,7 +111,7 @@ public class TagDAO {
                 " FROM " + Tag.TABLE +
                 " WHERE " + Tag.KEY_ID_Categoria + "=?";
 
-        ArrayList<Tag> tagList = new ArrayList<>();
+        Agregado<Tag> agregaTag = new AgregadoConcreto<Tag>();
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -119,12 +121,12 @@ public class TagDAO {
                 tag.setId(cursor.getInt(cursor.getColumnIndex(Tag.KEY_ID)));
                 tag.setNombre(cursor.getString(cursor.getColumnIndex(Tag.KEY_Nombre)));
                 tag.setIdCategoria(cursor.getInt(cursor.getColumnIndex(Tag.KEY_ID_Categoria)));
-                tagList.add(tag);
+                agregaTag.add(tag);
             } while (cursor.moveToNext());
         }
-
+        Iterador<Tag> iteraTag = agregaTag.iterador();
         cursor.close();
         db.close();
-        return tagList;
+        return iteraTag;
     }
 }

@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import mycompra.app.dao.ProductoDAO;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.Producto;
 
 public class ControlCaducidad
@@ -20,7 +21,7 @@ public class ControlCaducidad
 
     public static int MAX_CAD_DIAS = 2;
     private static ProductoDAO productoDAO;
-    private static ArrayList<Producto> productos;
+    private static Iterador<Producto> productos;
 
 
     public ControlCaducidad(Context context)
@@ -32,9 +33,9 @@ public class ControlCaducidad
     {
         int i;
         productos = productoDAO.getProductoList();
-        for (i = 0; i < productos.size(); i++)
+        while (productos.hasNext())
         {
-            checkCaducidad(productos.get(i));
+            checkCaducidad(productos.next());
         }
     }
 

@@ -18,11 +18,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Locale;
 
 import mycompra.app.R;
 import mycompra.app.dao.MesDAO;
 import mycompra.app.dao.TicketDAO;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.Mes;
 import mycompra.app.modelo.Ticket;
 
@@ -38,9 +40,9 @@ public class InfoMensual extends Fragment {
     private TextView textViewPresupuestoAnterior;
     private MesDAO mesDAO;
     private TicketDAO ticketDAO;
-    private ArrayList<Mes> listaMes;
-    private ArrayList<Ticket> listaTicketsMes;
-    private ArrayList<Ticket> listaTicketsMesAnterior;
+    private Iterador<Mes> listaMes;
+    private Iterador<Ticket> listaTicketsMes;
+    private Iterador<Ticket> listaTicketsMesAnterior;
     private Mes mes;
     private Mes mesAnterior;
     private Button btnConfirmarInfoMensual;
@@ -120,10 +122,10 @@ public class InfoMensual extends Fragment {
                 break;
         }
 
-        for (int i = 0; i < listaMes.size(); i++) {
-            if (Integer.parseInt(anyo) == listaMes.get(i).getAnyo() && listaMes.get(i).getNombre().equalsIgnoreCase(nombreMes)) {
-                mes = listaMes.get(i);
-                mesAnterior = listaMes.get(i - 1);
+        while (listaMes.hasNext()) {
+            if (Integer.parseInt(anyo) == listaMes.next().getAnyo() && listaMes.next().getNombre().equalsIgnoreCase(nombreMes)) {
+                mesAnterior = listaMes.actual();
+                mes = listaMes.next();
                 break;
             }
         }
@@ -138,14 +140,14 @@ public class InfoMensual extends Fragment {
         nf.setMaximumFractionDigits(2);
 
         double gastosMesActual = 0.0;
-        for (int i = 0; i < listaTicketsMes.size(); i++) {
-            gastosMesActual += listaTicketsMes.get(i).getPrecio();
+        while (listaMes.hasNext()) {
+            gastosMesActual += listaTicketsMes.next().getPrecio();
         }
         textViewGastosActual.setText(nf.format(gastosMesActual));
 
         double gastosMesAnterior = 0.0;
-        for (int i = 0; i < listaTicketsMesAnterior.size(); i++) {
-            gastosMesAnterior += listaTicketsMesAnterior.get(i).getPrecio();
+        while (listaTicketsMesAnterior.hasNext()) {
+            gastosMesAnterior += listaTicketsMesAnterior.next().getPrecio();
         }
         textViewGastosAnterior.setText(nf.format(gastosMesAnterior));
 

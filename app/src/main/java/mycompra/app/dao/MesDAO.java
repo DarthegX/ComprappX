@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 import mycompra.app.dbhelper.DBHelper;
+import mycompra.app.iterador.Agregado;
+import mycompra.app.iterador.AgregadoConcreto;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.Mes;
 
 public class MesDAO {
@@ -78,7 +81,7 @@ public class MesDAO {
         return mes;
     }
 
-    public ArrayList<Mes> getMesList() {
+    public Iterador<Mes> getMesList() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =  "SELECT  " +
                 Mes.KEY_ID + "," +
@@ -87,7 +90,8 @@ public class MesDAO {
                 Mes.KEY_Presupuesto +
                 " FROM " + Mes.TABLE;
 
-        ArrayList<Mes> mesList = new ArrayList<>();
+
+        Agregado<Mes> agregaMes = new AgregadoConcreto<Mes>();
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -98,10 +102,10 @@ public class MesDAO {
                 mes.setNombre(cursor.getString(cursor.getColumnIndex(Mes.KEY_Nombre)));
                 mes.setAnyo(cursor.getInt(cursor.getColumnIndex(Mes.KEY_Anyo)));
                 mes.setPresupuesto(cursor.getDouble(cursor.getColumnIndex(Mes.KEY_Presupuesto)));
-                mesList.add(mes);
+                agregaMes.add(mes);
             } while (cursor.moveToNext());
         }
-
+        Iterador<Mes> mesList = agregaMes.iterador();
         cursor.close();
         db.close();
         return mesList;

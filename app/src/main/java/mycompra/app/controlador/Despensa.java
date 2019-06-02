@@ -19,6 +19,7 @@ import mycompra.app.R;
 import mycompra.app.adaptersRecycler.AdapterDespensa;
 import mycompra.app.adaptersRecycler.RecyclerItemClickListener;
 import mycompra.app.dao.ProductoDAO;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.Producto;
 
 
@@ -31,7 +32,7 @@ public class Despensa extends Fragment {
     ArrayList<String> listProdD;
     ArrayList<String> listCaducidadD;
     RecyclerView recycler;
-    ArrayList<Producto> listaProductos;
+    Iterador<Producto> listaProductos;
 
     public Despensa() {
         // Required empty public constructor
@@ -107,10 +108,10 @@ public class Despensa extends Fragment {
         listProdD = new ArrayList<String>();
         listCaducidadD = new ArrayList<String>();
 
-        for(int i = 0; i < listaProductos.size(); i++){
-            listCantidadD.add(String.valueOf(listaProductos.get(i).getCantidad()));
-            listProdD.add(listaProductos.get(i).getNombre());
-            listCaducidadD.add(listaProductos.get(i).getCaducidad());
+        while (listaProductos.hasNext()){
+            listCantidadD.add(String.valueOf(listaProductos.next().getCantidad()));
+            listProdD.add(listaProductos.next().getNombre());
+            listCaducidadD.add(listaProductos.next().getCaducidad());
         }
     }
 }

@@ -10,6 +10,9 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 import mycompra.app.dbhelper.DBHelper;
+import mycompra.app.iterador.Agregado;
+import mycompra.app.iterador.AgregadoConcreto;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.Categoria;
 
 public class CategoriaDAO {
@@ -75,15 +78,14 @@ public class CategoriaDAO {
         return categoria;
     }
 
-    public ArrayList<Categoria> getCategoriaList() {
+    public Iterador<Categoria> getCategoriaList() {
+        Agregado<Categoria> agregaCat = new AgregadoConcreto<Categoria>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =  "SELECT  " +
                 Categoria.KEY_ID + "," +
                 Categoria.KEY_Nombre + "," +
                 Categoria.KEY_ID_Inventario +
                 " FROM " + Categoria.TABLE;
-
-        ArrayList<Categoria> categoriaList = new ArrayList<>();
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -93,16 +95,16 @@ public class CategoriaDAO {
                 categoria.setId(cursor.getInt(cursor.getColumnIndex(Categoria.KEY_ID)));
                 categoria.setNombre(cursor.getString(cursor.getColumnIndex(Categoria.KEY_Nombre)));
                 categoria.setIdInventario(cursor.getInt(cursor.getColumnIndex(Categoria.KEY_ID_Inventario)));
-                categoriaList.add(categoria);
+                agregaCat.add(categoria);
             } while (cursor.moveToNext());
         }
-
+        Iterador<Categoria> iteraCat = agregaCat.iterador();
         cursor.close();
         db.close();
-        return categoriaList;
+        return iteraCat;
     }
 
-    public ArrayList<Categoria> getCategoriaListByInventario(int idInventario) {
+    public Iterador<Categoria> getCategoriaListByInventario(int idInventario) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =  "SELECT  " +
                 Categoria.KEY_ID + "," +
@@ -111,7 +113,7 @@ public class CategoriaDAO {
                 " FROM " + Categoria.TABLE +
                 " WHERE " + Categoria.KEY_ID_Inventario + "=?";
 
-        ArrayList<Categoria> categoriaList = new ArrayList<>();
+        Agregado<Categoria> agregaCat = new AgregadoConcreto<Categoria>();
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -121,12 +123,12 @@ public class CategoriaDAO {
                 categoria.setId(cursor.getInt(cursor.getColumnIndex(Categoria.KEY_ID)));
                 categoria.setNombre(cursor.getString(cursor.getColumnIndex(Categoria.KEY_Nombre)));
                 categoria.setIdInventario(cursor.getInt(cursor.getColumnIndex(Categoria.KEY_ID_Inventario)));
-                categoriaList.add(categoria);
+                agregaCat.add(categoria);
             } while (cursor.moveToNext());
         }
-
+        Iterador<Categoria> iteraCat = agregaCat.iterador();
         cursor.close();
         db.close();
-        return categoriaList;
+        return iteraCat;
     }
 }

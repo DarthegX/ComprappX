@@ -9,13 +9,13 @@ public class AgregadoConcreto<T> implements Agregado<T> {
 
 
     @Override
-    public void add(T obj) {
-        lista.add(obj);
+    public void add(T object) {
+        lista.add(object);
     }
 
     @Override
-    public void delete(T obj) {
-        lista.remove(obj);
+    public void delete(T object) {
+        lista.remove(object);
     }
 
     @Override

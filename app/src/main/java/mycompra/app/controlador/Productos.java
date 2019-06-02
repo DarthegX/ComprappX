@@ -20,6 +20,7 @@ import mycompra.app.adaptersRecycler.AdapterProductos;
 import mycompra.app.adaptersRecycler.RecyclerItemClickListener;
 import mycompra.app.dao.CategoriaDAO;
 import mycompra.app.dao.ProductoDAO;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.Categoria;
 import mycompra.app.modelo.Producto;
 
@@ -33,7 +34,7 @@ public class Productos extends Fragment {
     ArrayList<String> listProduct;
     ArrayList<String> listCatProd;
     RecyclerView recyclerView;
-    ArrayList<Producto> listaProductos;
+    Iterador<Producto> listaProductos;
 
     public Productos() {
         // Required empty public constructor
@@ -103,7 +104,7 @@ public class Productos extends Fragment {
         ProductoDAO productoDAO = new ProductoDAO(getActivity().getApplicationContext());
         CategoriaDAO categoriaDAO = new CategoriaDAO(getActivity().getApplicationContext());
 
-        ArrayList<Categoria> listaCategorias = categoriaDAO.getCategoriaList();
+        Iterador<Categoria> listaCategorias = categoriaDAO.getCategoriaList();
 
         listaProductos = productoDAO.getProductoList();
 
@@ -111,12 +112,12 @@ public class Productos extends Fragment {
         listProduct = new ArrayList<String>();
         listCatProd = new ArrayList<String>();
 
-        for(int i = 0; i < listaProductos.size(); i++){
-            if (listaProductos.get(i).getIdInventario() != 0) {
-                listDatosProd.add(String.valueOf(listaProductos.get(i).getCantidad()));
-                listProduct.add(listaProductos.get(i).getNombre());
-                if (listaProductos.get(i).getIdCategoria() != 0) {
-                    listCatProd.add(listaCategorias.get(listaProductos.get(i).getIdCategoria() - 1).getNombre());
+        while (listaProductos.hasNext()){
+            if (listaProductos.next().getIdInventario() != 0) {
+                listDatosProd.add(String.valueOf(listaProductos.next().getCantidad()));
+                listProduct.add(listaProductos.next().getNombre());
+                if (listaProductos.next().getIdCategoria() != 0) {
+                    listCatProd.add(listaCategorias.get(listaProductos.next().getIdCategoria() - 1).getNombre());
                 } else {
                     listCatProd.add("Sin categoria");
                 }

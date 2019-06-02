@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 import mycompra.app.dbhelper.DBHelper;
+import mycompra.app.iterador.Agregado;
+import mycompra.app.iterador.AgregadoConcreto;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.Producto;
 
 public class ProductoDAO {
@@ -90,7 +93,7 @@ public class ProductoDAO {
         return producto;
     }
 
-    public ArrayList<Producto> getProductoList() {
+    public Iterador<Producto> getProductoList() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =  "SELECT  " +
                 Producto.KEY_ID + "," +
@@ -102,7 +105,7 @@ public class ProductoDAO {
                 Producto.KEY_ID_Categoria +
                 " FROM " + Producto.TABLE;
 
-        ArrayList<Producto> productoList = new ArrayList<>();
+        Agregado<Producto> agregaProd = new AgregadoConcreto<>();
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -116,16 +119,16 @@ public class ProductoDAO {
                 producto.setCantidad(cursor.getInt(cursor.getColumnIndex(Producto.KEY_Cantidad)));
                 producto.setIdInventario(cursor.getInt(cursor.getColumnIndex(Producto.KEY_ID_Inventario)));
                 producto.setIdCategoria(cursor.getInt(cursor.getColumnIndex(Producto.KEY_ID_Categoria)));
-                productoList.add(producto);
+                agregaProd.add(producto);
             } while (cursor.moveToNext());
         }
-
+       Iterador<Producto> productoList =  agregaProd.iterador();
         cursor.close();
         db.close();
         return productoList;
     }
 
-    public ArrayList<Producto> getProductoListNevera() {
+    public Iterador<Producto> getProductoListNevera() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =  "SELECT  " +
                 Producto.KEY_ID + "," +
@@ -138,7 +141,7 @@ public class ProductoDAO {
                 " FROM " + Producto.TABLE +
                 " WHERE " + Producto.KEY_ID_Inventario + " = 2";
 
-        ArrayList<Producto> productoList = new ArrayList<>();
+        Agregado<Producto> agregaProd = new AgregadoConcreto<Producto>();
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -152,16 +155,16 @@ public class ProductoDAO {
                 producto.setCantidad(cursor.getInt(cursor.getColumnIndex(Producto.KEY_Cantidad)));
                 producto.setIdInventario(cursor.getInt(cursor.getColumnIndex(Producto.KEY_ID_Inventario)));
                 producto.setIdCategoria(cursor.getInt(cursor.getColumnIndex(Producto.KEY_ID_Categoria)));
-                productoList.add(producto);
+                agregaProd.add(producto);
             } while (cursor.moveToNext());
         }
-
+        Iterador<Producto> productoList =  agregaProd.iterador();
         cursor.close();
         db.close();
         return productoList;
     }
 
-    public ArrayList<Producto> getProductoListDespensa() {
+    public Iterador<Producto> getProductoListDespensa() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =  "SELECT  " +
                 Producto.KEY_ID + "," +
@@ -174,7 +177,7 @@ public class ProductoDAO {
                 " FROM " + Producto.TABLE +
                 " WHERE " + Producto.KEY_ID_Inventario + " = 1";
 
-        ArrayList<Producto> productoList = new ArrayList<>();
+        Agregado<Producto> agregaProd = new AgregadoConcreto<Producto>();
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -188,16 +191,17 @@ public class ProductoDAO {
                 producto.setCantidad(cursor.getInt(cursor.getColumnIndex(Producto.KEY_Cantidad)));
                 producto.setIdInventario(cursor.getInt(cursor.getColumnIndex(Producto.KEY_ID_Inventario)));
                 producto.setIdCategoria(cursor.getInt(cursor.getColumnIndex(Producto.KEY_ID_Categoria)));
-                productoList.add(producto);
+                agregaProd.add(producto);
             } while (cursor.moveToNext());
         }
 
+        Iterador<Producto> productoList =  agregaProd.iterador();
         cursor.close();
         db.close();
         return productoList;
     }
 
-    public ArrayList<Producto> getProductoListCongelador() {
+    public Iterador<Producto> getProductoListCongelador() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =  "SELECT  " +
                 Producto.KEY_ID + "," +
@@ -210,7 +214,7 @@ public class ProductoDAO {
                 " FROM " + Producto.TABLE +
                 " WHERE " + Producto.KEY_ID_Inventario + " = 3";
 
-        ArrayList<Producto> productoList = new ArrayList<>();
+        Agregado<Producto> agregaProd = new AgregadoConcreto<Producto>();
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -224,10 +228,10 @@ public class ProductoDAO {
                 producto.setCantidad(cursor.getInt(cursor.getColumnIndex(Producto.KEY_Cantidad)));
                 producto.setIdInventario(cursor.getInt(cursor.getColumnIndex(Producto.KEY_ID_Inventario)));
                 producto.setIdCategoria(cursor.getInt(cursor.getColumnIndex(Producto.KEY_ID_Categoria)));
-                productoList.add(producto);
+                agregaProd.add(producto);
             } while (cursor.moveToNext());
         }
-
+        Iterador<Producto> productoList =  agregaProd.iterador();
         cursor.close();
         db.close();
         return productoList;

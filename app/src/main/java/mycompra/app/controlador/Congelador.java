@@ -19,6 +19,7 @@ import mycompra.app.R;
 import mycompra.app.adaptersRecycler.AdapterCongelador;
 import mycompra.app.adaptersRecycler.RecyclerItemClickListener;
 import mycompra.app.dao.ProductoDAO;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.Producto;
 
 
@@ -31,7 +32,7 @@ public class Congelador extends Fragment {
     ArrayList<String> listProdC;
     ArrayList<String> listCaducidadC;
     RecyclerView recycler;
-    ArrayList<Producto> listaProductos;
+    Iterador<Producto> listaProductos;
 
     public Congelador() {
         // Required empty public constructor
@@ -106,10 +107,10 @@ public class Congelador extends Fragment {
         listProdC = new ArrayList<String>();
         listCaducidadC = new ArrayList<String>();
 
-        for(int i = 0; i < listaProductos.size(); i++){
-            listCantidadC.add(String.valueOf(listaProductos.get(i).getCantidad()));
-            listProdC.add(listaProductos.get(i).getNombre());
-            listCaducidadC.add(listaProductos.get(i).getCaducidad());
+        while (listaProductos.hasNext()){
+            listCantidadC.add(String.valueOf(listaProductos.next().getCantidad()));
+            listProdC.add(listaProductos.next().getNombre());
+            listCaducidadC.add(listaProductos.next().getCaducidad());
         }
     }
 

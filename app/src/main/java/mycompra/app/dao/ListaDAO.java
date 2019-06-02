@@ -8,6 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 import mycompra.app.dbhelper.DBHelper;
+import mycompra.app.iterador.Agregado;
+import mycompra.app.iterador.AgregadoConcreto;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.Lista;
 
 public class ListaDAO {
@@ -69,14 +72,13 @@ public class ListaDAO {
         return lista;
     }
 
-    public ArrayList<Lista> getListaList() {
+    public Iterador<Lista> getListaList() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =  "SELECT  " +
                 Lista.KEY_ID + "," +
                 Lista.KEY_Nombre +
                 " FROM " + Lista.TABLE;
-
-        ArrayList<Lista> listaList = new ArrayList<>();
+        Agregado<Lista> agregaList = new AgregadoConcreto<Lista>();
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -85,12 +87,12 @@ public class ListaDAO {
                 Lista lista = new Lista();
                 lista.setId(cursor.getInt(cursor.getColumnIndex(Lista.KEY_ID)));
                 lista.setNombre(cursor.getString(cursor.getColumnIndex(Lista.KEY_Nombre)));
-                listaList.add(lista);
+                agregaList.add(lista);
             } while (cursor.moveToNext());
         }
-
+        Iterador<Lista> iteraList = agregaList.iterador();
         cursor.close();
         db.close();
-        return listaList;
+        return iteraList;
     }
 }

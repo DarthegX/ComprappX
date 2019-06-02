@@ -7,6 +7,7 @@ import mycompra.app.dao.CategoriaDAO;
 import mycompra.app.dao.InventarioDAO;
 import mycompra.app.dao.ProductoDAO;
 import mycompra.app.dao.ProductoTicketDAO;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.Categoria;
 import mycompra.app.modelo.Inventario;
 import mycompra.app.modelo.Producto;
@@ -19,8 +20,8 @@ public class GestorInventario
     private static CategoriaDAO catDAO;
     private static ProductoTicketDAO prodTicketDAO;
 
-    private static ArrayList<Inventario> inventarios;
-    private static ArrayList<Categoria> categorias;
+    private static Iterador<Inventario> inventarios;
+    private static Iterador<Categoria> categorias;
 
     private static ControlCaducidad caducidades;
 
@@ -36,15 +37,15 @@ public class GestorInventario
 
     public static void guardarProducto(Producto prod, ProductoTicket relacion)
     {
-        for (int i = 0; i < inventarios.size(); i++)
+        while (inventarios.hasNext())
         {
-            categorias = catDAO.getCategoriaListByInventario(inventarios.get(i).getId());
+            categorias = catDAO.getCategoriaListByInventario(inventarios.next().getId());
 
-            for (int j = 0; j < categorias.size(); j++)
+            while (categorias.hasNext())
             {
-                if (prod.getNombre().contains(categorias.get(i).getNombre()))
+                if (prod.getNombre().contains(categorias.next().getNombre()))
                 {
-                    prod.setIdInventario(categorias.get(i).getIdInventario());
+                    prod.setIdInventario(categorias.next().getIdInventario());
                     commitProducto(prod, relacion);
                     return;
                 }

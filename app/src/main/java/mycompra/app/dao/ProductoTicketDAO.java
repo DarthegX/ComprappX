@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 import mycompra.app.dbhelper.DBHelper;
+import mycompra.app.iterador.Agregado;
+import mycompra.app.iterador.AgregadoConcreto;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.ProductoTicket;
 
 public class ProductoTicketDAO {
@@ -76,7 +79,7 @@ public class ProductoTicketDAO {
         return productoTicket;
     }
 
-    public ArrayList<ProductoTicket> getProductoTicketList() {
+    public Iterador<ProductoTicket> getProductoTicketList() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =  "SELECT  " +
                 ProductoTicket.KEY_ID_Producto + "," +
@@ -84,7 +87,7 @@ public class ProductoTicketDAO {
                 ProductoTicket.KEY_Cantidad +
                 " FROM " + ProductoTicket.TABLE;
 
-        ArrayList<ProductoTicket> productoTicketList = new ArrayList<>();
+        Agregado<ProductoTicket> agregaPT = new AgregadoConcreto<ProductoTicket>();
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -94,12 +97,12 @@ public class ProductoTicketDAO {
                 productoTicket.setIdProducto(cursor.getInt(cursor.getColumnIndex(ProductoTicket.KEY_ID_Producto)));
                 productoTicket.setIdTicket(cursor.getInt(cursor.getColumnIndex(ProductoTicket.KEY_ID_Ticket)));
                 productoTicket.setCantidad(cursor.getInt(cursor.getColumnIndex(ProductoTicket.KEY_Cantidad)));
-                productoTicketList.add(productoTicket);
+                agregaPT.add(productoTicket);
             } while (cursor.moveToNext());
         }
-
+        Iterador<ProductoTicket> iteraPT = agregaPT.iterador();
         cursor.close();
         db.close();
-        return productoTicketList;
+        return iteraPT;
     }
 }

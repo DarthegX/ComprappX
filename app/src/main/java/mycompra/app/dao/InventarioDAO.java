@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 import mycompra.app.dbhelper.DBHelper;
+import mycompra.app.iterador.Agregado;
+import mycompra.app.iterador.AgregadoConcreto;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.Inventario;
 
 public class InventarioDAO {
@@ -69,14 +72,13 @@ public class InventarioDAO {
         return inventario;
     }
 
-    public ArrayList<Inventario> getInventarioList() {
+    public Iterador<Inventario> getInventarioList() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =  "SELECT  " +
                 Inventario.KEY_ID + "," +
                 Inventario.KEY_Nombre +
                 " FROM " + Inventario.TABLE;
-
-        ArrayList<Inventario> inventarioList = new ArrayList<>();
+        Agregado<Inventario> agregaInv = new AgregadoConcreto<Inventario>();
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -85,12 +87,12 @@ public class InventarioDAO {
                 Inventario inventario = new Inventario();
                 inventario.setId(cursor.getInt(cursor.getColumnIndex(Inventario.KEY_ID)));
                 inventario.setNombre(cursor.getString(cursor.getColumnIndex(Inventario.KEY_Nombre)));
-                inventarioList.add(inventario);
+                agregaInv.add(inventario);
             } while (cursor.moveToNext());
         }
-
+        Iterador<Inventario> iteraInv = agregaInv.iterador();
         cursor.close();
         db.close();
-        return inventarioList;
+        return iteraInv;
     }
 }

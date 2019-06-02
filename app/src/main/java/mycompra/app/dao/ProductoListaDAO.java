@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 import mycompra.app.dbhelper.DBHelper;
+import mycompra.app.iterador.Agregado;
+import mycompra.app.iterador.AgregadoConcreto;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.Producto;
 import mycompra.app.modelo.ProductoLista;
 
@@ -73,14 +76,15 @@ public class ProductoListaDAO {
         return productoLista;
     }
 
-    public ArrayList<ProductoLista> getProductoListaList() {
+    public Iterador<ProductoLista> getProductoListaList() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =  "SELECT  " +
                 ProductoLista.KEY_ID_Producto + "," +
                 ProductoLista.KEY_ID_Lista +
                 " FROM " + ProductoLista.TABLE;
 
-        ArrayList<ProductoLista> productoListaList = new ArrayList<>();
+
+        Agregado <ProductoLista> agregaPL = new AgregadoConcreto<ProductoLista>();
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -89,16 +93,16 @@ public class ProductoListaDAO {
                 ProductoLista productoLista = new ProductoLista();
                 productoLista.setIdProducto(cursor.getInt(cursor.getColumnIndex(ProductoLista.KEY_ID_Producto)));
                 productoLista.setIdLista(cursor.getInt(cursor.getColumnIndex(ProductoLista.KEY_ID_Lista)));
-                productoListaList.add(productoLista);
+                agregaPL.add(productoLista);
             } while (cursor.moveToNext());
         }
-
+        Iterador<ProductoLista> iteraPL = agregaPL.iterador();
         cursor.close();
         db.close();
-        return productoListaList;
+        return iteraPL;
     }
 
-    public ArrayList<Producto> getProductoListFromListaHabitual(int id) {
+    public Iterador<Producto> getProductoListFromListaHabitual(int id) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =  "SELECT  " +
                 Producto.KEY_Nombre +
@@ -107,7 +111,8 @@ public class ProductoListaDAO {
                 ProductoLista.KEY_ID_Lista + "=?" + " AND " +
                 ProductoLista.KEY_ID_Producto + " = " + Producto.KEY_ID;
 
-        ArrayList<Producto> productoListaList = new ArrayList<>();
+
+        Agregado <Producto> agregaPL = new AgregadoConcreto<Producto>();
 
         Cursor cursor = db.rawQuery(selectQuery, new String[] { String.valueOf(id) });
 
@@ -115,12 +120,12 @@ public class ProductoListaDAO {
             do {
                 Producto productoLista = new Producto();
                 productoLista.setNombre(cursor.getString(cursor.getColumnIndex(Producto.KEY_Nombre)));
-                productoListaList.add(productoLista);
+                agregaPL.add(productoLista);
             } while (cursor.moveToNext());
         }
-
+        Iterador<Producto> iteraPL = agregaPL.iterador();
         cursor.close();
         db.close();
-        return productoListaList;
+        return iteraPL;
     }
 }

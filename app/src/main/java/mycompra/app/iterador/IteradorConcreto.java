@@ -18,10 +18,24 @@ public class IteradorConcreto<T> implements Iterador {
 
     @Override
     public T next() {
-        T obj = null;
+        T object = null;
         if (hasNext()) {
-            obj =  list.get(cursor++);
+            object =  list.get(cursor++);
         }
-        return obj;
+        return object;
+    }
+
+    @Override
+    public T actual() {
+        T object = null;
+        if (hasNext()) {
+            object =  list.get(cursor);
+        }
+        return object;
+    }
+
+    @Override
+    public T get(int i) {
+        return list.get(i);
     }
 }

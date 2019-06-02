@@ -22,6 +22,7 @@ import mycompra.app.R;
 import mycompra.app.adaptersRecycler.AdapterListaHabitual;
 import mycompra.app.dao.ListaDAO;
 import mycompra.app.dao.ProductoListaDAO;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.Lista;
 import mycompra.app.modelo.Producto;
 import mycompra.app.modelo.ProductoLista;
@@ -116,12 +117,12 @@ public class ListaHabitual extends Fragment {
 
     private void llenarLista() {
         ProductoListaDAO productoListaDAO = new ProductoListaDAO(getActivity().getApplicationContext());
-        ArrayList<Producto> listaProductos = productoListaDAO.getProductoListFromListaHabitual(lista.getId());
+        Iterador<Producto> listaProductos = productoListaDAO.getProductoListFromListaHabitual(lista.getId());
 
         listCheckBox = new ArrayList<String>();
 
-        for(int i = 0; i < listaProductos.size(); i++){
-            listCheckBox.add(listaProductos.get(i).getNombre());
+        while (listaProductos.hasNext()){
+            listCheckBox.add(listaProductos.next().getNombre());
         }
     }
 }

@@ -19,6 +19,7 @@ import mycompra.app.R;
 import mycompra.app.adaptersRecycler.AdapterNevera;
 import mycompra.app.adaptersRecycler.RecyclerItemClickListener;
 import mycompra.app.dao.ProductoDAO;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.Producto;
 
 
@@ -31,7 +32,7 @@ public class Nevera extends Fragment {
     ArrayList<String> listProd;
     ArrayList<String> listCaducidad;
     RecyclerView recycler;
-    ArrayList<Producto> listaProductos;
+    Iterador<Producto> listaProductos;
 
     public Nevera() {
         // Required empty public constructor
@@ -106,10 +107,10 @@ public class Nevera extends Fragment {
         listProd = new ArrayList<String>();
         listCaducidad = new ArrayList<String>();
 
-        for(int i = 0; i < listaProductos.size(); i++){
-            listCantidad.add(String.valueOf(listaProductos.get(i).getCantidad()));
-            listProd.add(listaProductos.get(i).getNombre());
-            listCaducidad.add(listaProductos.get(i).getCaducidad());
+        while(listaProductos.hasNext()){
+            listCantidad.add(String.valueOf(listaProductos.next().getCantidad()));
+            listProd.add(listaProductos.next().getNombre());
+            listCaducidad.add(listaProductos.next().getCaducidad());
         }
     }
 }
