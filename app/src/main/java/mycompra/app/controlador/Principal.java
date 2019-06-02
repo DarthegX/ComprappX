@@ -60,6 +60,16 @@ public class Principal extends Fragment {
             }
         });
 
+        Button btnCaducidades = vista.findViewById(R.id.btnCaducidades);
+        btnInventarioPrincipal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.frame, new ProductosCaducidades()).addToBackStack(null);
+                ft.commit();
+            }
+        });
+
         return vista;
     }
 
