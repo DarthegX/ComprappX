@@ -334,19 +334,19 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void insertsProducto() {
-        insertaProducto("Huevos XL", 1.60, 1, "02/06/2019", 2, 6 );
-        insertaProducto("Yogurt Fresa", 1.60, 2, "25/05/2019", 2, 1 );
-        insertaProducto("ChipsAhoy", 1.60, 1, "25/05/2019", 1, 13 );
-        insertaProducto("Pan Molde", 168, 1, "29/06/2019", 1, 21);
-        insertaProducto("Queso Fresco", 2.50,2,  "02/06/2019", 2, 1);
-        insertaProducto("Lechuga Iceberg", 1.10, 1, "23/06/2019", 2, 2 );
-        insertaProducto("Pizza 4 Quesos", 2.70, 1, "15/06/2019", 2, 9);
-        insertaProducto("York Lonchas", 1.80, 1, "11/06/2019", 2, 15 );
-        insertaProducto("Salteado verduras", 2.20, 1, "16/06/2019", 3, 19);
-        insertaProducto("Helado vainilla", 2.50, 1, "14/06/2019", 3, 19);
-        insertaProducto("Platano Canarias", 1.39, 1, "29/06/2019", 2, 3);
-        insertaProducto("Napolitanas", 0.89, 1,"01/06/2019",  1, 21 );
-        insertaProducto("Manzana Royal Gala", 1.25, 1,"27/06/2019", 2, 3 );
+        insertaProducto("Huevos XL", 1.60, 1, "02/06/2019", 1, 6 );
+        insertaProducto("Yogurt Fresa", 1.60, 2, "25/05/2019", 1, 1 );
+        insertaProducto("ChipsAhoy", 1.60, 1, "25/05/2019", 3, 13 );
+        insertaProducto("Pan Molde", 168, 1, "29/06/2019", 3, 21);
+        insertaProducto("Queso Fresco", 2.50,2,  "02/06/2019", 1, 1);
+        insertaProducto("Lechuga Iceberg", 1.10, 1, "23/06/2019", 1, 2 );
+        insertaProducto("Pizza 4 Quesos", 2.70, 1, "15/06/2019", 1, 9);
+        insertaProducto("York Lonchas", 1.80, 1, "11/06/2019", 1, 15 );
+        insertaProducto("Salteado verduras", 2.20, 1, "16/06/2019", 2, 19);
+        insertaProducto("Helado vainilla", 2.50, 1, "14/06/2019", 2, 19);
+        insertaProducto("Platano Canarias", 1.39, 1, "29/06/2019", 1, 3);
+        insertaProducto("Napolitanas", 0.89, 1,"01/06/2019",  3, 21 );
+        insertaProducto("Manzana Royal Gala", 1.25, 1,"27/06/2019", 1, 3 );
     }
 
     public void insertsProductoTicket() {

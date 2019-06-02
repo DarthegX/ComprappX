@@ -11,8 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 import mycompra.app.R;
 import mycompra.app.dao.ListaDAO;
 import mycompra.app.dao.ProductoDAO;

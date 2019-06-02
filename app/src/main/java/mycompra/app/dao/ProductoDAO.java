@@ -139,7 +139,7 @@ public class ProductoDAO {
                 Producto.KEY_ID_Inventario + "," +
                 Producto.KEY_ID_Categoria +
                 " FROM " + Producto.TABLE +
-                " WHERE " + Producto.KEY_ID_Inventario + " = 2";
+                " WHERE " + Producto.KEY_ID_Inventario + " = 1";
 
         Agregado<Producto> agregaProd = new AgregadoConcreto<Producto>();
 
@@ -175,7 +175,7 @@ public class ProductoDAO {
                 Producto.KEY_ID_Inventario + "," +
                 Producto.KEY_ID_Categoria +
                 " FROM " + Producto.TABLE +
-                " WHERE " + Producto.KEY_ID_Inventario + " = 1";
+                " WHERE " + Producto.KEY_ID_Inventario + " = 3";
 
         Agregado<Producto> agregaProd = new AgregadoConcreto<Producto>();
 
@@ -212,7 +212,7 @@ public class ProductoDAO {
                 Producto.KEY_ID_Inventario + "," +
                 Producto.KEY_ID_Categoria +
                 " FROM " + Producto.TABLE +
-                " WHERE " + Producto.KEY_ID_Inventario + " = 3";
+                " WHERE " + Producto.KEY_ID_Inventario + " = 2";
 
         Agregado<Producto> agregaProd = new AgregadoConcreto<Producto>();
 

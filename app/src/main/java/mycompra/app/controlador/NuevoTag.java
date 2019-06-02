@@ -71,71 +71,7 @@ public class NuevoTag extends Fragment implements AdapterView.OnItemSelectedList
                     tagDAO = new TagDAO(getActivity().getApplicationContext());
                     Tag tag = new Tag();
                     tag.setNombre(String.valueOf(editTextTag.getText()));
-                    switch (spinner.getSelectedItemPosition()) {
-                        case 0:
-                            tag.setIdCategoria(1);
-                            break;
-                        case 1:
-                            tag.setIdCategoria(2);
-                            break;
-                        case 2:
-                            tag.setIdCategoria(3);
-                            break;
-                        case 3:
-                            tag.setIdCategoria(4);
-                            break;
-                        case 4:
-                            tag.setIdCategoria(5);
-                            break;
-                        case 5:
-                            tag.setIdCategoria(6);
-                            break;
-                        case 6:
-                            tag.setIdCategoria(7);
-                            break;
-                        case 7:
-                            tag.setIdCategoria(8);
-                            break;
-                        case 8:
-                            tag.setIdCategoria(9);
-                            break;
-                        case 9:
-                            tag.setIdCategoria(10);
-                            break;
-                        case 10:
-                            tag.setIdCategoria(11);
-                            break;
-                        case 11:
-                            tag.setIdCategoria(12);
-                            break;
-                        case 12:
-                            tag.setIdCategoria(13);
-                            break;
-                        case 13:
-                            tag.setIdCategoria(14);
-                            break;
-                        case 14:
-                            tag.setIdCategoria(15);
-                            break;
-                        case 15:
-                            tag.setIdCategoria(16);
-                            break;
-                        case 16:
-                            tag.setIdCategoria(17);
-                            break;
-                        case 17:
-                            tag.setIdCategoria(18);
-                            break;
-                        case 18:
-                            tag.setIdCategoria(19);
-                            break;
-                        case 19:
-                            tag.setIdCategoria(20);
-                            break;
-                        case 20:
-                            tag.setIdCategoria(21);
-                            break;
-                    }
+                    tag.setIdCategoria(spinner.getSelectedItemPosition() + 1);
                     tagDAO.insert(tag);
                     editTextTag.setText("");
                     Toast.makeText(getActivity().getApplicationContext(), "Tag añadida correctamente", Toast.LENGTH_SHORT).show();

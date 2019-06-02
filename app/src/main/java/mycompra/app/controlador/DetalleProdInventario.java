@@ -17,8 +17,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -102,82 +100,8 @@ public class DetalleProdInventario extends Fragment implements AdapterView.OnIte
         editTextPrecio.setText(String.valueOf(producto.getPrecio()));
         editTextCantidad.setText(String.valueOf(producto.getCantidad()));
         editTextCaducidad.setText(producto.getCaducidad());
-        switch (producto.getIdCategoria()) {
-            case 1:
-                spinnerCategoria.setSelection(0);
-                break;
-            case 2:
-                spinnerCategoria.setSelection(1);
-                break;
-            case 3:
-                spinnerCategoria.setSelection(2);
-                break;
-            case 4:
-                spinnerCategoria.setSelection(3);
-                break;
-            case 5:
-                spinnerCategoria.setSelection(4);
-                break;
-            case 6:
-                spinnerCategoria.setSelection(5);
-                break;
-            case 7:
-                spinnerCategoria.setSelection(6);
-                break;
-            case 8:
-                spinnerCategoria.setSelection(7);
-                break;
-            case 9:
-                spinnerCategoria.setSelection(8);
-                break;
-            case 10:
-                spinnerCategoria.setSelection(9);
-                break;
-            case 11:
-                spinnerCategoria.setSelection(10);
-                break;
-            case 12:
-                spinnerCategoria.setSelection(11);
-                break;
-            case 13:
-                spinnerCategoria.setSelection(12);
-                break;
-            case 14:
-                spinnerCategoria.setSelection(13);
-                break;
-            case 15:
-                spinnerCategoria.setSelection(14);
-                break;
-            case 16:
-                spinnerCategoria.setSelection(15);
-                break;
-            case 17:
-                spinnerCategoria.setSelection(16);
-                break;
-            case 18:
-                spinnerCategoria.setSelection(17);
-                break;
-            case 19:
-                spinnerCategoria.setSelection(18);
-                break;
-            case 20:
-                spinnerCategoria.setSelection(19);
-                break;
-            case 21:
-                spinnerCategoria.setSelection(20);
-                break;
-        }
-        switch (producto.getIdInventario()){
-            case 1:
-                spinnerInventario.setSelection(2);
-                break;
-            case 2:
-                spinnerInventario.setSelection(0);
-                break;
-            case 3:
-                spinnerInventario.setSelection(1);
-                break;
-        }
+        spinnerCategoria.setSelection(producto.getIdCategoria() - 1);
+        spinnerInventario.setSelection(producto.getIdInventario() - 1);
 
         btnBorrar = view.findViewById(R.id.btnBorrarDetalle);
         btnBorrar.setOnClickListener(new View.OnClickListener() {
@@ -204,82 +128,9 @@ public class DetalleProdInventario extends Fragment implements AdapterView.OnIte
 
                     producto.setCantidad(Integer.parseInt(editTextCantidad.getText().toString()));
                     producto.setCaducidad(String.valueOf(editTextCaducidad.getText()));
-                    switch (spinnerCategoria.getSelectedItemPosition()) {
-                        case 0:
-                            producto.setIdCategoria(1);
-                            break;
-                        case 1:
-                            producto.setIdCategoria(2);
-                            break;
-                        case 2:
-                            producto.setIdCategoria(3);
-                            break;
-                        case 3:
-                            producto.setIdCategoria(4);
-                            break;
-                        case 4:
-                            producto.setIdCategoria(5);
-                            break;
-                        case 5:
-                            producto.setIdCategoria(6);
-                            break;
-                        case 6:
-                            producto.setIdCategoria(7);
-                            break;
-                        case 7:
-                            producto.setIdCategoria(8);
-                            break;
-                        case 8:
-                            producto.setIdCategoria(9);
-                            break;
-                        case 9:
-                            producto.setIdCategoria(10);
-                            break;
-                        case 10:
-                            producto.setIdCategoria(11);
-                            break;
-                        case 11:
-                            producto.setIdCategoria(12);
-                            break;
-                        case 12:
-                            producto.setIdCategoria(13);
-                            break;
-                        case 13:
-                            producto.setIdCategoria(14);
-                            break;
-                        case 14:
-                            producto.setIdCategoria(15);
-                            break;
-                        case 15:
-                            producto.setIdCategoria(16);
-                            break;
-                        case 16:
-                            producto.setIdCategoria(17);
-                            break;
-                        case 17:
-                            producto.setIdCategoria(18);
-                            break;
-                        case 18:
-                            producto.setIdCategoria(19);
-                            break;
-                        case 19:
-                            producto.setIdCategoria(20);
-                            break;
-                        case 20:
-                            producto.setIdCategoria(21);
-                            break;
-                    }
-                    switch (spinnerInventario.getSelectedItemPosition()) {
-                        case 0:
-                            producto.setIdInventario(2);
-                            break;
-                        case 1:
-                            producto.setIdInventario(3);
-                            break;
-                        case 2:
-                            producto.setIdInventario(1);
-                            break;
-                    }
+                    producto.setIdCategoria(spinnerCategoria.getSelectedItemPosition() + 1);
+                    producto.setIdInventario(spinnerInventario.getSelectedItemPosition() + 1);
+
                     productoDAO.update(producto);
                     Toast.makeText(getActivity().getApplicationContext(),"Producto actualizado correctamente", Toast.LENGTH_SHORT).show();
                     devolverAFragmentAnterior();
