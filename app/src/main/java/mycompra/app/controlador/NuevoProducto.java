@@ -229,7 +229,7 @@ public class NuevoProducto extends Fragment implements AdapterView.OnItemSelecte
                     editTextCaducidad.setText("");
                     Toast.makeText(getActivity().getApplicationContext(), "Producto añadido correctamente", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getActivity().getApplicationContext(), "Rellena todos los campos correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getApplicationContext(),"Debes rellenar todos los campos correctamente", Toast.LENGTH_SHORT).show();
                 }
             }
         });

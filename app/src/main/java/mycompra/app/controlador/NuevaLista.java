@@ -72,6 +72,12 @@ public class NuevaLista extends Fragment {
                     FragmentTransaction ft = getFragmentManager().beginTransaction();
                     ft.replace(R.id.frame, new Listas()).addToBackStack(null);
                     ft.commit();
+                } else {
+                    if (listaProductosAnyadiblesLista.size() > 0) {
+                        Toast.makeText(getActivity().getApplicationContext(), "No hay productos en la lista", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getActivity().getApplicationContext(), "Debes rellenar el nombre de la lista", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -96,6 +102,8 @@ public class NuevaLista extends Fragment {
                     listaProductosAnyadiblesLista.add(producto);
                     editTextNombreProducto.setText("");
                     Toast.makeText(getActivity().getApplicationContext(), "Producto añadido a la lista correctamente", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity().getApplicationContext(),"Debes rellenar el nombre del producto", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -48,15 +48,19 @@ public class NuevoProductoLista extends Fragment {
         btnAnyadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Producto producto = new Producto();
-                producto.setNombre(editTextNombreProducto.getText().toString());
-                int idProducto = productoDAO.insert(producto);
-                ProductoLista productoLista = new ProductoLista();
-                productoLista.setIdProducto(idProducto);
-                productoLista.setIdLista(Integer.parseInt(idLista));
-                productoListaDAO.insert(productoLista);
-                editTextNombreProducto.setText("");
-                Toast.makeText(getActivity().getApplicationContext(),"Producto añadido a la lista correctamente", Toast.LENGTH_SHORT).show();
+                if (!editTextNombreProducto.getText().toString().equalsIgnoreCase("")) {
+                    Producto producto = new Producto();
+                    producto.setNombre(editTextNombreProducto.getText().toString());
+                    int idProducto = productoDAO.insert(producto);
+                    ProductoLista productoLista = new ProductoLista();
+                    productoLista.setIdProducto(idProducto);
+                    productoLista.setIdLista(Integer.parseInt(idLista));
+                    productoListaDAO.insert(productoLista);
+                    editTextNombreProducto.setText("");
+                    Toast.makeText(getActivity().getApplicationContext(), "Producto añadido a la lista correctamente", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity().getApplicationContext(),"Debes rellenar todos los campos correctamente", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

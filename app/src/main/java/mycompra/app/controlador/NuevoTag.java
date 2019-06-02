@@ -139,6 +139,8 @@ public class NuevoTag extends Fragment implements AdapterView.OnItemSelectedList
                     tagDAO.insert(tag);
                     editTextTag.setText("");
                     Toast.makeText(getActivity().getApplicationContext(), "Tag añadida correctamente", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity().getApplicationContext(),"Debes rellenar todos los campos correctamente", Toast.LENGTH_SHORT).show();
                 }
             }
         });

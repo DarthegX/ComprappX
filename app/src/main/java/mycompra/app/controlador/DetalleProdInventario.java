@@ -193,96 +193,100 @@ public class DetalleProdInventario extends Fragment implements AdapterView.OnIte
             @Override
             public void onClick(View v) {
                 if (!editTextNombre.getText().toString().equalsIgnoreCase("") && !editTextPrecio.getText().toString().equalsIgnoreCase("")
-                        && !editTextPrecio.getText().toString().equalsIgnoreCase("0") && !editTextCantidad.getText().toString().equalsIgnoreCase("")
-                        && !editTextCantidad.getText().toString().equalsIgnoreCase("0") && !editTextCaducidad.getText().toString().equalsIgnoreCase("")) {
-                        producto.setNombre(String.valueOf(editTextNombre.getText()));
+                    && !editTextPrecio.getText().toString().equalsIgnoreCase("0") && !editTextCantidad.getText().toString().equalsIgnoreCase("")
+                    && !editTextCantidad.getText().toString().equalsIgnoreCase("0") && !editTextCaducidad.getText().toString().equalsIgnoreCase("")) {
 
-                        NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
-                        nf.setMaximumFractionDigits(2);
-                        producto.setPrecio(Double.parseDouble(nf.format(Double.parseDouble(editTextPrecio.getText().toString()))));
+                    producto.setNombre(String.valueOf(editTextNombre.getText()));
 
-                        producto.setCantidad(Integer.parseInt(editTextCantidad.getText().toString()));
-                        producto.setCaducidad(String.valueOf(editTextCaducidad.getText()));
-                        switch (spinnerCategoria.getSelectedItemPosition()) {
-                            case 0:
-                                producto.setIdCategoria(1);
-                                break;
-                            case 1:
-                                producto.setIdCategoria(2);
-                                break;
-                            case 2:
-                                producto.setIdCategoria(3);
-                                break;
-                            case 3:
-                                producto.setIdCategoria(4);
-                                break;
-                            case 4:
-                                producto.setIdCategoria(5);
-                                break;
-                            case 5:
-                                producto.setIdCategoria(6);
-                                break;
-                            case 6:
-                                producto.setIdCategoria(7);
-                                break;
-                            case 7:
-                                producto.setIdCategoria(8);
-                                break;
-                            case 8:
-                                producto.setIdCategoria(9);
-                                break;
-                            case 9:
-                                producto.setIdCategoria(10);
-                                break;
-                            case 10:
-                                producto.setIdCategoria(11);
-                                break;
-                            case 11:
-                                producto.setIdCategoria(12);
-                                break;
-                            case 12:
-                                producto.setIdCategoria(13);
-                                break;
-                            case 13:
-                                producto.setIdCategoria(14);
-                                break;
-                            case 14:
-                                producto.setIdCategoria(15);
-                                break;
-                            case 15:
-                                producto.setIdCategoria(16);
-                                break;
-                            case 16:
-                                producto.setIdCategoria(17);
-                                break;
-                            case 17:
-                                producto.setIdCategoria(18);
-                                break;
-                            case 18:
-                                producto.setIdCategoria(19);
-                                break;
-                            case 19:
-                                producto.setIdCategoria(20);
-                                break;
-                            case 20:
-                                producto.setIdCategoria(21);
-                                break;
-                        }
-                        switch (spinnerInventario.getSelectedItemPosition()) {
-                            case 0:
-                                producto.setIdInventario(2);
-                                break;
-                            case 1:
-                                producto.setIdInventario(3);
-                                break;
-                            case 2:
-                                producto.setIdInventario(1);
-                                break;
-                        }
-                        productoDAO.update(producto);
-                        Toast.makeText(getActivity().getApplicationContext(),"Producto actualizado correctamente", Toast.LENGTH_SHORT).show();
-                        devolverAFragmentAnterior();
+                    NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
+                    nf.setMaximumFractionDigits(2);
+                    producto.setPrecio(Double.parseDouble(nf.format(Double.parseDouble(editTextPrecio.getText().toString()))));
+
+                    producto.setCantidad(Integer.parseInt(editTextCantidad.getText().toString()));
+                    producto.setCaducidad(String.valueOf(editTextCaducidad.getText()));
+                    switch (spinnerCategoria.getSelectedItemPosition()) {
+                        case 0:
+                            producto.setIdCategoria(1);
+                            break;
+                        case 1:
+                            producto.setIdCategoria(2);
+                            break;
+                        case 2:
+                            producto.setIdCategoria(3);
+                            break;
+                        case 3:
+                            producto.setIdCategoria(4);
+                            break;
+                        case 4:
+                            producto.setIdCategoria(5);
+                            break;
+                        case 5:
+                            producto.setIdCategoria(6);
+                            break;
+                        case 6:
+                            producto.setIdCategoria(7);
+                            break;
+                        case 7:
+                            producto.setIdCategoria(8);
+                            break;
+                        case 8:
+                            producto.setIdCategoria(9);
+                            break;
+                        case 9:
+                            producto.setIdCategoria(10);
+                            break;
+                        case 10:
+                            producto.setIdCategoria(11);
+                            break;
+                        case 11:
+                            producto.setIdCategoria(12);
+                            break;
+                        case 12:
+                            producto.setIdCategoria(13);
+                            break;
+                        case 13:
+                            producto.setIdCategoria(14);
+                            break;
+                        case 14:
+                            producto.setIdCategoria(15);
+                            break;
+                        case 15:
+                            producto.setIdCategoria(16);
+                            break;
+                        case 16:
+                            producto.setIdCategoria(17);
+                            break;
+                        case 17:
+                            producto.setIdCategoria(18);
+                            break;
+                        case 18:
+                            producto.setIdCategoria(19);
+                            break;
+                        case 19:
+                            producto.setIdCategoria(20);
+                            break;
+                        case 20:
+                            producto.setIdCategoria(21);
+                            break;
                     }
+                    switch (spinnerInventario.getSelectedItemPosition()) {
+                        case 0:
+                            producto.setIdInventario(2);
+                            break;
+                        case 1:
+                            producto.setIdInventario(3);
+                            break;
+                        case 2:
+                            producto.setIdInventario(1);
+                            break;
+                    }
+                    productoDAO.update(producto);
+                    Toast.makeText(getActivity().getApplicationContext(),"Producto actualizado correctamente", Toast.LENGTH_SHORT).show();
+                    devolverAFragmentAnterior();
+                }
+                else {
+                    Toast.makeText(getActivity().getApplicationContext(),"Debes rellenar todos los campos correctamente", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         return view;

@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.frame, fragment, "InfoMensual");
             fragmentTransaction.commit();
         } else if (id == R.id.nav_escanear) {
-            setTitle("Principal");
+            setTitle("Escanear");
             Escanear fragment = new Escanear();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame, fragment, "Escanear");
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.frame, fragment, "Principal");
             fragmentTransaction.commit();
         }else if (id == R.id.nav_configuracion) {
-            setTitle("Principal");
+            setTitle("Configuracion");
             Configuracion fragment = new Configuracion();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame, fragment, "Configuración");
@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity
     public void insertsSupermercado() {
         insertaSuper("Mercadona");
         insertaSuper("Consum");
-        insertaSuper("MasyMas");
+        insertaSuper("Otros");
     }
 
     public void insertsMes() {
@@ -216,7 +216,7 @@ public class MainActivity extends AppCompatActivity
         insertaCategoria("Cosmetica", 1);
         insertaCategoria("Congelados", 3);
         insertaCategoria("Hortalizas", 1);
-        insertaCategoria("Pamaderia", 1);
+        insertaCategoria("Panaderia", 1);
 
     }
 
