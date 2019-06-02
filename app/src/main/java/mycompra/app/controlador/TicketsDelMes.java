@@ -1,6 +1,8 @@
 package mycompra.app.controlador;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -24,6 +26,7 @@ import java.util.Date;
 
 import mycompra.app.R;
 import mycompra.app.adaptersRecycler.AdapterTickets;
+import mycompra.app.adaptersRecycler.RecyclerItemClickListener;
 import mycompra.app.dao.MesDAO;
 import mycompra.app.dao.SupermercadoDAO;
 import mycompra.app.dao.TicketDAO;
@@ -72,6 +75,30 @@ public class TicketsDelMes extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity().getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, final int position) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Borrar Ticket")
+                        .setMessage("¿Está seguro de que desea eliminar este ticket?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                ticketDAO.delete(listaTicketsMes.get(position).getId());
+                                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                ft.replace(R.id.frame, new TicketsDelMes()).addToBackStack(null);
+                                ft.commit();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_menu_delete)
+                        .setCancelable(false)
+                        .show();
+            }
+        }));
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 ((LinearLayoutManager) recyclerView.getLayoutManager()).getOrientation());
