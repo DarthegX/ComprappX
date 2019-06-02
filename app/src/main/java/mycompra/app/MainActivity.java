@@ -83,8 +83,6 @@ public class MainActivity extends AppCompatActivity
 
         setTitle("Principal");
 
-        comprobarExisteMesActual();
-
         Principal fragment = new Principal();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame, fragment, "Principal");
@@ -114,6 +112,7 @@ public class MainActivity extends AppCompatActivity
             productoTicketDAO = new ProductoTicketDAO(this);
             insertsProductoTicket();
         }
+        comprobarExisteMesActual();
     }
 
     @Override
@@ -206,31 +205,30 @@ public class MainActivity extends AppCompatActivity
 
     public void insertsMes() {
         insertaMes("Mayo", 2019,80);
-        insertaMes("Junio", 2019,80);
     }
 
     public void insertsCategoria() {
-        insertaCategoria("Lacteos", 2);
-        insertaCategoria("Vegetales", 2);
-        insertaCategoria("Frutas", 2);
-        insertaCategoria("Carne", 2);
-        insertaCategoria("Pescado", 2);
-        insertaCategoria("Huevos", 2);
-        insertaCategoria("Bebidas", 2);
-        insertaCategoria("Bebidas Alcoholicas", 2);
-        insertaCategoria("Preparados", 2);
-        insertaCategoria("Pasta", 1);
-        insertaCategoria("Arroz", 1);
-        insertaCategoria("Legumbres", 1);
-        insertaCategoria("Dulces", 1);
-        insertaCategoria("Aperitivos", 1);
-        insertaCategoria("Embutidos", 1);
-        insertaCategoria("Hogar", 1);
-        insertaCategoria("Aceite", 1);
-        insertaCategoria("Cosmetica", 1);
-        insertaCategoria("Congelados", 3);
-        insertaCategoria("Hortalizas", 1);
-        insertaCategoria("Panaderia", 1);
+        insertaCategoria("Lacteos", 1);
+        insertaCategoria("Vegetales", 1);
+        insertaCategoria("Frutas", 1);
+        insertaCategoria("Carne", 1);
+        insertaCategoria("Pescado", 1);
+        insertaCategoria("Huevos", 1);
+        insertaCategoria("Bebidas", 1);
+        insertaCategoria("Bebidas Alcoholicas", 1);
+        insertaCategoria("Preparados", 1);
+        insertaCategoria("Pasta", 3);
+        insertaCategoria("Arroz", 3);
+        insertaCategoria("Legumbres", 3);
+        insertaCategoria("Dulces", 3);
+        insertaCategoria("Aperitivos", 3);
+        insertaCategoria("Embutidos", 3);
+        insertaCategoria("Hogar", 3);
+        insertaCategoria("Aceite", 3);
+        insertaCategoria("Cosmetica", 3);
+        insertaCategoria("Congelados", 2);
+        insertaCategoria("Hortalizas", 3);
+        insertaCategoria("Panaderia", 3);
 
     }
 
@@ -454,40 +452,40 @@ public class MainActivity extends AppCompatActivity
 
         switch (Integer.parseInt(mesString)) {
             case 1:
-                nombreMes = "enero";
+                nombreMes = "Enero";
                 break;
             case 2:
-                nombreMes = "febrero";
+                nombreMes = "Febrero";
                 break;
             case 3:
-                nombreMes = "marzo";
+                nombreMes = "Marzo";
                 break;
             case 4:
-                nombreMes = "abril";
+                nombreMes = "Abril";
                 break;
             case 5:
-                nombreMes = "mayo";
+                nombreMes = "Mayo";
                 break;
             case 6:
-                nombreMes = "junio";
+                nombreMes = "Junio";
                 break;
             case 7:
-                nombreMes = "julio";
+                nombreMes = "Julio";
                 break;
             case 8:
-                nombreMes = "agosto";
+                nombreMes = "Agosto";
                 break;
             case 9:
-                nombreMes = "septiembre";
+                nombreMes = "Septiembre";
                 break;
             case 10:
-                nombreMes = "octubre";
+                nombreMes = "Octubre";
                 break;
             case 11:
-                nombreMes = "noviembre";
+                nombreMes = "Noviembre";
                 break;
             case 12:
-                nombreMes = "diciembre";
+                nombreMes = "Diciembre";
                 break;
         }
 

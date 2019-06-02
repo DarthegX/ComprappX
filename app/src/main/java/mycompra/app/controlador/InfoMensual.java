@@ -141,7 +141,7 @@ public class InfoMensual extends Fragment {
         nf.setMaximumFractionDigits(2);
 
         double gastosMesActual = 0.0;
-        while (listaMes.hasNext()) {
+        while (listaTicketsMes.hasNext()) {
             gastosMesActual += listaTicketsMes.next().getPrecio();
         }
         textViewGastosActual.setText(nf.format(gastosMesActual));

@@ -122,6 +122,7 @@ public class NuevoTicket extends Fragment implements AdapterView.OnItemSelectedL
             @Override
             public void onClick(View v) {
                 pulsadoCaducidad = true;
+                pulsadoFecha = false;
                 showDatePickerDialog();
             }
         });
@@ -129,6 +130,7 @@ public class NuevoTicket extends Fragment implements AdapterView.OnItemSelectedL
         editTextFecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pulsadoCaducidad = false;
                 pulsadoFecha = true;
                 showDatePickerDialog();
             }
@@ -155,7 +157,8 @@ public class NuevoTicket extends Fragment implements AdapterView.OnItemSelectedL
                     ticket.setFecha(fechaTicket);
                     double precioTotal = 0;
                     while (iteraProd.hasNext()) {
-                        precioTotal += iteraProd.next().getPrecio();
+                        precioTotal += iteraProd.actual().getPrecio() * iteraProd.actual().getCantidad();
+                        iteraProd.avanza();
                     }
                     iteraProd.inicio();
 
@@ -236,7 +239,7 @@ public class NuevoTicket extends Fragment implements AdapterView.OnItemSelectedL
                     ft.replace(R.id.frame, new TicketsDelMes()).addToBackStack(null);
                     ft.commit();
                 } else {
-                    if (iteraProd.hasNext()) {
+                    if (!iteraProd.hasNext()) {
                         Toast.makeText(getActivity().getApplicationContext(), "No hay productos en el ticket", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getActivity().getApplicationContext(), "Debes rellenar la fecha del ticket", Toast.LENGTH_SHORT).show();

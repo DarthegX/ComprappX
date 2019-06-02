@@ -52,7 +52,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 + Supermercado.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
                 + Supermercado.KEY_Nombre + " TEXT)";
         sqLiteDatabase.execSQL(CREATE_TABLE_SUPERMERCADO);
-        
+
         String CREATE_TABLE_CATEGORIA = "CREATE TABLE " + Categoria.TABLE + "("
                 + Categoria.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
                 + Categoria.KEY_Nombre + " TEXT ,"
@@ -116,12 +116,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Categoria.TABLE);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Tag.TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Supermercado.TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Inventario.TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Lista.TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Categoria.TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Tag.TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Mes.TABLE);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Supermercado.TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Ticket.TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Producto.TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ProductoLista.TABLE);
