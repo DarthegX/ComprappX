@@ -38,20 +38,6 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        String CREATE_TABLE_CATEGORIA = "CREATE TABLE " + Categoria.TABLE + "("
-                + Categoria.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
-                + Categoria.KEY_Nombre + " TEXT ,"
-                + Categoria.KEY_ID_Inventario + " INTEGER ,"
-                + " FOREIGN KEY(" + Categoria.KEY_ID_Inventario + ") REFERENCES " + Inventario.TABLE + "(" + Inventario.KEY_ID + ") ON UPDATE CASCADE ON DELETE CASCADE)";
-        sqLiteDatabase.execSQL(CREATE_TABLE_CATEGORIA);
-
-        String CREATE_TABLE_TAG = "CREATE TABLE " + Tag.TABLE + "("
-                + Tag.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
-                + Tag.KEY_Nombre + " TEXT ,"
-                + Tag.KEY_ID_Categoria + " INTEGER ,"
-                + " FOREIGN KEY(" + Tag.KEY_ID_Categoria + ") REFERENCES " + Categoria.TABLE + "(" + Categoria.KEY_ID + ") ON UPDATE CASCADE ON DELETE CASCADE)";
-        sqLiteDatabase.execSQL(CREATE_TABLE_TAG);
-
         String CREATE_TABLE_INVENTARIO = "CREATE TABLE " + Inventario.TABLE + "("
                 + Inventario.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
                 + Inventario.KEY_Nombre + " TEXT)";
@@ -66,6 +52,20 @@ public class DBHelper extends SQLiteOpenHelper {
                 + Supermercado.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
                 + Supermercado.KEY_Nombre + " TEXT)";
         sqLiteDatabase.execSQL(CREATE_TABLE_SUPERMERCADO);
+        
+        String CREATE_TABLE_CATEGORIA = "CREATE TABLE " + Categoria.TABLE + "("
+                + Categoria.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
+                + Categoria.KEY_Nombre + " TEXT ,"
+                + Categoria.KEY_ID_Inventario + " INTEGER ,"
+                + " FOREIGN KEY(" + Categoria.KEY_ID_Inventario + ") REFERENCES " + Inventario.TABLE + "(" + Inventario.KEY_ID + ") ON UPDATE CASCADE ON DELETE CASCADE)";
+        sqLiteDatabase.execSQL(CREATE_TABLE_CATEGORIA);
+
+        String CREATE_TABLE_TAG = "CREATE TABLE " + Tag.TABLE + "("
+                + Tag.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
+                + Tag.KEY_Nombre + " TEXT ,"
+                + Tag.KEY_ID_Categoria + " INTEGER ,"
+                + " FOREIGN KEY(" + Tag.KEY_ID_Categoria + ") REFERENCES " + Categoria.TABLE + "(" + Categoria.KEY_ID + ") ON UPDATE CASCADE ON DELETE CASCADE)";
+        sqLiteDatabase.execSQL(CREATE_TABLE_TAG);
 
         String CREATE_TABLE_MES = "CREATE TABLE " + Mes.TABLE + "("
                 + Mes.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
