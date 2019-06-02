@@ -12,10 +12,10 @@ public class Tag {
     private String nombre;
     private int idCategoria;
 
-    public Tag(){
+    public Tag() {
     }
 
-    public Tag(int id, String nombre, int idCategoria){
+    public Tag(int id, String nombre, int idCategoria) {
         this.id = id;
         this.nombre = nombre;
         this.idCategoria = idCategoria;

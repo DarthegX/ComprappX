@@ -2,9 +2,6 @@ package mycompra.app.controlador;
 
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +12,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import mycompra.app.R;
 import mycompra.app.dao.TagDAO;
 import mycompra.app.modelo.Tag;
@@ -22,7 +22,7 @@ import mycompra.app.modelo.Tag;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NuevoTag extends Fragment implements AdapterView.OnItemSelectedListener{
+public class NuevoTag extends Fragment implements AdapterView.OnItemSelectedListener {
 
     private EditText editTextTag;
     private Spinner spinner;
@@ -76,7 +76,7 @@ public class NuevoTag extends Fragment implements AdapterView.OnItemSelectedList
                     editTextTag.setText("");
                     Toast.makeText(getActivity().getApplicationContext(), "Tag añadida correctamente", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getActivity().getApplicationContext(),"Debes rellenar todos los campos correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "Debes rellenar todos los campos correctamente", Toast.LENGTH_SHORT).show();
                 }
             }
         });

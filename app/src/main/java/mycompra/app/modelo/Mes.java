@@ -14,10 +14,10 @@ public class Mes {
     private int anyo;
     private double presupuesto;
 
-    public Mes(){
+    public Mes() {
     }
 
-    public Mes(int id, String nombre, int anyo, double presupuesto){
+    public Mes(int id, String nombre, int anyo, double presupuesto) {
         this.id = id;
         this.nombre = nombre;
         this.anyo = anyo;

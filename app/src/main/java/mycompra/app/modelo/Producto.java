@@ -22,10 +22,10 @@ public class Producto {
     private int idInventario;
     private int idCategoria;
 
-    public Producto(){
+    public Producto() {
     }
 
-    public Producto(int id, String nombre, double precio, String caducidad, int cantidad, int idInventario, int idCategoria){
+    public Producto(int id, String nombre, double precio, String caducidad, int cantidad, int idInventario, int idCategoria) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
@@ -92,8 +92,7 @@ public class Producto {
     }
 
     @Nullable
-    public String toString()
-    {
+    public String toString() {
         return cantidad + " - " + nombre + " -> " + precio + " €\n";
     }
 }

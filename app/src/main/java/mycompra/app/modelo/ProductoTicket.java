@@ -11,10 +11,10 @@ public class ProductoTicket {
     private int idTicket;
     private int cantidad;
 
-    public ProductoTicket(){
+    public ProductoTicket() {
     }
 
-    public ProductoTicket(int idProducto, int idTicket, int cantidad){
+    public ProductoTicket(int idProducto, int idTicket, int cantidad) {
         this.idProducto = idProducto;
         this.idTicket = idTicket;
         this.cantidad = cantidad;

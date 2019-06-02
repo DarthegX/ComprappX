@@ -1,17 +1,18 @@
 package mycompra.app.adaptersRecycler;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 
 import mycompra.app.R;
 
-public class AdapterDespensa extends RecyclerView.Adapter<AdapterDespensa.ViewHolderDespensa>  {
+public class AdapterDespensa extends RecyclerView.Adapter<AdapterDespensa.ViewHolderDespensa> {
 
     ArrayList<String> listCantidadD;
     ArrayList<String> listProdD;
@@ -25,13 +26,13 @@ public class AdapterDespensa extends RecyclerView.Adapter<AdapterDespensa.ViewHo
 
     @Override
     public AdapterDespensa.ViewHolderDespensa onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.productos_despensa_list,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.productos_despensa_list, viewGroup, false);
         return new ViewHolderDespensa(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull AdapterDespensa.ViewHolderDespensa viewHolderDespensa, int i) {
-        viewHolderDespensa.asignarDatos(listCantidadD.get(i),listProdD.get(i),listCaducidadD.get(i));
+        viewHolderDespensa.asignarDatos(listCantidadD.get(i), listProdD.get(i), listCaducidadD.get(i));
     }
 
     @Override

@@ -2,14 +2,15 @@ package mycompra.app.controlador;
 
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import mycompra.app.R;
 import mycompra.app.dao.ListaDAO;
@@ -108,7 +109,7 @@ public class NuevaLista extends Fragment {
                     editTextNombreProducto.setText("");
                     Toast.makeText(getActivity().getApplicationContext(), "Producto añadido a la lista correctamente", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getActivity().getApplicationContext(),"Debes rellenar el nombre del producto", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "Debes rellenar el nombre del producto", Toast.LENGTH_SHORT).show();
                 }
             }
         });

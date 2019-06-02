@@ -4,16 +4,16 @@ package mycompra.app.controlador;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -66,7 +66,7 @@ public class TicketsDelMes extends Fragment {
 
         llenarListaTickets();
 
-        AdapterTickets adapter = new AdapterTickets(listSupermercados,listFechas,listPrecios);
+        AdapterTickets adapter = new AdapterTickets(listSupermercados, listFechas, listPrecios);
 
         recyclerView.setAdapter(adapter);
 

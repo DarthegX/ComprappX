@@ -3,8 +3,6 @@ package mycompra.app.controlador;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +14,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.text.NumberFormat;
 import java.util.Calendar;
@@ -117,8 +118,8 @@ public class DetalleProdInventario extends Fragment implements AdapterView.OnIte
             @Override
             public void onClick(View v) {
                 if (!editTextNombre.getText().toString().equalsIgnoreCase("") && !editTextPrecio.getText().toString().equalsIgnoreCase("")
-                    && !editTextPrecio.getText().toString().equalsIgnoreCase("0") && !editTextCantidad.getText().toString().equalsIgnoreCase("")
-                    && !editTextCantidad.getText().toString().equalsIgnoreCase("0") && !editTextCaducidad.getText().toString().equalsIgnoreCase("")) {
+                        && !editTextPrecio.getText().toString().equalsIgnoreCase("0") && !editTextCantidad.getText().toString().equalsIgnoreCase("")
+                        && !editTextCantidad.getText().toString().equalsIgnoreCase("0") && !editTextCaducidad.getText().toString().equalsIgnoreCase("")) {
 
                     producto.setNombre(String.valueOf(editTextNombre.getText()));
 
@@ -132,11 +133,10 @@ public class DetalleProdInventario extends Fragment implements AdapterView.OnIte
                     producto.setIdInventario(spinnerInventario.getSelectedItemPosition() + 1);
 
                     productoDAO.update(producto);
-                    Toast.makeText(getActivity().getApplicationContext(),"Producto actualizado correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "Producto actualizado correctamente", Toast.LENGTH_SHORT).show();
                     devolverAFragmentAnterior();
-                }
-                else {
-                    Toast.makeText(getActivity().getApplicationContext(),"Debes rellenar todos los campos correctamente", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity().getApplicationContext(), "Debes rellenar todos los campos correctamente", Toast.LENGTH_SHORT).show();
                 }
             }
         });

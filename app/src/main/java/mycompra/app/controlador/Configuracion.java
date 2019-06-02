@@ -2,12 +2,13 @@ package mycompra.app.controlador;
 
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import mycompra.app.R;
 
@@ -30,7 +31,7 @@ public class Configuracion extends Fragment {
 
         getActivity().setTitle("Configuracion");
 
-        Button btnNuevaTag = (Button) vista.findViewById(R.id.buttonNuevaTag);
+        Button btnNuevaTag = vista.findViewById(R.id.buttonNuevaTag);
         btnNuevaTag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

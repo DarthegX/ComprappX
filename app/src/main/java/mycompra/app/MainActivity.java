@@ -2,20 +2,20 @@ package mycompra.app;
 
 import android.content.Context;
 import android.os.Bundle;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.core.view.GravityCompat;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
-import com.google.android.material.navigation.NavigationView;
-import androidx.drawerlayout.widget.DrawerLayout;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.navigation.NavigationView;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity
     private static ListaDAO listaDAO;
     private static MesDAO mesDAO;
     private static ProductoDAO productoDAO;
-    private static SupermercadoDAO supermercadoDAO ;
+    private static SupermercadoDAO supermercadoDAO;
     private static TagDAO tagDAO;
     private static TicketDAO ticketDAO;
     private static ProductoTicketDAO productoTicketDAO;
@@ -192,9 +192,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void insertsLista() {
-       insertaLista("Mensual");
-       insertaLista("Semanal");
-       insertaLista("Diaria");
+        insertaLista("Mensual");
+        insertaLista("Semanal");
+        insertaLista("Diaria");
     }
 
     public void insertsSupermercado() {
@@ -204,7 +204,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void insertsMes() {
-        insertaMes("Mayo", 2019,80);
+        insertaMes("Mayo", 2019, 80);
     }
 
     public void insertsCategoria() {
@@ -259,7 +259,7 @@ public class MainActivity extends AppCompatActivity
         insertaTag("Melocotón", 3);
         insertaTag("Piña", 3);
         insertaTag("Cereza", 3);
-        insertaTag("Naranja", 3 );
+        insertaTag("Naranja", 3);
         insertaTag("Mandarina", 3);
         insertaTag("Sandia", 3);
         insertaTag("Melón", 3);
@@ -325,36 +325,36 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void insertsTicket() {
-        insertaTicket("05/05/2019", 8.33,1, 2);
+        insertaTicket("05/05/2019", 8.33, 1, 2);
         insertaTicket("12/05/2019", 8.7, 1, 1);
         insertaTicket("22/05/2019", 20.3, 1, 1);
-        insertaTicket("05/06/2019", 8.33,2, 2);
+        insertaTicket("05/06/2019", 8.33, 2, 2);
         insertaTicket("12/06/2019", 8.7, 2, 1);
         insertaTicket("22/06/2019", 2.3, 2, 1);
     }
 
     public void insertsProducto() {
-        insertaProducto("Huevos XL", 1.60, 1, "02/06/2019", 1, 6 );
-        insertaProducto("Yogurt Fresa", 1.60, 2, "25/05/2019", 1, 1 );
-        insertaProducto("ChipsAhoy", 1.60, 1, "25/05/2019", 3, 13 );
+        insertaProducto("Huevos XL", 1.60, 1, "02/06/2019", 1, 6);
+        insertaProducto("Yogurt Fresa", 1.60, 2, "25/05/2019", 1, 1);
+        insertaProducto("ChipsAhoy", 1.60, 1, "25/05/2019", 3, 13);
         insertaProducto("Pan Molde", 168, 1, "29/06/2019", 3, 21);
-        insertaProducto("Queso Fresco", 2.50,2,  "02/06/2019", 1, 1);
-        insertaProducto("Lechuga Iceberg", 1.10, 1, "23/06/2019", 1, 2 );
+        insertaProducto("Queso Fresco", 2.50, 2, "02/06/2019", 1, 1);
+        insertaProducto("Lechuga Iceberg", 1.10, 1, "23/06/2019", 1, 2);
         insertaProducto("Pizza 4 Quesos", 2.70, 1, "15/06/2019", 1, 9);
-        insertaProducto("York Lonchas", 1.80, 1, "11/06/2019", 1, 15 );
+        insertaProducto("York Lonchas", 1.80, 1, "11/06/2019", 1, 15);
         insertaProducto("Salteado verduras", 2.20, 1, "16/06/2019", 2, 19);
         insertaProducto("Helado vainilla", 2.50, 1, "14/06/2019", 2, 19);
         insertaProducto("Platano Canarias", 1.39, 1, "29/06/2019", 1, 3);
-        insertaProducto("Napolitanas", 0.89, 1,"01/06/2019",  3, 21 );
-        insertaProducto("Manzana Royal Gala", 1.25, 1,"27/06/2019", 1, 3 );
+        insertaProducto("Napolitanas", 0.89, 1, "01/06/2019", 3, 21);
+        insertaProducto("Manzana Royal Gala", 1.25, 1, "27/06/2019", 1, 3);
     }
 
     public void insertsProductoTicket() {
-        insertaProductoTicket(3,3,1);
-        insertaProductoTicket(2,5,1);
-        insertaProductoTicket(2, 9,2);
+        insertaProductoTicket(3, 3, 1);
+        insertaProductoTicket(2, 5, 1);
+        insertaProductoTicket(2, 9, 2);
         insertaProductoTicket(2, 8, 3);
-        insertaProductoTicket(2, 2,1 );
+        insertaProductoTicket(2, 2, 1);
         insertaProductoTicket(1, 13, 1);
         insertaProductoTicket(1, 7, 1);
         insertaProductoTicket(1, 4, 1);
@@ -362,24 +362,25 @@ public class MainActivity extends AppCompatActivity
         insertaProductoTicket(1, 6, 1);
     }
 
-    public void insertaInventario(String nombre){
+    public void insertaInventario(String nombre) {
         Inventario inventario = new Inventario();
         inventario.setNombre(nombre);
         inventarioDAO.insert(inventario);
     }
-    public void insertaLista(String nombre){
+
+    public void insertaLista(String nombre) {
         Lista lista = new Lista();
         lista.setNombre(nombre);
         listaDAO.insert(lista);
     }
 
-    public void insertaSuper(String nombre){
+    public void insertaSuper(String nombre) {
         Supermercado a = new Supermercado();
         a.setNombre(nombre);
         supermercadoDAO.insert(a);
     }
 
-    public void insertaMes(String nombre, int anyo, int presupuesto){
+    public void insertaMes(String nombre, int anyo, int presupuesto) {
         Mes mesMayo = new Mes();
         mesMayo.setNombre(nombre);
         mesMayo.setAnyo(anyo);
@@ -387,22 +388,21 @@ public class MainActivity extends AppCompatActivity
         mesDAO.insert(mesMayo);
     }
 
-    public void insertaCategoria(String nombre, int idInv){
+    public void insertaCategoria(String nombre, int idInv) {
         Categoria categoria = new Categoria();
         categoria.setNombre(nombre);
         categoria.setIdInventario(idInv);
         categoriaDAO.insert(categoria);
     }
 
-    public void insertaTag(String nombre, int idCat)
-    {
+    public void insertaTag(String nombre, int idCat) {
         Tag tagMoreno = new Tag();
         tagMoreno.setNombre(nombre);
         tagMoreno.setIdCategoria(idCat);
         tagDAO.insert(tagMoreno);
     }
 
-    public void insertaTicket(String fecha, double precio, int idMes, int idSup){
+    public void insertaTicket(String fecha, double precio, int idMes, int idSup) {
         Ticket ticket = new Ticket();
         ticket.setPrecio(precio);
         ticket.setFecha(fecha);
@@ -412,7 +412,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void insertaProducto(String nombre, double precio, int cantidad, String caducidad, int idInv, int idCat){
+    public void insertaProducto(String nombre, double precio, int cantidad, String caducidad, int idInv, int idCat) {
 
         Producto productoHuevos = new Producto();
         productoHuevos.setNombre(nombre);
@@ -424,7 +424,7 @@ public class MainActivity extends AppCompatActivity
         productoDAO.insert(productoHuevos);
     }
 
-    public void insertaProductoTicket(int idTicket, int idProd, int cantidad){
+    public void insertaProductoTicket(int idTicket, int idProd, int cantidad) {
 
         ProductoTicket productoTicket = new ProductoTicket();
         productoTicket.setIdTicket(idTicket);

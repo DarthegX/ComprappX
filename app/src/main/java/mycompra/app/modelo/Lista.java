@@ -10,10 +10,10 @@ public class Lista {
     private int id;
     private String nombre;
 
-    public Lista(){
+    public Lista() {
     }
 
-    public Lista(int id, String nombre){
+    public Lista(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }

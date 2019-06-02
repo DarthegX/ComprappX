@@ -5,10 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-
-
-import java.util.ArrayList;
-
 import mycompra.app.dbhelper.DBHelper;
 import mycompra.app.iterador.Agregado;
 import mycompra.app.iterador.AgregadoConcreto;
@@ -52,9 +48,9 @@ public class CategoriaDAO {
         db.close();
     }
 
-    public Categoria getCategoriaById(int id){
+    public Categoria getCategoriaById(int id) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 Categoria.KEY_ID + "," +
                 Categoria.KEY_Nombre + "," +
                 Categoria.KEY_ID_Inventario +
@@ -64,7 +60,7 @@ public class CategoriaDAO {
 
         Categoria categoria = new Categoria();
 
-        Cursor cursor = db.rawQuery(selectQuery, new String[] { String.valueOf(id) } );
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(id)});
 
         if (cursor.moveToFirst()) {
             do {
@@ -81,7 +77,7 @@ public class CategoriaDAO {
     public Iterador<Categoria> getCategoriaList() {
         Agregado<Categoria> agregaCat = new AgregadoConcreto<Categoria>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 Categoria.KEY_ID + "," +
                 Categoria.KEY_Nombre + "," +
                 Categoria.KEY_ID_Inventario +
@@ -106,7 +102,7 @@ public class CategoriaDAO {
 
     public Iterador<Categoria> getCategoriaListByInventario(int idInventario) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 Categoria.KEY_ID + "," +
                 Categoria.KEY_Nombre + "," +
                 Categoria.KEY_ID_Inventario +

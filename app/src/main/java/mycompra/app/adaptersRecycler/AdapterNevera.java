@@ -1,11 +1,12 @@
 package mycompra.app.adaptersRecycler;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -26,14 +27,14 @@ public class AdapterNevera extends RecyclerView.Adapter<AdapterNevera.ViewHolder
     @Override
     public ViewHolderNevera onCreateViewHolder(ViewGroup viewGroup, int i) {
 
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.productos_nevera_list, viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.productos_nevera_list, viewGroup, false);
 
         return new ViewHolderNevera(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderNevera viewHolderNevera, int i) {
-        viewHolderNevera.asignarDatos(listCantidad.get(i),listProd.get(i),listCaducidad.get(i));
+        viewHolderNevera.asignarDatos(listCantidad.get(i), listProd.get(i), listCaducidad.get(i));
     }
 
     @Override

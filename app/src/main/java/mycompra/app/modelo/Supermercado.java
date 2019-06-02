@@ -10,10 +10,10 @@ public class Supermercado {
     private int id;
     private String nombre;
 
-    public Supermercado(){
+    public Supermercado() {
     }
 
-    public Supermercado(int id, String nombre){
+    public Supermercado(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }

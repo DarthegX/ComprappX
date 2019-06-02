@@ -5,9 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-
-import java.util.ArrayList;
-
 import mycompra.app.dbhelper.DBHelper;
 import mycompra.app.iterador.Agregado;
 import mycompra.app.iterador.AgregadoConcreto;
@@ -53,9 +50,9 @@ public class ProductoTicketDAO {
         db.close();
     }
 
-    public ProductoTicket getProductoTicketById(int id){
+    public ProductoTicket getProductoTicketById(int id) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 ProductoTicket.KEY_ID_Producto + "," +
                 ProductoTicket.KEY_ID_Ticket + "," +
                 ProductoTicket.KEY_Cantidad +
@@ -65,7 +62,7 @@ public class ProductoTicketDAO {
 
         ProductoTicket productoTicket = new ProductoTicket();
 
-        Cursor cursor = db.rawQuery(selectQuery, new String[] { String.valueOf(id) } );
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(id)});
 
         if (cursor.moveToFirst()) {
             do {
@@ -81,7 +78,7 @@ public class ProductoTicketDAO {
 
     public Iterador<ProductoTicket> getProductoTicketList() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 ProductoTicket.KEY_ID_Producto + "," +
                 ProductoTicket.KEY_ID_Ticket + "," +
                 ProductoTicket.KEY_Cantidad +

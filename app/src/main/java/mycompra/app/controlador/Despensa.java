@@ -2,16 +2,18 @@ package mycompra.app.controlador;
 
 
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -99,7 +101,7 @@ public class Despensa extends Fragment {
         return view;
     }
 
-    private void llenarLista(){
+    private void llenarLista() {
         ProductoDAO productoDAO = new ProductoDAO(getActivity().getApplicationContext());
 
         listaProductos = productoDAO.getProductoListDespensa();
@@ -108,7 +110,7 @@ public class Despensa extends Fragment {
         listProdD = new ArrayList<String>();
         listCaducidadD = new ArrayList<String>();
 
-        while (listaProductos.hasNext()){
+        while (listaProductos.hasNext()) {
             listCantidadD.add(String.valueOf(listaProductos.actual().getCantidad()));
             listProdD.add(listaProductos.actual().getNombre());
             listCaducidadD.add(listaProductos.actual().getCaducidad());

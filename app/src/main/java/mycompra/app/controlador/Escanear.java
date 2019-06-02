@@ -3,11 +3,12 @@ package mycompra.app.controlador;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import androidx.fragment.app.Fragment;
 
 import mycompra.app.R;
 import mycompra.app.TextScanner;
@@ -28,9 +29,9 @@ public class Escanear extends Fragment {
                              Bundle savedInstanceState) {
         View vista = inflater.inflate(R.layout.fragment_escanear, container, false);
 
-        Button btnMercadona = (Button) vista.findViewById(R.id.btnMercadona);
-        Button btnConsum = (Button) vista.findViewById(R.id.btnConsum);
-        Button btnOtros = (Button) vista.findViewById(R.id.btnOtros);
+        Button btnMercadona = vista.findViewById(R.id.btnMercadona);
+        Button btnConsum = vista.findViewById(R.id.btnConsum);
+        Button btnOtros = vista.findViewById(R.id.btnOtros);
 
         btnMercadona.setOnClickListener(new View.OnClickListener() {
             @Override

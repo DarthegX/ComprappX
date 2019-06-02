@@ -16,10 +16,10 @@ public class Ticket {
     private int idSupermercado;
     private int idMes;
 
-    public Ticket(){
+    public Ticket() {
     }
 
-    public Ticket(int id, double precio, String fecha, int idSupermercado, int idMes){
+    public Ticket(int id, double precio, String fecha, int idSupermercado, int idMes) {
         this.id = id;
         this.precio = precio;
         this.fecha = fecha;

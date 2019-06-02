@@ -2,14 +2,15 @@ package mycompra.app.controlador;
 
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import mycompra.app.R;
 import mycompra.app.dao.ProductoDAO;
@@ -44,7 +45,7 @@ public class NuevoProductoLista extends Fragment {
         productoListaDAO = new ProductoListaDAO(getActivity().getApplicationContext());
         idLista = getArguments().getString("idLista");
 
-        Button btnAnyadir = (Button) view.findViewById(R.id.btnAnyadirNuevoProdLista);
+        Button btnAnyadir = view.findViewById(R.id.btnAnyadirNuevoProdLista);
         btnAnyadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,12 +60,12 @@ public class NuevoProductoLista extends Fragment {
                     editTextNombreProducto.setText("");
                     Toast.makeText(getActivity().getApplicationContext(), "Producto añadido a la lista correctamente", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getActivity().getApplicationContext(),"Debes rellenar todos los campos correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "Debes rellenar todos los campos correctamente", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-        Button btnAtras = (Button) view.findViewById(R.id.btnAtrasNuevoProdLista);
+        Button btnAtras = view.findViewById(R.id.btnAtrasNuevoProdLista);
         btnAtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

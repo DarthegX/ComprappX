@@ -9,10 +9,10 @@ public class ProductoLista {
     private int idProducto;
     private int idLista;
 
-    public ProductoLista(){
+    public ProductoLista() {
     }
 
-    public ProductoLista(int idProducto, int idLista){
+    public ProductoLista(int idProducto, int idLista) {
         this.idProducto = idProducto;
         this.idLista = idLista;
     }

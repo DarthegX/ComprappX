@@ -1,5 +1,5 @@
 package mycompra.app.iterador;
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class IteradorConcreto<T> implements Iterador {
@@ -20,7 +20,7 @@ public class IteradorConcreto<T> implements Iterador {
     public T next() {
         T object = null;
         if (hasNext()) {
-            object =  list.get(cursor++);
+            object = list.get(cursor++);
         }
         return object;
     }
@@ -29,7 +29,7 @@ public class IteradorConcreto<T> implements Iterador {
     public Object getPrevio() {
         T object = null;
         if (cursor > 0) {
-            object =  list.get(--cursor);
+            object = list.get(--cursor);
             cursor++;
         }
         return object;
@@ -39,8 +39,8 @@ public class IteradorConcreto<T> implements Iterador {
     public T previo() {
         T object = null;
         if (cursor > 0) {
-            object =  list.get(--cursor);
-            }
+            object = list.get(--cursor);
+        }
         return object;
     }
 
@@ -48,7 +48,7 @@ public class IteradorConcreto<T> implements Iterador {
     public T actual() {
         T object = null;
         if (hasNext()) {
-            object =  list.get(cursor);
+            object = list.get(cursor);
         }
         return object;
     }

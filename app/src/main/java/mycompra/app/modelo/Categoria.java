@@ -12,10 +12,10 @@ public class Categoria {
     private String nombre;
     private int idInventario;
 
-    public Categoria(){
+    public Categoria() {
     }
 
-    public Categoria(int id, String nombre, int idInventario){
+    public Categoria(int id, String nombre, int idInventario) {
         this.id = id;
         this.nombre = nombre;
         this.idInventario = idInventario;

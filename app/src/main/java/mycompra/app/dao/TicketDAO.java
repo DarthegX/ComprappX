@@ -5,9 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-
-import java.util.ArrayList;
-
 import mycompra.app.dbhelper.DBHelper;
 import mycompra.app.iterador.Agregado;
 import mycompra.app.iterador.AgregadoConcreto;
@@ -55,9 +52,9 @@ public class TicketDAO {
         db.close();
     }
 
-    public Ticket getTicketById(int id){
+    public Ticket getTicketById(int id) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 Ticket.KEY_ID + "," +
                 Ticket.KEY_Precio + "," +
                 Ticket.KEY_Fecha + "," +
@@ -69,7 +66,7 @@ public class TicketDAO {
 
         Ticket ticket = new Ticket();
 
-        Cursor cursor = db.rawQuery(selectQuery, new String[] { String.valueOf(id) } );
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(id)});
 
         if (cursor.moveToFirst()) {
             do {
@@ -87,7 +84,7 @@ public class TicketDAO {
 
     public Iterador<Ticket> getTicketList() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 Ticket.KEY_ID + "," +
                 Ticket.KEY_Precio + "," +
                 Ticket.KEY_Fecha + "," +
@@ -110,7 +107,7 @@ public class TicketDAO {
                 agregaTick.add(ticket);
             } while (cursor.moveToNext());
         }
-        Iterador<Ticket> iteraTick= agregaTick.iterador();
+        Iterador<Ticket> iteraTick = agregaTick.iterador();
         cursor.close();
         db.close();
         return iteraTick;
@@ -118,7 +115,7 @@ public class TicketDAO {
 
     public Iterador<Ticket> getTicketListByMes(int id) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 Ticket.KEY_ID + "," +
                 Ticket.KEY_Precio + "," +
                 Ticket.KEY_Fecha + "," +
@@ -129,7 +126,7 @@ public class TicketDAO {
 
         Agregado<Ticket> agregaTick = new AgregadoConcreto<Ticket>();
 
-        Cursor cursor = db.rawQuery(selectQuery, new String[] { String.valueOf(id) });
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(id)});
 
         if (cursor.moveToFirst()) {
             do {
@@ -142,15 +139,15 @@ public class TicketDAO {
                 agregaTick.add(ticket);
             } while (cursor.moveToNext());
         }
-        Iterador<Ticket> iteraTick= agregaTick.iterador();
+        Iterador<Ticket> iteraTick = agregaTick.iterador();
         cursor.close();
         db.close();
         return iteraTick;
     }
 
-    public Ticket getLastTicket(){
+    public Ticket getLastTicket() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 Ticket.KEY_ID + "," +
                 Ticket.KEY_Precio + "," +
                 Ticket.KEY_Fecha + "," +
@@ -161,7 +158,7 @@ public class TicketDAO {
 
         Ticket ticket = new Ticket();
 
-        Cursor cursor = db.rawQuery(selectQuery, null );
+        Cursor cursor = db.rawQuery(selectQuery, null);
 
         if (cursor.moveToFirst()) {
             do {

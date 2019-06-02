@@ -2,16 +2,18 @@ package mycompra.app.controlador;
 
 
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -46,12 +48,12 @@ public class Productos extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_productos, container, false);
-        
+
         recyclerView = view.findViewById(R.id.RecyclerIdProd);
 
         llenarListaProd();
 
-        AdapterProductos adapter = new AdapterProductos(listDatosProd,listProduct,listCatProd);
+        AdapterProductos adapter = new AdapterProductos(listDatosProd, listProduct, listCatProd);
 
         recyclerView.setAdapter(adapter);
 
@@ -112,7 +114,7 @@ public class Productos extends Fragment {
         listProduct = new ArrayList<String>();
         listCatProd = new ArrayList<String>();
 
-        while (listaProductos.hasNext()){
+        while (listaProductos.hasNext()) {
             if (listaProductos.actual().getIdInventario() != 0) {
                 listDatosProd.add(String.valueOf(listaProductos.actual().getCantidad()));
                 listProduct.add(listaProductos.actual().getNombre());

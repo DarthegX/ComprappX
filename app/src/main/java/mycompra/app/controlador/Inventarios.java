@@ -2,12 +2,13 @@ package mycompra.app.controlador;
 
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import mycompra.app.R;
 
@@ -29,7 +30,7 @@ public class Inventarios extends Fragment {
 
         View vista = inflater.inflate(R.layout.fragment_inventario, container, false);
         getActivity().setTitle("Inventarios");
-        Button btnNevera = (Button) vista.findViewById(R.id.buttonNevera);
+        Button btnNevera = vista.findViewById(R.id.buttonNevera);
         btnNevera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,7 +40,7 @@ public class Inventarios extends Fragment {
             }
         });
 
-        Button btnCongelador = (Button) vista.findViewById(R.id.buttonCongelador);
+        Button btnCongelador = vista.findViewById(R.id.buttonCongelador);
         btnCongelador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,7 +50,7 @@ public class Inventarios extends Fragment {
             }
         });
 
-        Button btnDespensa = (Button) vista.findViewById(R.id.buttonDespensa);
+        Button btnDespensa = vista.findViewById(R.id.buttonDespensa);
         btnDespensa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,11 +1,12 @@
 package mycompra.app.adaptersRecycler;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -26,13 +27,13 @@ public class AdapterCongelador extends RecyclerView.Adapter<AdapterCongelador.Vi
     @Override
     public ViewHolderCongelador onCreateViewHolder(ViewGroup viewGroup, int i) {
 
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.productos_congelador_list, viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.productos_congelador_list, viewGroup, false);
         return new ViewHolderCongelador(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderCongelador viewHolderCongelador, int i) {
-        viewHolderCongelador.asignarDatos(listCantidadC.get(i),listProdC.get(i),listCaducidadC.get(i));
+        viewHolderCongelador.asignarDatos(listCantidadC.get(i), listProdC.get(i), listCaducidadC.get(i));
     }
 
     @Override

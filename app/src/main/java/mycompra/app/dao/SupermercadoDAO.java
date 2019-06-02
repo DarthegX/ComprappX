@@ -5,9 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-
-import java.util.ArrayList;
-
 import mycompra.app.dbhelper.DBHelper;
 import mycompra.app.iterador.Agregado;
 import mycompra.app.iterador.AgregadoConcreto;
@@ -49,9 +46,9 @@ public class SupermercadoDAO {
         db.close();
     }
 
-    public Supermercado getSupermercadoById(int id){
+    public Supermercado getSupermercadoById(int id) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 Supermercado.KEY_ID + "," +
                 Supermercado.KEY_Nombre +
                 " FROM " + Supermercado.TABLE
@@ -60,7 +57,7 @@ public class SupermercadoDAO {
 
         Supermercado supermercado = new Supermercado();
 
-        Cursor cursor = db.rawQuery(selectQuery, new String[] { String.valueOf(id) } );
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(id)});
 
         if (cursor.moveToFirst()) {
             do {
@@ -75,7 +72,7 @@ public class SupermercadoDAO {
 
     public Iterador<Supermercado> getSupermercadoList() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 Supermercado.KEY_ID + "," +
                 Supermercado.KEY_Nombre +
                 " FROM " + Supermercado.TABLE;

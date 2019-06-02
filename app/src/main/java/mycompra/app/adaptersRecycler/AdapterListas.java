@@ -1,11 +1,12 @@
 package mycompra.app.adaptersRecycler;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public class AdapterListas extends RecyclerView.Adapter<AdapterListas.ViewHolder
     @NonNull
     @Override
     public ViewHolderListas onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.listas_item,null,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.listas_item, null, false);
         return new ViewHolderListas(view);
     }
 

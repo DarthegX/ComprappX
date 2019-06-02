@@ -10,10 +10,10 @@ public class Inventario {
     private int id;
     private String nombre;
 
-    public Inventario(){
+    public Inventario() {
     }
 
-    public Inventario(int id, String nombre){
+    public Inventario(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }

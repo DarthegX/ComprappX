@@ -5,9 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-
-import java.util.ArrayList;
-
 import mycompra.app.dbhelper.DBHelper;
 import mycompra.app.iterador.Agregado;
 import mycompra.app.iterador.AgregadoConcreto;
@@ -52,9 +49,9 @@ public class ProductoListaDAO {
         db.close();
     }
 
-    public ProductoLista getProductoListaById(int id){
+    public ProductoLista getProductoListaById(int id) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 ProductoLista.KEY_ID_Producto + "," +
                 ProductoLista.KEY_ID_Lista +
                 " FROM " + ProductoLista.TABLE
@@ -63,7 +60,7 @@ public class ProductoListaDAO {
 
         ProductoLista productoLista = new ProductoLista();
 
-        Cursor cursor = db.rawQuery(selectQuery, new String[] { String.valueOf(id) } );
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(id)});
 
         if (cursor.moveToFirst()) {
             do {
@@ -78,13 +75,13 @@ public class ProductoListaDAO {
 
     public Iterador<ProductoLista> getProductoListaList() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 ProductoLista.KEY_ID_Producto + "," +
                 ProductoLista.KEY_ID_Lista +
                 " FROM " + ProductoLista.TABLE;
 
 
-        Agregado <ProductoLista> agregaPL = new AgregadoConcreto<ProductoLista>();
+        Agregado<ProductoLista> agregaPL = new AgregadoConcreto<ProductoLista>();
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -104,7 +101,7 @@ public class ProductoListaDAO {
 
     public Iterador<Producto> getProductoListFromListaHabitual(int id) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 Producto.KEY_Nombre +
                 " FROM " + Producto.TABLE + ", " + ProductoLista.TABLE
                 + " WHERE " +
@@ -112,9 +109,9 @@ public class ProductoListaDAO {
                 ProductoLista.KEY_ID_Producto + " = " + Producto.KEY_ID;
 
 
-        Agregado <Producto> agregaPL = new AgregadoConcreto<Producto>();
+        Agregado<Producto> agregaPL = new AgregadoConcreto<Producto>();
 
-        Cursor cursor = db.rawQuery(selectQuery, new String[] { String.valueOf(id) });
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(id)});
 
         if (cursor.moveToFirst()) {
             do {

@@ -3,10 +3,6 @@ package mycompra.app.controlador;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +13,9 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.text.NumberFormat;
 import java.util.Calendar;
@@ -38,7 +37,7 @@ import mycompra.app.modelo.Ticket;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NuevoTicket extends Fragment implements AdapterView.OnItemSelectedListener, DatePickerDialog.OnDateSetListener{
+public class NuevoTicket extends Fragment implements AdapterView.OnItemSelectedListener, DatePickerDialog.OnDateSetListener {
 
     private EditText editTextNombre;
     private EditText editTextPrecio;
@@ -252,8 +251,8 @@ public class NuevoTicket extends Fragment implements AdapterView.OnItemSelectedL
             @Override
             public void onClick(View v) {
                 if (!editTextNombre.getText().toString().equalsIgnoreCase("") && !editTextPrecio.getText().toString().equalsIgnoreCase("")
-                    && !editTextCantidad.getText().toString().equalsIgnoreCase("") && !editTextCantidad.getText().toString().equalsIgnoreCase("0")
-                    && !editTextCaducidad.getText().toString().equalsIgnoreCase("")) {
+                        && !editTextCantidad.getText().toString().equalsIgnoreCase("") && !editTextCantidad.getText().toString().equalsIgnoreCase("0")
+                        && !editTextCaducidad.getText().toString().equalsIgnoreCase("")) {
 
                     Producto producto = new Producto();
                     producto.setNombre(String.valueOf(editTextNombre.getText()));
@@ -271,7 +270,7 @@ public class NuevoTicket extends Fragment implements AdapterView.OnItemSelectedL
                     editTextCaducidad.setText("");
                     Toast.makeText(getActivity().getApplicationContext(), "Producto añadido correctamente", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getActivity().getApplicationContext(),"Debes rellenar todos los campos correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "Debes rellenar todos los campos correctamente", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -2,12 +2,13 @@ package mycompra.app.controlador;
 
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import mycompra.app.R;
 
@@ -29,7 +30,7 @@ public class Principal extends Fragment {
         // Inflate the layout for this fragment
         View vista = inflater.inflate(R.layout.fragment_principal, container, false);
 
-        Button btnListasPrincipal = (Button) vista.findViewById(R.id.btnListPrincipalId);
+        Button btnListasPrincipal = vista.findViewById(R.id.btnListPrincipalId);
         btnListasPrincipal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,7 +40,7 @@ public class Principal extends Fragment {
             }
         });
 
-        Button btnEscanerPrincial = (Button) vista.findViewById(R.id.btnEscPrincId);
+        Button btnEscanerPrincial = vista.findViewById(R.id.btnEscPrincId);
         btnEscanerPrincial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,7 +50,7 @@ public class Principal extends Fragment {
             }
         });
 
-        Button btnInventarioPrincipal = (Button) vista.findViewById(R.id.btnInventPrincId);
+        Button btnInventarioPrincipal = vista.findViewById(R.id.btnInventPrincId);
         btnInventarioPrincipal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -5,9 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-
-import java.util.ArrayList;
-
 import mycompra.app.dbhelper.DBHelper;
 import mycompra.app.iterador.Agregado;
 import mycompra.app.iterador.AgregadoConcreto;
@@ -59,9 +56,9 @@ public class ProductoDAO {
         db.close();
     }
 
-    public Producto getProductoById(int id){
+    public Producto getProductoById(int id) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 Producto.KEY_ID + "," +
                 Producto.KEY_Nombre + "," +
                 Producto.KEY_Precio + "," +
@@ -75,7 +72,7 @@ public class ProductoDAO {
 
         Producto producto = new Producto();
 
-        Cursor cursor = db.rawQuery(selectQuery, new String[] { String.valueOf(id) } );
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(id)});
 
         if (cursor.moveToFirst()) {
             do {
@@ -95,7 +92,7 @@ public class ProductoDAO {
 
     public Iterador<Producto> getProductoList() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 Producto.KEY_ID + "," +
                 Producto.KEY_Nombre + "," +
                 Producto.KEY_Precio + "," +
@@ -122,7 +119,7 @@ public class ProductoDAO {
                 agregaProd.add(producto);
             } while (cursor.moveToNext());
         }
-       Iterador<Producto> productoList =  agregaProd.iterador();
+        Iterador<Producto> productoList = agregaProd.iterador();
         cursor.close();
         db.close();
         return productoList;
@@ -130,7 +127,7 @@ public class ProductoDAO {
 
     public Iterador<Producto> getProductoListNevera() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 Producto.KEY_ID + "," +
                 Producto.KEY_Nombre + "," +
                 Producto.KEY_Precio + "," +
@@ -158,7 +155,7 @@ public class ProductoDAO {
                 agregaProd.add(producto);
             } while (cursor.moveToNext());
         }
-        Iterador<Producto> productoList =  agregaProd.iterador();
+        Iterador<Producto> productoList = agregaProd.iterador();
         cursor.close();
         db.close();
         return productoList;
@@ -166,7 +163,7 @@ public class ProductoDAO {
 
     public Iterador<Producto> getProductoListDespensa() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 Producto.KEY_ID + "," +
                 Producto.KEY_Nombre + "," +
                 Producto.KEY_Precio + "," +
@@ -195,7 +192,7 @@ public class ProductoDAO {
             } while (cursor.moveToNext());
         }
 
-        Iterador<Producto> productoList =  agregaProd.iterador();
+        Iterador<Producto> productoList = agregaProd.iterador();
         cursor.close();
         db.close();
         return productoList;
@@ -203,7 +200,7 @@ public class ProductoDAO {
 
     public Iterador<Producto> getProductoListCongelador() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 Producto.KEY_ID + "," +
                 Producto.KEY_Nombre + "," +
                 Producto.KEY_Precio + "," +
@@ -231,15 +228,15 @@ public class ProductoDAO {
                 agregaProd.add(producto);
             } while (cursor.moveToNext());
         }
-        Iterador<Producto> productoList =  agregaProd.iterador();
+        Iterador<Producto> productoList = agregaProd.iterador();
         cursor.close();
         db.close();
         return productoList;
     }
 
-    public Producto getLastProducto(){
+    public Producto getLastProducto() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 Producto.KEY_ID + "," +
                 Producto.KEY_Nombre + "," +
                 Producto.KEY_Precio + "," +
@@ -252,7 +249,7 @@ public class ProductoDAO {
 
         Producto producto = new Producto();
 
-        Cursor cursor = db.rawQuery(selectQuery, null );
+        Cursor cursor = db.rawQuery(selectQuery, null);
 
         if (cursor.moveToFirst()) {
             do {

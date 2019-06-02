@@ -5,9 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-
-import java.util.ArrayList;
-
 import mycompra.app.dbhelper.DBHelper;
 import mycompra.app.iterador.Agregado;
 import mycompra.app.iterador.AgregadoConcreto;
@@ -50,9 +47,9 @@ public class TagDAO {
         db.close();
     }
 
-    public Tag getTagById(int id){
+    public Tag getTagById(int id) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 Tag.KEY_ID + "," +
                 Tag.KEY_Nombre + "," +
                 Tag.KEY_ID_Categoria +
@@ -62,7 +59,7 @@ public class TagDAO {
 
         Tag tag = new Tag();
 
-        Cursor cursor = db.rawQuery(selectQuery, new String[] { String.valueOf(id) } );
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(id)});
 
         if (cursor.moveToFirst()) {
             do {
@@ -78,7 +75,7 @@ public class TagDAO {
 
     public Iterador<Tag> getTagList() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 Tag.KEY_ID + "," +
                 Tag.KEY_Nombre + "," +
                 Tag.KEY_ID_Categoria +
@@ -104,7 +101,7 @@ public class TagDAO {
 
     public Iterador<Tag> getTagListByCategoria(int idCategoria) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery =  "SELECT  " +
+        String selectQuery = "SELECT  " +
                 Tag.KEY_ID + "," +
                 Tag.KEY_Nombre + "," +
                 Tag.KEY_ID_Categoria +
