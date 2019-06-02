@@ -14,6 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import mycompra.app.controlador.Configuracion;
 import mycompra.app.controlador.Escanear;
@@ -22,6 +26,7 @@ import mycompra.app.controlador.Inventarios;
 import mycompra.app.controlador.Listas;
 import mycompra.app.controlador.Principal;
 import mycompra.app.controlador.Productos;
+import mycompra.app.controlador.TicketsDelMes;
 import mycompra.app.dao.CategoriaDAO;
 import mycompra.app.dao.InventarioDAO;
 import mycompra.app.dao.ListaDAO;
@@ -76,6 +81,9 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         setTitle("Principal");
+
+        comprobarExisteMesActual();
+
         Principal fragment = new Principal();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame, fragment, "Principal");
@@ -140,6 +148,12 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame, fragment, "Listas");
             fragmentTransaction.commit();
+        } else if (id == R.id.nav_tickets) {
+            setTitle("Tickets");
+            TicketsDelMes fragment = new TicketsDelMes();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frame, fragment, "Tickets");
+            fragmentTransaction.commit();
         } else if (id == R.id.nav_infoMensual) {
             setTitle("InfoMensual");
             InfoMensual fragment = new InfoMensual();
@@ -158,7 +172,7 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame, fragment, "Principal");
             fragmentTransaction.commit();
-        }else if (id == R.id.nav_configuracion) {
+        } else if (id == R.id.nav_configuracion) {
             setTitle("Configuracion");
             Configuracion fragment = new Configuracion();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -172,10 +186,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void insertsInventario() {
-       insertaInventario("Despensa");
-       insertaInventario("Nevera");
-       insertaInventario("Congelador");
-
+        insertaInventario("Nevera");
+        insertaInventario("Congelador");
+        insertaInventario("Despensa");
     }
 
     public void insertsLista() {
@@ -419,5 +432,77 @@ public class MainActivity extends AppCompatActivity
         productoTicket.setIdProducto(idProd);
         productoTicket.setCantidad(cantidad);
         productoTicketDAO.insert(productoTicket);
+    }
+
+    public void comprobarExisteMesActual() {
+        ArrayList<Mes> listaMes;
+        Mes mes = null;
+        mesDAO = new MesDAO(this);
+
+        listaMes = mesDAO.getMesList();
+
+        Date date = Calendar.getInstance().getTime();
+        SimpleDateFormat mdformat = new SimpleDateFormat("dd/MM/YYYY");
+        String fechaActual = mdformat.format(date);
+
+        String[] partesFecha = fechaActual.split("/");
+        String mesString = partesFecha[1];
+        String anyo = partesFecha[2];
+
+        String nombreMes = "";
+
+        switch (Integer.parseInt(mesString)) {
+            case 1:
+                nombreMes = "enero";
+                break;
+            case 2:
+                nombreMes = "febrero";
+                break;
+            case 3:
+                nombreMes = "marzo";
+                break;
+            case 4:
+                nombreMes = "abril";
+                break;
+            case 5:
+                nombreMes = "mayo";
+                break;
+            case 6:
+                nombreMes = "junio";
+                break;
+            case 7:
+                nombreMes = "julio";
+                break;
+            case 8:
+                nombreMes = "agosto";
+                break;
+            case 9:
+                nombreMes = "septiembre";
+                break;
+            case 10:
+                nombreMes = "octubre";
+                break;
+            case 11:
+                nombreMes = "noviembre";
+                break;
+            case 12:
+                nombreMes = "diciembre";
+                break;
+        }
+
+        for (int i = 0; i < listaMes.size(); i++) {
+            if (Integer.parseInt(anyo) == listaMes.get(i).getAnyo() && listaMes.get(i).getNombre().equalsIgnoreCase(nombreMes)) {
+                mes = listaMes.get(i);
+                break;
+            }
+        }
+
+        if (mes == null) {
+            mes = new Mes();
+            mes.setPresupuesto(0);
+            mes.setNombre(nombreMes);
+            mes.setAnyo(Integer.parseInt(anyo));
+            mesDAO.insert(mes);
+        }
     }
 }

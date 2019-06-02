@@ -3,6 +3,7 @@ package mycompra.app.controlador;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -79,7 +80,9 @@ public class TicketsDelMes extends Fragment {
         btnAnyadirTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.frame, new NuevoTicket()).addToBackStack(null);
+                ft.commit();
             }
         });
 
