@@ -108,9 +108,10 @@ public class Nevera extends Fragment {
         listCaducidad = new ArrayList<String>();
 
         while(listaProductos.hasNext()){
-            listCantidad.add(String.valueOf(listaProductos.next().getCantidad()));
-            listProd.add(listaProductos.next().getNombre());
-            listCaducidad.add(listaProductos.next().getCaducidad());
+            listCantidad.add(String.valueOf(listaProductos.actual().getCantidad()));
+            listProd.add(listaProductos.actual().getNombre());
+            listCaducidad.add(listaProductos.actual().getCaducidad());
+            listaProductos.avanza();
         }
     }
 }

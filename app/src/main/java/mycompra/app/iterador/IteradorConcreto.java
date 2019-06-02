@@ -26,6 +26,25 @@ public class IteradorConcreto<T> implements Iterador {
     }
 
     @Override
+    public Object getPrevio() {
+        T object = null;
+        if (cursor > 0) {
+            object =  list.get(--cursor);
+            cursor++;
+        }
+        return object;
+    }
+
+    @Override
+    public T previo() {
+        T object = null;
+        if (cursor > 0) {
+            object =  list.get(--cursor);
+            }
+        return object;
+    }
+
+    @Override
     public T actual() {
         T object = null;
         if (hasNext()) {
@@ -37,5 +56,15 @@ public class IteradorConcreto<T> implements Iterador {
     @Override
     public T get(int i) {
         return list.get(i);
+    }
+
+    @Override
+    public void inicio() {
+        cursor = 0;
+    }
+
+    @Override
+    public void avanza() {
+        cursor++;
     }
 }

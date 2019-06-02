@@ -30,6 +30,9 @@ import mycompra.app.dao.MesDAO;
 import mycompra.app.dao.ProductoDAO;
 import mycompra.app.dao.ProductoTicketDAO;
 import mycompra.app.dao.TicketDAO;
+import mycompra.app.iterador.Agregado;
+import mycompra.app.iterador.AgregadoConcreto;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.Mes;
 import mycompra.app.modelo.Producto;
 import mycompra.app.modelo.ProductoTicket;
@@ -60,9 +63,9 @@ public class NuevoTicket extends Fragment implements AdapterView.OnItemSelectedL
     private int idMes = 0;
     private int anyoTicket;
     private int mesTicket;
-    private ArrayList<Producto> listaProductosAnyadiblesTicket = new ArrayList<>();
+    private Agregado<Producto> agregaProd = new AgregadoConcreto<>();
     private NumberFormat nf;
-    private ArrayList<Mes> listaMes;
+    private Iterador<Mes> listaMes;
     private MesDAO mesDAO;
     private ProductoDAO productoDAO;
     private boolean pulsadoCaducidad = false;
@@ -143,15 +146,19 @@ public class NuevoTicket extends Fragment implements AdapterView.OnItemSelectedL
         btnAnyadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!editTextFecha.getText().toString().equalsIgnoreCase("") && listaProductosAnyadiblesTicket.size() > 0) {
+                Iterador<Producto> iteraProd = agregaProd.iterador();
+
+                if (!editTextFecha.getText().toString().equalsIgnoreCase("") && iteraProd.hasNext()) {
 
                     TicketDAO ticketDAO = new TicketDAO(getActivity().getApplicationContext());
                     Ticket ticket = new Ticket();
                     ticket.setFecha(fechaTicket);
                     double precioTotal = 0;
-                    for (int i = 0; i < listaProductosAnyadiblesTicket.size(); i++) {
-                        precioTotal += listaProductosAnyadiblesTicket.get(i).getPrecio();
+                    while (iteraProd.hasNext()) {
+                        precioTotal += iteraProd.next().getPrecio();
                     }
+                    iteraProd.inicio();
+
                     ticket.setPrecio(Double.parseDouble(nf.format(precioTotal)));
                     ticket.setIdSupermercado(spinnerSupermercado.getSelectedItemPosition() + 1);
                     mesDAO = new MesDAO(getContext().getApplicationContext());
@@ -195,12 +202,13 @@ public class NuevoTicket extends Fragment implements AdapterView.OnItemSelectedL
                             nombreMes = "diciembre";
                             break;
                     }
-                    for (int i = 0; i < listaMes.size(); i++) {
-                        if (anyoTicket == listaMes.get(i).getAnyo() && listaMes.get(i).getNombre().equalsIgnoreCase(nombreMes)) {
-                            mes = listaMes.get(i);
+                    while (listaMes.hasNext()) {
+                        if (anyoTicket == listaMes.actual().getAnyo() && listaMes.actual().getNombre().equalsIgnoreCase(nombreMes)) {
+                            mes = listaMes.actual();
                             idMes = mes.getId();
                             break;
                         }
+                        listaMes.avanza();
                     }
                     if (mes == null) {
                         Mes mes = new Mes();
@@ -215,19 +223,20 @@ public class NuevoTicket extends Fragment implements AdapterView.OnItemSelectedL
                     ProductoDAO productoDAO = new ProductoDAO(getActivity().getApplicationContext());
                     ProductoTicketDAO productoTicketDAO = new ProductoTicketDAO(getActivity().getApplicationContext());
 
-                    for (int i = 0; i < listaProductosAnyadiblesTicket.size(); i++) {
+                    while (iteraProd.hasNext()) {
                         ProductoTicket productoTicket = new ProductoTicket();
-                        int idProducto = productoDAO.insert(listaProductosAnyadiblesTicket.get(i));
+                        int idProducto = productoDAO.insert(iteraProd.actual());
                         productoTicket.setIdTicket(idTicket);
                         productoTicket.setIdProducto(idProducto);
-                        productoTicket.setCantidad(listaProductosAnyadiblesTicket.get(i).getCantidad());
+                        productoTicket.setCantidad(iteraProd.actual().getCantidad());
                         productoTicketDAO.insert(productoTicket);
+                        iteraProd.avanza();
                     }
                     FragmentTransaction ft = getFragmentManager().beginTransaction();
                     ft.replace(R.id.frame, new TicketsDelMes()).addToBackStack(null);
                     ft.commit();
                 } else {
-                    if (listaProductosAnyadiblesTicket.size() == 0) {
+                    if (iteraProd.hasNext()) {
                         Toast.makeText(getActivity().getApplicationContext(), "No hay productos en el ticket", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getActivity().getApplicationContext(), "Debes rellenar la fecha del ticket", Toast.LENGTH_SHORT).show();
@@ -237,6 +246,8 @@ public class NuevoTicket extends Fragment implements AdapterView.OnItemSelectedL
         });
 
         productoDAO = new ProductoDAO(getActivity().getApplicationContext());
+
+
         btnAnyadirProducto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -253,7 +264,7 @@ public class NuevoTicket extends Fragment implements AdapterView.OnItemSelectedL
                     producto.setCaducidad(fecha);
                     producto.setIdCategoria(spinnerCategoria.getSelectedItemPosition() + 1);
                     producto.setIdInventario(spinnerInventario.getSelectedItemPosition() + 1);
-                    listaProductosAnyadiblesTicket.add(producto);
+                    agregaProd.add(producto);
                     editTextNombre.setText("");
                     editTextPrecio.setText("");
                     editTextCantidad.setText("");

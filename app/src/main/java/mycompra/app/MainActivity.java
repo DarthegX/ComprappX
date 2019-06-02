@@ -38,6 +38,7 @@ import mycompra.app.dao.SupermercadoDAO;
 import mycompra.app.dao.TagDAO;
 import mycompra.app.dao.TicketDAO;
 import mycompra.app.dbhelper.DBHelper;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.Categoria;
 import mycompra.app.modelo.Inventario;
 import mycompra.app.modelo.Lista;
@@ -435,7 +436,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void comprobarExisteMesActual() {
-        ArrayList<Mes> listaMes;
+        Iterador<Mes> listaMes;
         Mes mes = null;
         mesDAO = new MesDAO(this);
 
@@ -490,11 +491,12 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
 
-        for (int i = 0; i < listaMes.size(); i++) {
-            if (Integer.parseInt(anyo) == listaMes.get(i).getAnyo() && listaMes.get(i).getNombre().equalsIgnoreCase(nombreMes)) {
-                mes = listaMes.get(i);
+        while (listaMes.hasNext()) {
+            if (Integer.parseInt(anyo) == listaMes.actual().getAnyo() && listaMes.actual().getNombre().equalsIgnoreCase(nombreMes)) {
+                mes = listaMes.actual();
                 break;
             }
+            listaMes.avanza();
         }
 
         if (mes == null) {

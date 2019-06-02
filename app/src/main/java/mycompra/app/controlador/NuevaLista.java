@@ -17,6 +17,9 @@ import mycompra.app.R;
 import mycompra.app.dao.ListaDAO;
 import mycompra.app.dao.ProductoDAO;
 import mycompra.app.dao.ProductoListaDAO;
+import mycompra.app.iterador.Agregado;
+import mycompra.app.iterador.AgregadoConcreto;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.Lista;
 import mycompra.app.modelo.Producto;
 import mycompra.app.modelo.ProductoLista;
@@ -31,7 +34,7 @@ public class NuevaLista extends Fragment {
     private Button btnAtras;
     private EditText editTextNombreLista;
     private EditText editTextNombreProducto;
-    private ArrayList<Producto> listaProductosAnyadiblesLista = new ArrayList<>();
+    private Agregado<Producto> agregaProd = new AgregadoConcreto<Producto>();
 
     public NuevaLista() {
         // Required empty public constructor
@@ -51,7 +54,9 @@ public class NuevaLista extends Fragment {
         btnAnyadirLista.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!editTextNombreLista.getText().toString().equalsIgnoreCase("") && listaProductosAnyadiblesLista.size() > 0) {
+                Iterador<Producto> iteraProd = agregaProd.iterador();
+
+                if (!editTextNombreLista.getText().toString().equalsIgnoreCase("") && iteraProd.hasNext()) {
 
                     ListaDAO listaDAO = new ListaDAO(getActivity().getApplicationContext());
                     Lista lista = new Lista();
@@ -61,9 +66,9 @@ public class NuevaLista extends Fragment {
                     ProductoDAO productoDAO = new ProductoDAO(getActivity().getApplicationContext());
                     ProductoListaDAO productoListaDAO = new ProductoListaDAO(getActivity().getApplicationContext());
 
-                    for (int i = 0; i < listaProductosAnyadiblesLista.size(); i++) {
+                    while (iteraProd.hasNext()) {
                         ProductoLista productoLista = new ProductoLista();
-                        int idProducto = productoDAO.insert(listaProductosAnyadiblesLista.get(i));
+                        int idProducto = productoDAO.insert(iteraProd.next());
                         productoLista.setIdLista(idLista);
                         productoLista.setIdProducto(idProducto);
                         productoListaDAO.insert(productoLista);
@@ -73,7 +78,7 @@ public class NuevaLista extends Fragment {
                     ft.replace(R.id.frame, new Listas()).addToBackStack(null);
                     ft.commit();
                 } else {
-                    if (listaProductosAnyadiblesLista.size() > 0) {
+                    if (!iteraProd.hasNext()) {
                         Toast.makeText(getActivity().getApplicationContext(), "No hay productos en la lista", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getActivity().getApplicationContext(), "Debes rellenar el nombre de la lista", Toast.LENGTH_SHORT).show();
@@ -93,13 +98,15 @@ public class NuevaLista extends Fragment {
         });
 
         btnAnyadirProductoALista = view.findViewById(R.id.btnAnyadirProductoALista);
+
+
         btnAnyadirProductoALista.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!editTextNombreProducto.getText().toString().equalsIgnoreCase("")) {
                     Producto producto = new Producto();
                     producto.setNombre(editTextNombreProducto.getText().toString());
-                    listaProductosAnyadiblesLista.add(producto);
+                    agregaProd.add(producto);
                     editTextNombreProducto.setText("");
                     Toast.makeText(getActivity().getApplicationContext(), "Producto añadido a la lista correctamente", Toast.LENGTH_SHORT).show();
                 } else {

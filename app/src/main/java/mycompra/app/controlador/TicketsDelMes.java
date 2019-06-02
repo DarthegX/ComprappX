@@ -27,6 +27,7 @@ import mycompra.app.adaptersRecycler.AdapterTickets;
 import mycompra.app.dao.MesDAO;
 import mycompra.app.dao.SupermercadoDAO;
 import mycompra.app.dao.TicketDAO;
+import mycompra.app.iterador.Iterador;
 import mycompra.app.modelo.Mes;
 import mycompra.app.modelo.Supermercado;
 import mycompra.app.modelo.Ticket;
@@ -43,9 +44,9 @@ public class TicketsDelMes extends Fragment {
     private MesDAO mesDAO;
     private TicketDAO ticketDAO;
     private SupermercadoDAO supermercadoDAO;
-    private ArrayList<Mes> listaMes;
-    private ArrayList<Ticket> listaTicketsMes;
-    private ArrayList<Supermercado> listaSupermercados;
+    private Iterador<Mes> listaMes;
+    private Iterador<Ticket> listaTicketsMes;
+    private Iterador<Supermercado> listaSupermercados;
     private Mes mes;
 
     public TicketsDelMes() {
@@ -146,11 +147,12 @@ public class TicketsDelMes extends Fragment {
                 break;
         }
 
-        for (int i = 0; i < listaMes.size(); i++) {
-            if (Integer.parseInt(anyo) == listaMes.get(i).getAnyo() && listaMes.get(i).getNombre().equalsIgnoreCase(nombreMes)) {
-                mes = listaMes.get(i);
+        while (listaMes.hasNext()) {
+            if (Integer.parseInt(anyo) == listaMes.actual().getAnyo() && listaMes.actual().getNombre().equalsIgnoreCase(nombreMes)) {
+                mes = listaMes.actual();
                 break;
             }
+            listaMes.avanza();
         }
 
         listaTicketsMes = ticketDAO.getTicketListByMes(mes.getId());
@@ -159,10 +161,11 @@ public class TicketsDelMes extends Fragment {
         listFechas = new ArrayList<String>();
         listPrecios = new ArrayList<String>();
 
-        for (int i = 0; i < listaTicketsMes.size(); i++) {
-            listPrecios.add(String.valueOf(listaTicketsMes.get(i).getPrecio()));
-            listFechas.add(listaTicketsMes.get(i).getFecha());
-            listSupermercados.add(listaSupermercados.get(listaTicketsMes.get(i).getIdSupermercado() - 1).getNombre());
+        while (listaTicketsMes.hasNext()) {
+            listPrecios.add(String.valueOf(listaTicketsMes.actual().getPrecio()));
+            listFechas.add(listaTicketsMes.actual().getFecha());
+            listSupermercados.add(listaSupermercados.get(listaTicketsMes.actual().getIdSupermercado() - 1).getNombre());
+            listaTicketsMes.avanza();
         }
     }
 }

@@ -113,15 +113,16 @@ public class Productos extends Fragment {
         listCatProd = new ArrayList<String>();
 
         while (listaProductos.hasNext()){
-            if (listaProductos.next().getIdInventario() != 0) {
-                listDatosProd.add(String.valueOf(listaProductos.next().getCantidad()));
-                listProduct.add(listaProductos.next().getNombre());
-                if (listaProductos.next().getIdCategoria() != 0) {
-                    listCatProd.add(listaCategorias.get(listaProductos.next().getIdCategoria() - 1).getNombre());
+            if (listaProductos.actual().getIdInventario() != 0) {
+                listDatosProd.add(String.valueOf(listaProductos.actual().getCantidad()));
+                listProduct.add(listaProductos.actual().getNombre());
+                if (listaProductos.actual().getIdCategoria() != 0) {
+                    listCatProd.add(listaCategorias.get(listaProductos.actual().getIdCategoria() - 1).getNombre());
                 } else {
                     listCatProd.add("Sin categoria");
                 }
             }
+            listaProductos.avanza();
         }
     }
 }

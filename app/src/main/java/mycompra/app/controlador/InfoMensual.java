@@ -123,11 +123,12 @@ public class InfoMensual extends Fragment {
         }
 
         while (listaMes.hasNext()) {
-            if (Integer.parseInt(anyo) == listaMes.next().getAnyo() && listaMes.next().getNombre().equalsIgnoreCase(nombreMes)) {
-                mesAnterior = listaMes.actual();
-                mes = listaMes.next();
+            if (Integer.parseInt(anyo) == listaMes.actual().getAnyo() && listaMes.actual().getNombre().equalsIgnoreCase(nombreMes)) {
+                mesAnterior = listaMes.getPrevio();
+                mes = listaMes.actual();
                 break;
             }
+            listaMes.avanza();
         }
 
         listaTicketsMes = ticketDAO.getTicketListByMes(mes.getId());

@@ -108,9 +108,10 @@ public class Congelador extends Fragment {
         listCaducidadC = new ArrayList<String>();
 
         while (listaProductos.hasNext()){
-            listCantidadC.add(String.valueOf(listaProductos.next().getCantidad()));
-            listProdC.add(listaProductos.next().getNombre());
-            listCaducidadC.add(listaProductos.next().getCaducidad());
+            listCantidadC.add(String.valueOf(listaProductos.actual().getCantidad()));
+            listProdC.add(listaProductos.actual().getNombre());
+            listCaducidadC.add(listaProductos.actual().getCaducidad());
+            listaProductos.avanza();
         }
     }
 

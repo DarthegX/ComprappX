@@ -109,9 +109,10 @@ public class Despensa extends Fragment {
         listCaducidadD = new ArrayList<String>();
 
         while (listaProductos.hasNext()){
-            listCantidadD.add(String.valueOf(listaProductos.next().getCantidad()));
-            listProdD.add(listaProductos.next().getNombre());
-            listCaducidadD.add(listaProductos.next().getCaducidad());
+            listCantidadD.add(String.valueOf(listaProductos.actual().getCantidad()));
+            listProdD.add(listaProductos.actual().getNombre());
+            listCaducidadD.add(listaProductos.actual().getCaducidad());
+            listaProductos.avanza();
         }
     }
 }
