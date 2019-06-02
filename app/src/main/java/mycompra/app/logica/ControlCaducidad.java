@@ -15,9 +15,9 @@ import mycompra.app.modelo.Producto;
 
 public class ControlCaducidad
 {
-    public static ArrayList<Producto> prodsCaducados;
-    public static ArrayList<Producto> prodsCaducaHoy;
-    public static ArrayList<Producto> prodsCaduProxima;
+    public static ArrayList<Producto> prodsCaducados = new ArrayList<>();
+    public static ArrayList<Producto> prodsCaducaHoy = new ArrayList<>();
+    public static ArrayList<Producto> prodsCaduProxima = new ArrayList<>();
 
     public static int MAX_CAD_DIAS = 2;
     private static ProductoDAO productoDAO;
