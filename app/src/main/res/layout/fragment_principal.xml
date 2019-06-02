@@ -10,9 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="25dp"
-        android:layout_marginBottom="25dp"
         android:layout_marginRight="25dp"
+        android:layout_marginBottom="25dp"
         android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnCaducidades"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Caducidades" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -23,21 +30,21 @@
         <Button
             android:id="@+id/btnListPrincipalId"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginBottom="10dp"
             android:text="Listas de la compra" />
 
         <Button
             android:id="@+id/btnEscPrincId"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Escaner"
-            android:layout_marginBottom="10dp"/>
+            android:layout_height="60dp"
+            android:layout_marginBottom="10dp"
+            android:text="Escaner" />
 
         <Button
             android:id="@+id/btnInventPrincId"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="@string/Inventario" />
 
     </LinearLayout>
