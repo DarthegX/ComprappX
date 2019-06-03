@@ -35,6 +35,7 @@ public class ParserMercadonaEstrategia implements ParserEstrategia
         {
             cantidades.add(Integer.parseInt(String.valueOf(prod.charAt(0))));
             nombres.add(prod.substring(2));
+            ParserContexto.numProductosNuevos++;
         }
         else if (Character.isDigit(prod.charAt(2)))
         {

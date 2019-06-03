@@ -1,5 +1,7 @@
 package mycompra.app.logica.parserEstrategia;
 
+import org.xml.sax.Parser;
+
 import java.util.ArrayList;
 
 public class ParserConsumEstrategia implements ParserEstrategia
@@ -24,6 +26,7 @@ public class ParserConsumEstrategia implements ParserEstrategia
         {
             cantidades.add(Integer.parseInt(String.valueOf(prod.charAt(0))));
             nombres.add(prod.substring(2));
+            ParserContexto.numProductosNuevos++;
         }
         else if (Character.isDigit(prod.charAt(2)))
         {
