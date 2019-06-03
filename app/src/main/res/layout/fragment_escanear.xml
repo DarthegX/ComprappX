@@ -24,30 +24,15 @@
         <Button
             android:id="@+id/btnMercadona"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="@string/mercadona" />
 
         <Button
             android:id="@+id/btnConsum"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="Consum" />
 
-        <Button
-            android:id="@+id/btnOtros"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Otros"
-            android:layout_marginBottom="20dp"/>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnNuevaFoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_margin="@dimen/fab_margin"
-            android:backgroundTint="#C1BFBE"
-            android:src="@drawable/ic_menu_camera" />
     </LinearLayout>
 
 </LinearLayout>
