@@ -1,5 +1,6 @@
 package mycompra.app.controlador;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -90,7 +91,16 @@ public class ListaHabitual extends Fragment {
         imageButtonEscaner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                imageButtonEscaner.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Escanear escanear = new Escanear();
 
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.replace(R.id.frame, escanear).addToBackStack(null);
+                        ft.commit();
+                    }
+                });
             }
         });
 
