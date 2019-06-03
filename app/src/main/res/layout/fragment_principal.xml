@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="8dp"
         android:orientation="vertical">
 
         <Button
@@ -24,21 +24,21 @@
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="280dp"
             android:src="@mipmap/ic_logoaplicacion" />
 
         <Button
             android:id="@+id/btnListPrincipalId"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="4dp"
             android:text="Listas de la compra" />
 
         <Button
             android:id="@+id/btnEscPrincId"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="4dp"
             android:text="Escaner" />
 
         <Button
