@@ -31,7 +31,6 @@ public class Escanear extends Fragment {
 
         Button btnMercadona = vista.findViewById(R.id.btnMercadona);
         Button btnConsum = vista.findViewById(R.id.btnConsum);
-        Button btnOtros = vista.findViewById(R.id.btnOtros);
 
         btnMercadona.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,14 +50,6 @@ public class Escanear extends Fragment {
             }
         });
 
-        btnOtros.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myintent = new Intent(getActivity().getBaseContext(), TextScanner.class);
-                myintent.putExtra("supermercado", 3);
-                startActivity(myintent);
-            }
-        });
 
         // Inflate the layout for this fragment
         return vista;
