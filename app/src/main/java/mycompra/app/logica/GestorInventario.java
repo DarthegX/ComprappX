@@ -31,6 +31,7 @@ public class GestorInventario
         invDao = new InventarioDAO(context);
         productoDAO = new ProductoDAO(context);
         prodTicketDAO = new ProductoTicketDAO(context);
+        catDAO = new CategoriaDAO(context);
 
         inventarios = invDao.getInventarioList();
     }
@@ -43,7 +44,7 @@ public class GestorInventario
 
             while (categorias.hasNext())
             {
-                if (prod.getNombre().contains(categorias.next().getNombre()))
+                if (catDAO.getCategoriaById(prod.getIdCategoria()).getNombre().equals((String) categorias.next().getNombre()))
                 {
                     prod.setIdInventario(categorias.next().getIdInventario());
                     commitProducto(prod, relacion);
